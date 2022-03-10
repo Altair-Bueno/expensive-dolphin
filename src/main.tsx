@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import {GameListElement} from "./components/game";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <GameListElement/>
   </React.StrictMode>,
   document.getElementById('root')
 )
