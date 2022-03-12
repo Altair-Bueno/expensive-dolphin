@@ -2,7 +2,7 @@ import {useState} from "react";
 import {Alert, Button} from "react-bootstrap";
 
 export{
-    AlertDismissible
+    ExpensiveAlert
 }
 
 export enum AlertType{
@@ -23,7 +23,7 @@ interface AlertProps {
     buttonText:string
 }
 
-function AlertDismissible(props:AlertProps) {
+function ExpensiveAlert(props:AlertProps) {
     const [show, setShow] = useState(true);
 
     return (
