@@ -1,20 +1,37 @@
-function AlertDismissibleExample() {
-    const [show, setShow] = useState(true);
+import {useState} from "react";
+import {Alert, Button} from "react-bootstrap";
 
-    if (show) {
-        return (
-            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-                <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-                <p>
-                    Change this and that and try again. Duis mollis, est non commodo
-                    luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                    Cras mattis consectetur purus sit amet fermentum.
-                </p>
-            </Alert>
-        );
-    }
-    return <Button onClick={() => setShow(true)}>Show Alert</Button>;
+export{
+    AlertDismissible
 }
 
-render(<AlertDismissibleExample />);
+interface alertProps {
+    alertType:string
+    title:string
+    content:string
+    buttonText:string
+}
+
+function AlertDismissible(props:alertProps) {
+    const [show, setShow] = useState(true);
+
+    return (
+        <>
+            <Alert show={show} variant={props.alertType}>
+                <Alert.Heading>{props.title}</Alert.Heading>
+                <p>
+                    {props.content}
+                </p>
+                <hr />
+                <div className="d-flex justify-content-end">
+                    <Button onClick={() => setShow(false)} variant={props.alertType}>
+                        {props.buttonText}
+                    </Button>
+                </div>
+            </Alert>
+
+            {!show && <Button onClick={() => setShow(true)}>Show Alert</Button>}
+        </>
+    );
+}
 
