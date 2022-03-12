@@ -8,12 +8,12 @@ export {
 }
 
 function ExpensiveNavbar() {
-    return <Navbar bg="dark" variant = "dark" expand="lg" sticky="top">
+    return <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
         <Container>
             <Navbar.Brand>
                 <i className={"bi-currency-dollar"}/>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <LinkContainer to={Pages.Home}>
@@ -38,9 +38,12 @@ function ExpensiveNavbar() {
                     />
                 </Form>
                 <Navbar.Text>
-                    {/* FIXME */}
+                    {/*
+                        FIXME icon placement and responsive behaviour
+                        FIXME link breaks the navbar behaviour
+                     */}
                     <LinkContainer to={Pages.Profile}>
-                        <i className={"bi-person-circle text-light h5"}/>
+                        <i className={"bi-person-circle text-light h4"}/>
                     </LinkContainer>
                 </Navbar.Text>
             </Navbar.Collapse>

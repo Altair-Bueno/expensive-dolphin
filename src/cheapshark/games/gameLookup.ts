@@ -8,7 +8,7 @@ interface GameLookup {
     "deals": Deal [],
 }
 
-interface CheapPrice{
+interface CheapPrice {
     "price": string,
     "date": number
 }

@@ -13,12 +13,12 @@ ReactDOM.render(
         <BrowserRouter>
             <ExpensiveNavbar/>
             <Routes>
-                <Route path = {Pages.Home} element={<Home/>}/>
-                <Route path = {Pages.Stores} element={<Stores/>}/>
-                <Route path = {Pages.MyList} element={<MyList/>}/>
-                <Route path = {Pages.Help} element={<Help/>}/>
-                <Route path = {Pages.Search} element={<Search/>}/>
-                <Route path = {Pages.Profile} element={<Profile/>}/>
+                <Route path={Pages.Home} element={<Home/>}/>
+                <Route path={Pages.Stores} element={<Stores/>}/>
+                <Route path={Pages.MyList} element={<MyList/>}/>
+                <Route path={Pages.Help} element={<Help/>}/>
+                <Route path={Pages.Search} element={<Search/>}/>
+                <Route path={Pages.Profile} element={<Profile/>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>,

@@ -1,7 +1,7 @@
 export {
-Stores
+    Stores
 }
 
-function Stores () {
+function Stores() {
     return <h1>Stores placeholder</h1>
 }

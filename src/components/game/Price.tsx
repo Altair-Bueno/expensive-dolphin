@@ -3,14 +3,14 @@ export {
 }
 
 interface PriceProps {
-    price:number,
-    retailPrice:number
-    savings:number,
-    isOnSale:any
+    price: number,
+    retailPrice: number
+    savings: number,
+    isOnSale: any
 }
 
-function Price(props:PriceProps) {
-    if (props.isOnSale){
+function Price(props: PriceProps) {
+    if (props.isOnSale) {
         return <div className={"bg-dark"}>
             <img src={"/"} alt={"Foo"}/>
             <h3>${props.price}</h3>

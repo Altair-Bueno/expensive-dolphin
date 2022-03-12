@@ -16,5 +16,5 @@ export enum Pages {
 }
 
 export {
-    Help,Home,MyList,NotFound,Profile,Search,Stores
+    Help, Home, MyList, NotFound, Profile, Search, Stores
 }

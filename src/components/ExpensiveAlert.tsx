@@ -1,11 +1,11 @@
 import {useState} from "react";
 import {Alert, Button} from "react-bootstrap";
 
-export{
+export {
     ExpensiveAlert
 }
 
-export enum AlertType{
+export enum AlertType {
     primary = "primary",
     secondary = "secondary",
     success = "success",
@@ -18,12 +18,12 @@ export enum AlertType{
 
 interface AlertProps {
     alertType: AlertType
-    title:string
-    content:string
-    buttonText:string
+    title: string
+    content: string
+    buttonText: string
 }
 
-function ExpensiveAlert(props:AlertProps) {
+function ExpensiveAlert(props: AlertProps) {
     const [show, setShow] = useState(true);
 
     return (
@@ -33,9 +33,10 @@ function ExpensiveAlert(props:AlertProps) {
                 <p>
                     {props.content}
                 </p>
-                <hr />
+                <hr/>
                 <div className="d-flex justify-content-end">
-                    <Button onClick={() => setShow(false)} variant={props.alertType.toString()}>
+                    <Button onClick={() => setShow(false)}
+                            variant={props.alertType.toString()}>
                         {props.buttonText}
                     </Button>
                 </div>
