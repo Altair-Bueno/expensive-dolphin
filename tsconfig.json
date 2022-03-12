@@ -4,7 +4,10 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
-    "skipLibCheck": false,
+    // Some dumbass did not upgrade the types for React router 6, yet they are
+    // still available
+    // https://stackoverflow.com/a/70824444
+    "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
