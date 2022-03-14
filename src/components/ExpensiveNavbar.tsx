@@ -11,7 +11,13 @@ function ExpensiveNavbar() {
     return <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
         <Container>
             <Navbar.Brand>
-                <i className={"bi-currency-dollar"}/>
+                <img
+                    srcSet="/src/resources/logo.png"
+                    width="30"
+                    height="30"
+                    className={"bi-person-circle text-light h4"}
+                />
+
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
