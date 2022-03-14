@@ -2,6 +2,7 @@ import {Container, Form, FormControl, Nav, Navbar} from "react-bootstrap";
 
 import {LinkContainer} from 'react-router-bootstrap'
 import {Pages} from "../pages";
+import logo from '../resources/logo.png'
 
 export {
     ExpensiveNavbar
@@ -12,12 +13,10 @@ function ExpensiveNavbar() {
         <Container>
             <Navbar.Brand>
                 <img
-                    srcSet="/src/resources/logo.png"
-                    width="30"
+                    src={logo}
                     height="30"
                     className={"bi-person-circle text-light h4"}
                 />
-
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
@@ -46,7 +45,7 @@ function ExpensiveNavbar() {
                 <Navbar.Text>
                     {/*
                         FIXME icon placement and responsive behaviour
-                        FIXME link breaks the navbar behaviour
+                        FIXME clicking does not select the icon (see figma mockup)
                      */}
                     <LinkContainer to={Pages.Profile}>
                         <i className={"bi-person-circle text-light h4"}/>
