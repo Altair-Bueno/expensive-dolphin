@@ -2,7 +2,7 @@ import {Container, Form, FormControl, Nav, Navbar} from "react-bootstrap";
 
 import {LinkContainer} from 'react-router-bootstrap'
 import {Pages} from "../pages";
-import logo from '../resources/logo.png'
+import logo from '../resources/logo.svg'
 
 export {
     ExpensiveNavbar
@@ -14,8 +14,7 @@ function ExpensiveNavbar() {
             <Navbar.Brand>
                 <img
                     src={logo}
-                    height="30"
-                    className={"bi-person-circle text-light h4"}
+                    height="25"
                 />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
