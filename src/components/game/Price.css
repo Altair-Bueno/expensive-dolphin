@@ -1,5 +1,10 @@
 .price-root {
     height:60px;
-    width:250px;
+    width:170px;
 }
-.price-tag {width:40px}
+
+.price-tag {
+    flex: 0 0 auto;
+    width: 80px;
+    font-size: xx-large;
+}
