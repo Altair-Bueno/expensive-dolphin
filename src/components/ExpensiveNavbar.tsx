@@ -9,7 +9,7 @@ export {
 }
 
 interface ExpensiveNavbarProps {
-    username:string|null
+    username?:string|null
 }
 
 function ExpensiveNavbar(props:ExpensiveNavbarProps) {
