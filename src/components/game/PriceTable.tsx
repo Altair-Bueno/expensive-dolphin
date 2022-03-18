@@ -1,7 +1,7 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
-import "../../resources/css/PriceTable.css";
+import {useState} from "react";
+import "./PriceTable.css";
 
 export { PriceTable };
 
