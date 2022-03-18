@@ -1,4 +1,5 @@
 import {Price} from "../components/game/Price";
+import { Rating } from "../components/game/Rating";
 
 export {
     Help
@@ -6,7 +7,7 @@ export {
 
 function Help() {
     return (
-      <div className={"h-25"}>
+      <div className={"h-25 bg-dark"}>
         <Price price={10} retailPrice={20} savings={50} isOnSale={true} />
         <Price price={100} retailPrice={400} savings={75} isOnSale={true} />
         <Price price={999} retailPrice={1} savings={75} isOnSale={true} />
