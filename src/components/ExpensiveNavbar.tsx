@@ -13,60 +13,38 @@ interface ExpensiveNavbarProps {
 }
 
 function ExpensiveNavbar(props:ExpensiveNavbarProps) {
-    const usernamePlaceholder = "My account"
+    const username = props.username || "My account";
+    
+    const linkList = [
+      { page: Pages.Home, icon: "bi-currency-dollar", name: "Today's Deals" },
+      { page: Pages.Stores, icon: "bi-shop", name: "Stores" },
+      { page: Pages.MyList, icon: "bi-bag", name: "My List" },
+      { page: Pages.Help, icon: "bi-question-circle", name: "Help" },
+      { page: Pages.Profile, icon: "bi-person-circle", name: username },
+    ].map((x) => (
+      <LinkContainer to={x.page}>
+        <Nav.Link>
+          <i className={x.icon} /> {x.name}
+        </Nav.Link>
+      </LinkContainer>
+    ));
 
-    const todayIcon = <i className={"bi-currency-dollar"}/>
-    const storesIcon = <i className={"bi-shop"}/>
-    const listIcon = <i className={"bi-bag"}/>
-    const personIcon = <i className={"bi-person-circle"}/>
-    const helpIcon = <i className={"bi-question-circle"}/>
-
-    return <Navbar
-                    bg="dark"
-                    variant="dark"
-                    expand="lg"
-                    sticky="top"
-                    collapseOnSelect={true}>
+    return <Navbar collapseOnSelect={true}
+        bg="dark" variant="dark" expand="lg" sticky="top">
         <Container>
-            <Navbar.Brand>
-                <img
-                    src={logo}
-                    height="25"
-                    alt={"logo"}
-                />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                    <LinkContainer to={Pages.Home}>
-                        <Nav.Link>{todayIcon} Today's Deals</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to={Pages.Stores}>
-                        <Nav.Link>{storesIcon} Stores</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to={Pages.MyList}>
-                        <Nav.Link>{listIcon} My List</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to={Pages.Help}>
-                        <Nav.Link>{helpIcon} Help</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to={Pages.Profile}>
-                        <Nav.Link>
-                            {personIcon} {
-                                (typeof props.username === "string") ?
-                                    props.username:
-                                    usernamePlaceholder
-                            }
-                        </Nav.Link>
-                    </LinkContainer>
-                </Nav>
-                <Form className="d-flex">
-                    <FormControl
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"/>
-                </Form>
-            </Navbar.Collapse>
+          <Navbar.Brand>
+            <img src={logo} height="25" alt={"logo"} />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">{linkList}</Nav>
+            <Form className="d-flex">
+              <FormControl
+                type="search"
+                placeholder="Search"
+                aria-label="Search"/>
+            </Form>
+          </Navbar.Collapse>
         </Container>
-    </Navbar>
+      </Navbar>
 }
