@@ -1,7 +1,12 @@
-.table{
-    margin: auto;
+.table {
+  margin: auto;
 }
 
 table tr {
-    text-align: center;
- }
+  text-align: center;
+}
+
+table th {
+  cursor: pointer;
+  user-select: none;
+}
