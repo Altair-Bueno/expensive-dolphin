@@ -1,5 +1,4 @@
-import {Price} from "../components/game/Price";
-import { Rating } from "../components/game/Rating";
+import {Order, OrderEnum} from "../components/game/Order";
 
 export {
     Help
@@ -7,13 +6,21 @@ export {
 
 function Help() {
     return (
-      <div className={"h-25 bg-dark"}>
-        <Price price={10} retailPrice={20} savings={50} isOnSale={true} />
-        <Price price={100} retailPrice={400} savings={75} isOnSale={true} />
-        <Price price={999} retailPrice={1} savings={75} isOnSale={true} />
-        <Price price={1} retailPrice={20} savings={98} isOnSale={true} />
-        <Price price={1} retailPrice={20} savings={100} isOnSale={true} />
-        <Price price={10} retailPrice={10} savings={0} isOnSale={false} />
-      </div>
+        <div className={"h-25 bg-dark d-flex"}>
+            <div className={"row"}>
+                <div className={"col"}>
+                    <Order order={OrderEnum.NONE}/>
+                </div>
+                <div className={"col"}>
+                    <Order order={OrderEnum.DESCENDING}/>
+                </div>
+                <div className={"col"}>
+                    <Order order={OrderEnum.ASCENDING}/>
+                </div>
+                <div className={"col"}>
+                    <Order order={OrderEnum.NONE}/>
+                </div>
+            </div>
+        </div>
     );
 }
