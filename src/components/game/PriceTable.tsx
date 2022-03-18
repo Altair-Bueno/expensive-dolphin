@@ -128,7 +128,9 @@ function PriceTable(props: PriceTableProps) {
               <td>{toFixed(parseFloat(element.savings), 2)}%</td>
               <td>${element.normalPrice}</td>
               <td>
-                <Button variant="primary">Go to website</Button>{" "}
+                <Button variant="primary">
+                    <i className="bi bi-arrow-up-right-square"/>
+                </Button>{" "}
               </td>
             </tr>
           );
