@@ -1,7 +1,17 @@
+import {ShowMore} from "../components/ShowMore";
+import {BannerSize, LowestBanner} from "../components/game/LowestBanner";
+import {LoadError} from "../components/LoadError";
+
 export {
     Home
 }
 
 function Home() {
-    return <h1>Home placeholder</h1>
+    return (
+        <div className={"bg-dark"}>
+            <ShowMore onClick={() => console.log("click :D")}/>
+            <LowestBanner bannerSize={BannerSize.big}/>
+            <LoadError/>
+        </div>
+    );
 }
