@@ -1,4 +1,4 @@
-import {ExpensiveLoading} from "../components/ExpensiveLoading";
+import {GameListElement} from "../components/game/GameListElement";
 
 export {
     Help
@@ -6,8 +6,8 @@ export {
 
 function Help() {
     return (
-        <div className={"bg-dark d-flex"}>
-           <ExpensiveLoading/>
+        <div className={"bg-dark"}>
+           <GameListElement/>
         </div>
     );
 }

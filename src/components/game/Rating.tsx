@@ -4,7 +4,7 @@ export {
 
 interface RatingProps {
     steamRatingPercent: number,
-    steamRatingCount: number
+    steamRatingCount?: number| null
 }
 
 function Rating(props: RatingProps) {
@@ -23,6 +23,7 @@ function Rating(props: RatingProps) {
             .map(() => halfIcon)}
         {Array.from({length: empty})
             .map(() => emptyIcon)}
-        <small>{`${props.steamRatingCount} reviews`}</small>
+        {props.steamRatingCount &&
+            <small>{`${props.steamRatingCount} reviews`}</small>}
     </div>
 }
