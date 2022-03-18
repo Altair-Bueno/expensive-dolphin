@@ -47,37 +47,11 @@ function toFixed(value: number, precision: number) {
 
 function PriceTable(props: PriceTableProps) {
   enum order {
-    asc,
-    desc,
     normal,
+    asc,
+    desc
   }
 
-  var sorted = props.tablemodel.sort((a,b) => {
-    return (parseFloat(a.savings) - parseFloat(b.savings));
-    /*
-    if (ordered.order === order.asc){
-        if(ordered.rownum === 0){
-            return (parseInt(a.storeID) - parseInt(b.storeID));
-        } else if (ordered.rownum === 1){
-            return (parseFloat(a.salePrice) - parseFloat(b.salePrice));
-        } else if (ordered.rownum === 2){
-            return (parseFloat(a.savings) - parseFloat(b.savings));
-        } else {
-            return (parseFloat(a.normalPrice) - parseFloat(b.normalPrice));
-        }
-    } else if (ordered.order === order.desc){
-        if(ordered.rownum === 0){
-            return (parseInt(b.storeID) - parseInt(a.storeID));
-        } else if (ordered.rownum === 1){
-            return (parseFloat(b.salePrice) - parseFloat(a.salePrice));
-        } else if (ordered.rownum === 2){
-            return (parseFloat(b.savings) - parseFloat(a.savings));
-        } else {
-            return (parseFloat(b.normalPrice) - parseFloat(a.normalPrice));
-        }
-    } */
-
-  });
   const headers = ["Shop", "Current Price", "Deal", "Retail Price", "Link"]
 
   const [ordered, setOrdered] = useState({
@@ -85,13 +59,60 @@ function PriceTable(props: PriceTableProps) {
     rownum: 0,
   });
 
+  var sorted = props.tablemodel.sort((a,b) => {
+    switch(ordered.rownum){
+      case 0:
+        if (ordered.order === order.asc){
+          return (parseInt(a.storeID) - parseInt(b.storeID));
+        } else if (ordered.order === order.desc){
+          return (parseInt(b.storeID) - parseInt(a.storeID));
+        } else {
+          return 0;
+        }
+      case 1:
+        if (ordered.order === order.asc){
+          return (parseFloat(a.salePrice) - parseFloat(b.salePrice));
+        } else if (ordered.order === order.desc){
+          return (parseFloat(b.salePrice) - parseFloat(a.salePrice));
+        } else {
+          return 0;
+        }
+      
+      case 2:
+        if (ordered.order === order.asc){
+          return (parseFloat(a.savings) - parseFloat(b.savings));
+        } else if (ordered.order === order.desc){
+          return (parseFloat(b.savings) - parseFloat(a.savings));
+        } else {
+          return 0;
+        }
+
+      case 3: 
+        if (ordered.order === order.asc){
+          return (parseFloat(a.normalPrice) - parseFloat(b.normalPrice));
+        } else if (ordered.order === order.desc){
+          return (parseFloat(b.normalPrice) - parseFloat(a.normalPrice));
+        } else {
+          return 0;
+        }
+
+      default:
+        return 0;
+    }
+
+  });
+  
+
   return (
     <Table striped bordered hover variant="dark" className="table">
       <thead>
         <tr>
             {headers.map((element, index) => {
                 return(
-                    <th onClick={() => setOrdered({ order: ordered.order++, rownum: index })}>
+                    <th onClick={() => setOrdered({ 
+                      order: ordered.rownum === index ? ((ordered.order + 1) % 3) : 1, 
+                      rownum: index 
+                      })}>
                         {element}
                     </th>
                 );
