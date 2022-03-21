@@ -12,7 +12,7 @@ function LoadError(){
                     <i className="bi bi-exclamation-triangle-fill loaderrorlogo"/>
                 </div>
                 <div className={"col p-0 m-0 text-start d-flex align-items-center"}>
-                    <h1>This is <br/> embarrasing.</h1>
+                    <h1 className={"loaderrortext"}>This is <br/> embarrasing.</h1>
                 </div>
             </div>
         </div>
