@@ -1,52 +1,75 @@
 .table {
-    margin: auto;
+  margin: auto;
 }
 
 table tr {
-    text-align: center;
+  text-align: center;
 }
 
 table th {
-    cursor: pointer;
-    user-select: none;
+  cursor: pointer;
+  user-select: none;
 }
 
-#th-0, #th-4{
+.tableheader {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.tableheadertext {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#th-0,
+#th-4 {
   cursor: default;
 }
 
 Button i {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 .btn,
 .btn:hover,
 .btn:focus {
-    background-color: #7749f8;
+  background-color: #7749f8;
 }
 
 .btn {
-    outline: 0px;
+  outline: 0px;
 }
 
 .btn:hover {
-    color: black;
+  color: black;
 }
 
 .btn:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
-td img{
+td img {
   height: 50px;
   width: auto;
 }
 
-.caret-icons{
+.caret-icons {
   display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
 }
 
+.caret-icons > i {
+  margin: 0px;
+  height: 15px;
+}
 
-
-
-
+#caretuphidden-1,
+#caretuphidden-2,
+#caretuphidden-3,
+#caretdownhidden-1,
+#caretdownhidden-2,
+#caretdownhidden-3 {
+  display: none;
+}
