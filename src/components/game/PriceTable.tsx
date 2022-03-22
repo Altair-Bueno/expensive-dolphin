@@ -5,6 +5,9 @@ import "./PriceTable.css";
 
 export { PriceTable };
 
+const baseimgsURL = "https://www.cheapshark.com";
+const baseapiURL = "https://www.cheapshark.com/api/1.0";
+
 interface TableElement {
     internalName: string;
     title: string;
@@ -27,8 +30,20 @@ interface TableElement {
     thumb: string;
 }
 
+interface StoreElement {
+    storeID: string;
+    storeName: string;
+    isActive: number;
+    images: {
+        banner: string;
+        logo: string;
+        icon: string;
+    };
+}
+
 interface PriceTableProps {
     tablemodel: TableElement[];
+    storeModel: StoreElement[];
 }
 
 function toFixed(value: number, precision: number) {
@@ -47,6 +62,14 @@ function toFixed(value: number, precision: number) {
     return result;
 }
 
+function getStore(id: string, stores: StoreElement[]) {
+    return stores.find((element) => element.storeID === id)!;
+}
+
+function openInNewTab(url: string) {
+    window.open(url, "_blank").focus();
+}
+
 function PriceTable(props: PriceTableProps) {
     enum order {
         normal,
@@ -63,20 +86,10 @@ function PriceTable(props: PriceTableProps) {
 
     var sorted = props.tablemodel.sort((a, b) => {
         switch (ordered.rownum) {
-            case 0:
-                if (ordered.order === order.asc) {
-                    return parseInt(a.storeID) - parseInt(b.storeID);
-                } else if (ordered.order === order.desc) {
-                    return parseInt(b.storeID) - parseInt(a.storeID);
-                } else {
-                    return 0;
-                }
             case 1:
                 if (ordered.order === order.asc) {
-                    console.log("SORT-ASC");
                     return parseFloat(a.salePrice) - parseFloat(b.salePrice);
                 } else if (ordered.order === order.desc) {
-                    console.log("SORT-DESC");
                     return parseFloat(b.salePrice) - parseFloat(a.salePrice);
                 } else {
                     return 0;
@@ -118,6 +131,7 @@ function PriceTable(props: PriceTableProps) {
                     {headers.map((element, index) => {
                         return (
                             <th
+                                id={"th-" + index.toString()}
                                 onClick={() => {
                                     setOrdered({
                                         order:
@@ -126,10 +140,15 @@ function PriceTable(props: PriceTableProps) {
                                                 : 1,
                                         rownum: index,
                                     });
-                                    console.log(ordered.order);
                                 }}
                             >
                                 {element}
+                                {index != 0 && index != 4 ? (
+                                    <div class="caret-icons">
+                                        <i class="bi bi-caret-up-fill"></i>
+                                        <i class="bi bi-caret-down-fill"></i>
+                                    </div>) : <></>
+                                }    
                             </th>
                         );
                     })}
@@ -139,12 +158,31 @@ function PriceTable(props: PriceTableProps) {
                 {final.map((element) => {
                     return (
                         <tr>
-                            <td>{element.storeID}</td>
+                            <td>
+                                <img
+                                    className="logo"
+                                    src={
+                                        baseimgsURL +
+                                        getStore(
+                                            element.storeID,
+                                            props.storeModel
+                                        ).images.banner
+                                    }
+                                ></img>
+                            </td>
                             <td>${element.salePrice}</td>
                             <td>{toFixed(parseFloat(element.savings), 2)}%</td>
                             <td>${element.normalPrice}</td>
                             <td>
-                                <Button variant="primary">
+                                <Button
+                                    variant="primary"
+                                    onClick={() => {
+                                        window.location.href =
+                                            "https://www.google.com";
+                                    }}
+                                    bsPrefix="btn"
+                                >
+                                    Go to website
                                     <i className="bi bi-arrow-up-right-square" />
                                 </Button>{" "}
                             </td>
