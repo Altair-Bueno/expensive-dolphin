@@ -13,7 +13,7 @@ function ShowMore(p : ButtonProps){
     const icon = <i className={"bi bi-arrow-down-square-fill small"}/>
 
     return(
-        <Button variant={"outline-light"} >
+        <Button variant={"outline-light"} onClick={p.onClick}>
             {icon}{' '}{content}
         </Button>
     )
