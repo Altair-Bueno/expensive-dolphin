@@ -1,0 +1,22 @@
+.deal-list-element-root {
+    width: auto;
+    height: 129px;
+}
+
+h1{
+    color: white;
+}
+
+.thumbnail{
+    width: 86px;
+    height: 111px;
+}
+
+.col-4{
+    padding-top: 10px;
+    padding-left: 0px;
+}
+
+.container price-root text-light{
+    margin-left: 0px;
+}

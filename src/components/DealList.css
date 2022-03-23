@@ -1,0 +1,19 @@
+.outer-row{
+    margin-bottom: 20px;
+}
+
+.root-container{
+    width: 1338px;
+    height: 597px;
+    padding-left: 57px;
+    background-color: #2F343F;
+    padding-top: 34px;
+}
+
+#store{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: -0.02em;
+    padding-left: 18px;
+}

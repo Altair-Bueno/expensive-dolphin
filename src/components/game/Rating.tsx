@@ -1,3 +1,4 @@
+import "./Rating.css"
 export {
     Rating
 }
@@ -16,14 +17,16 @@ function Rating(props: RatingProps) {
     const halfIcon = <i className={"bi-star-half text-warning"}/>
     const emptyIcon = <i className={"bi-star text-warning"}/>
 
-    return <div>
-        {Array.from({length: fill})
-            .map(() => fillIcon)}
-        {Array.from({length: half})
-            .map(() => halfIcon)}
-        {Array.from({length: empty})
-            .map(() => emptyIcon)}
-        {props.steamRatingCount &&
-            <small>{`${props.steamRatingCount} reviews`}</small>}
-    </div>
+    return (
+        <div className="rating-root">
+            {Array.from({length: fill})
+                .map(() => fillIcon)}
+            {Array.from({length: half})
+                .map(() => halfIcon)}
+            {Array.from({length: empty})
+                .map(() => emptyIcon)}
+            {props.steamRatingCount &&
+                <small>{`${props.steamRatingCount} reviews`}</small>}
+        </div>
+    );
 }
