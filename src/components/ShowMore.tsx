@@ -1,3 +1,5 @@
+import Button from "react-bootstrap/Button";
+
 export{
     ShowMore
 }
@@ -7,9 +9,12 @@ interface ButtonProps{
 }
 
 function ShowMore(p : ButtonProps){
+    const content = 'Show More'
+    const icon = <i className={"bi bi-arrow-down-square-fill small"}/>
+
     return(
-        <div className={"text-light"}>
-            <h1 className="bi bi-arrow-down-square-fill" onClick={p.onClick}>  Show More</h1>
-        </div>
+        <Button variant={"outline-light"} >
+            {icon}{' '}{content}
+        </Button>
     )
 }
