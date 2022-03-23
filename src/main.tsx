@@ -5,8 +5,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {ExpensiveNavbar} from "./components/ExpensiveNavbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Help, Home, MyList, NotFound, Pages, Profile, Search, Stores} from "./pages";
-
+import {
+    Help,
+    Home,
+    MyList,
+    NotFound,
+    Pages,
+    Profile,
+    Search,
+    Stores
+} from "./pages";
+import './pallete-dark.css'
 
 ReactDOM.render(
     <React.StrictMode>

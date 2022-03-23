@@ -1,0 +1,21 @@
+/*
+ * Color pallete for Expensive Dolphin
+ */
+.bg-expensive-accent{
+    background-color: #7749F8;
+}
+
+.bg-expensive-page {
+    background-color: #343A40;
+}
+.bg-expensive-card {
+    background-color: #2F343F;
+}
+
+.text-expensive-primary {
+    color: white;
+}
+
+.text-expensive-secondary {
+    color: #6C757D;
+}
