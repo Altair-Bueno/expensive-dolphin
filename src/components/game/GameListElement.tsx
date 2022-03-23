@@ -1,28 +1,37 @@
-import {Price} from "./Price";
-import {Rating} from "./Rating";
-import './GameListElement.css'
+import { Price } from "./Price";
+import { Rating } from "./Rating";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "./GameListElement.css";
 
-import logo from "/src/resources/logo.svg"
+import logo from "/src/resources/logo.svg";
 
-export {
-    GameListElement
-}
+export { GameListElement };
 
 function GameListElement() {
-    return <div className={"d-flex text-light game-list-element-root"}>
-        <div className={"col-2"}>
-            <img src={logo} alt={"Lego batman"} />
-        </div>
-        <div className={"col-6"}>
-            <div className={"row"}>
-                <h3>LEGO Batman</h3>
-            </div>
-            <div className={"row"}>
-                <Price price={10} retailPrice={20} savings={50} isOnSale={true}/>
-            </div>
-        </div>
-        <div className={"col-3"}>
-            <Rating steamRatingPercent={60}/>
-        </div>
-    </div>
+  return (
+    <>
+        
+    </>
+
+    
+  );
 }
+
+<div className={"d-flex text-light game-list-element-root"}>
+      <div className={"col-2"}>
+        <img src={logo} alt={"Lego batman"} />
+      </div>
+      <div className={"col-6"}>
+        <div className={"row"}>
+          <h3>LEGO Batman</h3>
+        </div>
+        <div className={"row"}>
+          <Price price={10} retailPrice={20} savings={50} isOnSale={true} />
+        </div>
+      </div>
+      <div className={"col-3"}>
+        <Rating steamRatingPercent={60} />
+      </div>
+    </div>
