@@ -1,7 +1,7 @@
 /*
  * Color pallete for Expensive Dolphin
  */
-.bg-expensive-accent{
+.bg-expensive-primary{
     background-color: #7749F8;
 }
 
@@ -18,4 +18,22 @@
 
 .text-expensive-secondary {
     color: #6C757D;
+}
+
+.btn-expensive-primary,
+.btn-expensive-primary:hover,
+.btn-expensive-primary:focus {
+    background-color: #7749f8;
+}
+
+.btn-expensive-primary {
+    outline: 0px;
+}
+
+.btn-expensive-primary:hover {
+    color: black;
+}
+
+.btn-expensive-primary:focus {
+    box-shadow: none;
 }
