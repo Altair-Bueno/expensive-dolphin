@@ -27,7 +27,6 @@ function DealListElement() {
                 <Rating steamRatingPercent={60} />
             </Col>
           </Row>
-          
       </Container>
     </>
   );
