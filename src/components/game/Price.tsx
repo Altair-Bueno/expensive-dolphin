@@ -26,7 +26,7 @@ function Price(props: PriceProps) {
 
 
     return (
-        <div className={"container price-root text-light"}>
+        <div className={"container price-root text-light m-0"}>
             <div className={"row p-0 m-0"}>
                 <span className={"p-0 m-0 text-end price-tag"}>
                     ${props.price}
