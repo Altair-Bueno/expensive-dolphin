@@ -15,7 +15,7 @@ import {
     Search,
     Stores
 } from "./pages";
-import './pallete.css'
+import './pallete-dark.css'
 
 ReactDOM.render(
     <React.StrictMode>
