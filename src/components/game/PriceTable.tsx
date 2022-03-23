@@ -1,12 +1,13 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import {useState} from "react";
 import "./PriceTable.css";
 
 export { PriceTable };
 
 const baseimgsURL = "https://www.cheapshark.com";
 const baseapiURL = "https://www.cheapshark.com/api/1.0";
+const redirectDeal = 'https://www.cheapshark.com/redirect?dealID='
 
 interface TableElement {
   internalName: string;
@@ -185,16 +186,18 @@ function PriceTable(props: PriceTableProps) {
               <td>{toFixed(parseFloat(element.savings), 2)}%</td>
               <td>${element.normalPrice}</td>
               <td>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    openInNewTab("https://www.cheapshark.com/redirect?dealID=" + element.dealID);
-                  }}
-                  bsPrefix="btn"
-                >
-                  Go to website
-                  <i className="bi bi-arrow-up-right-square" />
-                </Button>{" "}
+                  <Button
+                      variant="primary"
+                      onClick={() => {
+                          openInNewTab(`${redirectDeal}${element.dealID}`)
+                      }}
+                      bsPrefix="btn"
+                      className={"btn-expensive-primary"}>
+                      <div className={"d-none d-md-block"}>
+                          Go to website <i className="bi bi-arrow-up-right-square"/>
+                      </div>
+                      <i className="d-md-none bi bi-arrow-up-right-square"/>
+                  </Button>
               </td>
             </tr>
           );
