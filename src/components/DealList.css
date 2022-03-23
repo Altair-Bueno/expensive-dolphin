@@ -19,21 +19,22 @@
   padding-bottom: 9px;
 }
 
-.showmore{
-    display: flex;
-    flex-direction: row;
-    height: 27px;
-    width: 187px;
-    margin: 0 auto;
+.showmore {
+  display: flex;
+  flex-direction: row;
+  height: 27px;
+  width: 187px;
+  margin: 0 auto;
 }
 
-#showmoreicon{
-    filter: invert(100%);
-
+#showmoreicon {
+  color: white;
 }
 
 #showmoretext {
-    margin-left: 11px;
+  margin-left: 11px;
+  margin-bottom: 0;
+  margin-top: 2px;
 
   /* Bold / H4 Heading */
   font-style: normal;
