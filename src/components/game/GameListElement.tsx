@@ -9,20 +9,29 @@ export {
 }
 
 function GameListElement() {
-    return <div className={"d-flex text-light game-list-element-root"}>
-        <div className={"col-2"}>
-            <img src={logo} alt={"Lego batman"} />
-        </div>
-        <div className={"col-6"}>
-            <div className={"row"}>
-                <h3>LEGO Batman</h3>
+    return (
+        <div class="m-3">
+        <div class="container-md">
+        <div className="gamelist">
+            <div className="container">
+                <div className="row">
+                    <div className="col-1">
+                        <img className={"legobatman"} src={logo} alt={"Lego batman"}/>
+                    </div>
+                    <div className="col-1">
+                        <h3 class="gamename">LEGO Batman</h3>
+                    </div>
+                    <div className="col-3">
+                        <div className="col align-self-center">
+                            <Rating steamRatingPercent={60}/>
+                        </div>
+                        <div className="col">
+                                <Price price={10} retailPrice={20} savings={50} isOnSale={true}/>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className={"row"}>
-                <Price price={10} retailPrice={20} savings={50} isOnSale={true}/>
-            </div>
         </div>
-        <div className={"col-3"}>
-            <Rating steamRatingPercent={60}/>
         </div>
-    </div>
+    </div>)
 }
