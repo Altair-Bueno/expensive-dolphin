@@ -1,4 +1,5 @@
 import {GameListElement} from "../components/game/GameListElement";
+import {ExpensiveHelp} from "../components/ExpensiveHelp";
 
 export {
     Help
@@ -6,8 +7,8 @@ export {
 
 function Help() {
     return (
-        <div >
-           <GameListElement/>
+        <div>
+           <ExpensiveHelp/>
         </div>
     );
 }
