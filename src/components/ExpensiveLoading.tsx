@@ -1,4 +1,4 @@
-import './ExpendiseLoading.css'
+import './ExpensiveLoading.css'
 
 export {
     ExpensiveLoading
