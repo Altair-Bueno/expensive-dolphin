@@ -6,7 +6,7 @@ export {
 
 function Help() {
     return (
-        <div className={"bg-dark"}>
+        <div >
            <GameListElement/>
         </div>
     );

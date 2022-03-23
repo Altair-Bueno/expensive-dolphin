@@ -5,10 +5,10 @@ export {
 }
 
 function NotFound() {
+    const url = location.href
     return (
-        <div className={"bg-dark p-5"}>
-            <ExpensiveNotFound link={"https://expensive-dolphin.vercel.app/amborguesa/con/patatas?count=1"}/>
+        <div className={"position-absolute top-50 start-50 translate-middle"}>
+            <ExpensiveNotFound link={url}/>
         </div>
-
     );
 }
