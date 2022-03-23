@@ -8,18 +8,21 @@ table tr {
 
 table th {
   cursor: pointer;
-  user-select: none;
+  text-align: center;
 }
 
 .tableheader {
   display: flex;
   flex-direction: row;
   text-align: center;
+  justify-content: center;
 }
 
 .tableheadertext {
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 40px;
+  width: 70px;
 }
 
 #th-0,
@@ -57,12 +60,13 @@ td img {
 .caret-icons {
   display: flex;
   flex-direction: column;
-  margin-bottom: 8px;
+  margin-top: 5px;
 }
 
 .caret-icons > i {
   margin: 0px;
   height: 15px;
+  margin-left: auto;
 }
 
 #caretuphidden-1,
