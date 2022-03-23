@@ -1,7 +1,7 @@
 .rating-root{
-    width: 140px;
+    width: 120px;
 }
 
-i{
+.rating-star{
     font-size: 23px;
 }
