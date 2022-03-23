@@ -6,9 +6,9 @@ export{
 
 function LoadError(){
     return(
-        <div className={"loaderror-root p-4 text-light"}>
+        <div className={"loaderror-root container-md-12 p-4 text-light"}>
             <div className={"row"}>
-                <div className={"col-5 p-0 m-0"}>
+                <div className={"col-sm-12 col-md-5 p-0 m-0"}>
                     <i className="bi bi-exclamation-triangle-fill loaderrorlogo"/>
                 </div>
                 <div className={"col p-0 m-0 text-start d-flex align-items-center"}>
