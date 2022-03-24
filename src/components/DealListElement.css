@@ -1,6 +1,11 @@
 .deal-list-element-root {
     width: auto;
     height: 129px;
+    cursor: pointer;
+}
+
+.deal-list-element-root:hover{
+    background-color: #3f4655;
 }
 
 h1{

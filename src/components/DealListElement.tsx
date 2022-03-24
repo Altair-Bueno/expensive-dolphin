@@ -7,26 +7,42 @@ import "./DealListElement.css";
 
 export { DealListElement };
 
-function DealListElement() {
+interface DealListElementModel {
+  title: string;
+  dealID: string;
+  gameID: string;
+  salePrice: string;
+  normalPrice: string;
+  savings: string;
+  steamRatingPercent: string;
+  thumb: string;
+}
+
+
+function DealListElement(props: DealListElementModel) {
   return (
     <>
       <Container className="deal-list-element-root">
-          <Row>
-            <Col xs={2}>
-                <img className="thumbnail" src="http://1.bp.blogspot.com/-aZ3T-AxlMGI/Tp-ar5XPCtI/AAAAAAAABT4/P1sbiS-SpIM/s1600/LEGO+Batman.jpg" alt={"Lego batman"} />
-            </Col>
-            <Col xs={6}>
-                <Row>
-                    <h1>Lego Batman</h1>
-                </Row>
-                <Row className="price">
-                    <Price price={10} retailPrice={20} savings={50} isOnSale={true} />
-                </Row>
-            </Col>
-            <Col xs={4}>
-                <Rating steamRatingPercent={60} />
-            </Col>
-          </Row>
+        <Row>
+          <Col xs={2}>
+            <img
+              className="thumbnail"
+              src={props.thumb}
+              alt={props.title}
+            />
+          </Col>
+          <Col xs={6}>
+            <Row>
+              <h1>{props.title}</h1>
+            </Row>
+            <Row className="price">
+              <Price price={Number.parseFloat(props.salePrice)} retailPrice={Number.parseFloat(props.normalPrice)} savings={Number.parseInt(props.savings)} isOnSale={true} />
+            </Row>
+          </Col>
+          <Col xs={4}>
+            <Rating steamRatingPercent={Number.parseFloat(props.savings)} />
+          </Col>
+        </Row>
       </Container>
     </>
   );
