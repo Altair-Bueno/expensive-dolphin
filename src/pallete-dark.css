@@ -1,0 +1,39 @@
+/*
+ * Color pallete for Expensive Dolphin
+ */
+.bg-expensive-primary{
+    background-color: #7749F8;
+}
+
+.bg-expensive-page {
+    background-color: #343A40;
+}
+.bg-expensive-card {
+    background-color: #2F343F;
+}
+
+.text-expensive-primary {
+    color: white;
+}
+
+.text-expensive-secondary {
+    color: #6C757D;
+}
+
+.btn-expensive-primary,
+.btn-expensive-primary:hover,
+.btn-expensive-primary:focus {
+    background-color: #7749f8;
+}
+
+.btn-expensive-primary {
+    outline: 0px;
+}
+
+.btn-expensive-primary:hover {
+    color: black;
+}
+
+.btn-expensive-primary:focus {
+    box-shadow: none;
+}

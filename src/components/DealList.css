@@ -1,0 +1,28 @@
+.outer-row {
+  margin-bottom: 20px;
+}
+
+.root-container {
+  width: 1338px;
+  height: 597px;
+  padding-left: 57px;
+  background-color: #2f343f;
+  padding-top: 25px;
+}
+
+#store {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  padding-left: 18px;
+  padding-bottom: 9px;
+}
+
+#showmore {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  margin: 0 auto;
+  cursor: pointer;
+}

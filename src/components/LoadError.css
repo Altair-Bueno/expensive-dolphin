@@ -7,7 +7,10 @@
     height: 300px;
 }
 
-@media screen and (max-width:374px) {
-    .loaderrorlogo {font-size:180px;}
-    .loaderrortext {font-size: 15px}
+
+
+
+@media screen and (max-width:768px) {
+    .loaderrorlogo {font-size:100px;}
+    .loaderrortext {font-size: 15px;}
 }
