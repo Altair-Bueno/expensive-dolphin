@@ -35,12 +35,15 @@ function DealListElement(props: DealListElementModel) {
             <Row>
               <h1>{props.title}</h1>
             </Row>
-            <Row className="price">
-              <Price price={Number.parseFloat(props.salePrice)} retailPrice={Number.parseFloat(props.normalPrice)} savings={Number.parseInt(props.savings)} isOnSale={true} />
-            </Row>
+            
           </Col>
           <Col xs={4}>
             <Rating steamRatingPercent={Number.parseFloat(props.savings)} />
+            <Row className="price">
+                <Price price={Number.parseFloat(props.salePrice)} retailPrice={Number.parseFloat(props.normalPrice)} savings={Number.parseInt(props.savings)} isOnSale={true} />
+            </Row>
+            
+
           </Col>
         </Row>
       </Container>
