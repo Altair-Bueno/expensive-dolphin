@@ -448,7 +448,7 @@ function MyList() {
     return (
         <>
             <h1>My List placeholder</h1>
-            <div class="col-md-10 offset-md-1">
+            <div className="col-md-10 offset-md-1">
                 <PriceTable storeModel={stores} tablemodel={deals} />
             </div>
         </>
