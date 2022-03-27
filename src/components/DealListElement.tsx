@@ -24,7 +24,7 @@ function DealListElement(props: DealListElementModel) {
     <>
       <Container className="deal-list-element-root">
         <Row>
-          <Col xs={2}>
+          <Col xs={2} className={"p-1"}>
             <img
               className="thumbnail"
               src={props.thumb}
@@ -33,7 +33,7 @@ function DealListElement(props: DealListElementModel) {
           </Col>
           <Col xs={6}>
             <Row>
-              <h1>{props.title}</h1>
+              <h4 className={"text-light"}>{props.title}</h4>
             </Row>
             
           </Col>

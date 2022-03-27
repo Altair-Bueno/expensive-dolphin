@@ -6,5 +6,6 @@
 .price-tag {
     flex: 0 0 auto;
     width: 80px;
-    font-size: xx-large;
+    font-size: x-large;
+    font-weight: bold;
 }
