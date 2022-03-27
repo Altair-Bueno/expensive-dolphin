@@ -11,7 +11,7 @@ export {
 function GameListElement() {
     return (
 
-        <div class="container-md">
+        <div className="container-md">
             <div className="gamelist">
                 <div className="container">
                     <div className="m-3">
@@ -20,7 +20,7 @@ function GameListElement() {
                                 <img className={"legobatman"} src={logo} alt={"Lego batman"}/>
                             </div>
                             <div className="col-1">
-                                <h3 class="gamename">LEGO Batman</h3>
+                                <h3 className="gamename">LEGO Batman</h3>
                             </div>
                             <div className="col-3">
                                 <div className="col align-self-center">
