@@ -33,7 +33,7 @@ function DealListElement(props: DealListElementModel) {
           </Col>
           <Col xs={6}>
             <Row>
-              <h4 className={"text-light"}>{props.title}</h4>
+              <h4 className={"text-light title-text"}>{props.title}</h4>
             </Row>
             
           </Col>

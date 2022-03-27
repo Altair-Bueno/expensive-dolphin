@@ -13,7 +13,7 @@ interface PriceProps {
 
 function Price(props: PriceProps) {
     const sale = props.isOnSale ?(
-        <div className={"col p-0 m-0 ps-2"}>
+        <div className={"col p-0 m-0"}>
             <div className={"row p-0 m-0"}>
                 <del className={"small p-0 m-0"}>${props.retailPrice}</del>
             </div>
