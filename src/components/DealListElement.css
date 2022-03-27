@@ -21,3 +21,8 @@
 .container price-root text-light{
     margin-left: 0px;
 }
+
+@media screen and (max-width:991px) {
+    .deal-list-element-root {height: 250px;}
+}
+
