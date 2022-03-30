@@ -16,7 +16,7 @@ function Price(props: PriceProps) {
                 <del className={"small p-0 m-0"}>${props.retailPrice}</del>
             </div>
             <div className={"row p-0 m-0 w-76 "}>
-                <span className={"rounded rounded-2 bg-danger small text-center p-0 m-0"} >
+                <span className={"rounded rounded-2 bg-danger small text-center p-0 m-0 h-auto w-auto"} >
                     -{props.savings}%
                 </span>
             </div>
@@ -26,7 +26,7 @@ function Price(props: PriceProps) {
     return (
         <div className={"container text-light m-0"}>
             <div className={"row p-0 m-0"}>
-                <div className={"col p-0 text-end h6 my-auto"}>
+                <div className={"col p-0 text-end h4 my-auto"}>
                     ${props.price}
                 </div>
                 {sale}
