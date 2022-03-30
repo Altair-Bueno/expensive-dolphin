@@ -1,5 +1,3 @@
-import "./Rating.css"
-
 export {
     Rating
 }
@@ -14,12 +12,13 @@ function Rating(props: RatingProps) {
     const half = props.steamRatingPercent % 20 ? 1 : 0
     const empty = 5 - (fill + half)
 
-    const fillIcon = <i className={"bi-star-fill text-warning rating-star"}/>
-    const halfIcon = <i className={"bi-star-half text-warning rating-star"}/>
-    const emptyIcon = <i className={"bi-star text-warning rating-star"}/>
+    const commonClasses = 'text-warning h5'
+    const fillIcon = <i className={`bi-star-fill ${commonClasses}`}/>
+    const halfIcon = <i className={`bi-star-half ${commonClasses}`}/>
+    const emptyIcon = <i className={`bi-star ${commonClasses}`}/>
 
     return (
-        <div className="rating-root">
+        <div>
             {Array.from({length: fill})
                 .map(() => fillIcon)}
             {Array.from({length: half})
