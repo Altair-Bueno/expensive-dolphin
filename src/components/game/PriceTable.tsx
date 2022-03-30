@@ -1,5 +1,6 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import { Order, OrderEnum } from "./Order"
 import {useState} from "react";
 import "./PriceTable.css";
 
@@ -72,43 +73,38 @@ function openInNewTab(url: string) {
 }
 
 function PriceTable(props: PriceTableProps) {
-  enum order {
-    normal,
-    asc,
-    desc,
-  }
 
   const headers = ["Shop", "Current Price", "Deal", "Retail Price", "Link"];
 
   const [ordered, setOrdered] = useState({
-    order: order.normal,
+    order: OrderEnum.NONE,
     rownum: 0,
   });
 
   var sorted = props.tablemodel.sort((a, b) => {
     switch (ordered.rownum) {
       case 1:
-        if (ordered.order === order.asc) {
+        if (ordered.order === OrderEnum.ASCENDING) {
           return parseFloat(a.salePrice) - parseFloat(b.salePrice);
-        } else if (ordered.order === order.desc) {
+        } else if (ordered.order === OrderEnum.DESCENDING) {
           return parseFloat(b.salePrice) - parseFloat(a.salePrice);
         } else {
           return 0;
         }
 
       case 2:
-        if (ordered.order === order.asc) {
+        if (ordered.order === OrderEnum.ASCENDING) {
           return parseFloat(a.savings) - parseFloat(b.savings);
-        } else if (ordered.order === order.desc) {
+        } else if (ordered.order === OrderEnum.DESCENDING) {
           return parseFloat(b.savings) - parseFloat(a.savings);
         } else {
           return 0;
         }
 
       case 3:
-        if (ordered.order === order.asc) {
+        if (ordered.order === OrderEnum.ASCENDING) {
           return parseFloat(a.normalPrice) - parseFloat(b.normalPrice);
-        } else if (ordered.order === order.desc) {
+        } else if (ordered.order === OrderEnum.DESCENDING) {
           return parseFloat(b.normalPrice) - parseFloat(a.normalPrice);
         } else {
           return 0;
@@ -119,53 +115,40 @@ function PriceTable(props: PriceTableProps) {
     }
   });
 
-  var final = ordered.order === order.normal ? props.tablemodel : sorted;
+  var final = ordered.order === OrderEnum.NONE ? props.tablemodel : sorted;
 
   return (
-    <Table striped bordered hover variant="dark" className="table">
+    <Table striped bordered hover variant="dark" className="table align-middle text-center">
       <thead>
-        <tr>
+        <tr className="text-center">
           {headers.map((element, index) => {
-            return (
-              <th
-                id={"th-" + index.toString()}
-                onClick={() => {
-                  setOrdered({
-                    order:
-                      ordered.rownum === index ? (ordered.order + 1) % 3 : 1,
-                    rownum: index,
-                  });
-                }}
-              >
-                {index != 0 && index != 4 ? (
-                  <div className="tableheader">
-                    <div className="tableheadertext">{element}</div>
-                    <div className="caret-icons">
-                      <i
-                        id={
-                          index === ordered.rownum &&
-                          ordered.order === order.asc
-                            ? "caretuphidden-" + index
-                            : "caretup-" + index
-                        }
-                        className="bi bi-caret-up-fill"
-                      ></i>
-                      <i
-                        id={
-                          index === ordered.rownum &&
-                          ordered.order === order.desc
-                            ? "caretdownhidden-" + index
-                            : "caretdown-" + index
-                        }
-                        className="bi bi-caret-down-fill"
-                      ></i>
-                    </div>
+            {
+              var res;
+              (index === 0 || index === 4) ?
+              res = (
+                <th className="align-middle text-center m-auto">
+                  {element}
+                </th>
+              )
+              :
+              res = (
+              <th className="m-auto text-center">
+                <button type="button" className="btn" onClick={() => {
+                setOrdered({
+                  order:
+                    ordered.rownum === index ? (ordered.order + 1) % 3 : 1,
+                  rownum: index,
+                });
+              }}>
+                  <div className="d-flex justify-content-center">
+                    <div className="my-auto pe-3">{element}</div>
+                    {Order(ordered)}
                   </div>
-                ) : (
-                  element
-                )}
-              </th>
-            );
+                </button>
+              </th>);
+
+              return res;
+            }
           })}
         </tr>
       </thead>

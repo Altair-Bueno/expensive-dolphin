@@ -2,56 +2,8 @@
   margin: auto;
 }
 
-table tr {
-  text-align: center;
-}
-
-table th {
-  cursor: pointer;
-  text-align: center;
-}
-
-.tableheader {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: center;
-}
-
-.tableheadertext {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  height: 40px;
-  width: 70px;
-}
-
-#th-0,
-#th-4 {
-  cursor: default;
-}
-
 td img {
   height: 50px;
   width: auto;
 }
 
-.caret-icons {
-  display: flex;
-  flex-direction: column;
-  margin-top: 5px;
-}
-
-.caret-icons > i {
-  margin: 0px;
-  height: 15px;
-  margin-left: auto;
-}
-
-#caretuphidden-1,
-#caretuphidden-2,
-#caretuphidden-3,
-#caretdownhidden-1,
-#caretdownhidden-2,
-#caretdownhidden-3 {
-  display: none;
-}
