@@ -22,10 +22,12 @@ function Search() {
 
     return <div className={"container"}>
         <div className={"row"}>
-            <aside className={"col-4"}>
+            <aside className={"col-lg-4 col-md-12 border"}>
+                <h1>Aside placeholder</h1>
                 <FilterPanel/>
             </aside>
-            <main className={"col"}>
+            <main className={"col-lg col-md-12 border"}>
+                <h1>Gamelist placeholder</h1>
                 {gameList}
             </main>
         </div>
