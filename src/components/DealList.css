@@ -20,9 +20,6 @@
 }
 
 #showmore {
-  display: flex;
-  flex-direction: row;
-  width: 300px;
+  width: 126px;
   margin: 0 auto;
-  cursor: pointer;
 }
