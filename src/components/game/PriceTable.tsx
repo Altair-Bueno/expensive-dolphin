@@ -175,7 +175,7 @@ function PriceTable(props: PriceTableProps) {
                           openInNewTab(`${redirectDeal}${element.dealID}`)
                       }}
                       bsPrefix="btn"
-                      className={"btn-expensive-primary"}>
+                      className={"btn-primary"}>
                       <div className={"d-none d-md-block"}>
                           Go to website <i className="bi bi-arrow-up-right-square"/>
                       </div>

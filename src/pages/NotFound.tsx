@@ -30,7 +30,7 @@ function NotFound() {
                     <div className={"row"}>
                         <div className="col mb-4 text-end">
                             <LinkContainer to={linkTo}>
-                                <Button className={"btn-expensive-primary"}>
+                                <Button className={"btn-primary"}>
                                     {buttonText}
                                 </Button>
                             </LinkContainer>

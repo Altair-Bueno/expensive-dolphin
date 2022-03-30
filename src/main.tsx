@@ -5,7 +5,6 @@ import "./expensive-dark.sass";
 import {ExpensiveNavbar} from "./components/ExpensiveNavbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Help, Home, MyList, NotFound, Pages, Profile, Search,} from "./pages";
-import './pallete-dark.css'
 
 ReactDOM.render(
     <React.StrictMode>
