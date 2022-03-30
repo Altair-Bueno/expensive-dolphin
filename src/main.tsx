@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import "./expensive-dark.sass";
 import {ExpensiveNavbar} from "./components/ExpensiveNavbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Help, Home, MyList, NotFound, Pages, Profile, Search,} from "./pages";
