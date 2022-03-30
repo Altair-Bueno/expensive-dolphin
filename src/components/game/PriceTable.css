@@ -1,9 +1,15 @@
-.table {
-  margin: auto;
-}
-
-td img {
+.logo{
   height: 50px;
   width: auto;
 }
 
+.logo2{
+  height: 40px;
+  display: none;
+  width: auto;
+}
+
+@media screen and (max-width:991px) {
+  .logo{display: none;}
+  .logo2{display: block;}
+}

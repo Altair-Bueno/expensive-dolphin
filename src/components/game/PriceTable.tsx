@@ -133,7 +133,7 @@ function PriceTable(props: PriceTableProps) {
               :
               res = (
               <th className="m-auto text-center">
-                <button type="button" className="btn text-light" onClick={() => {
+                <button type="button" className="btn text-light shadow-none" onClick={() => {
                 setOrdered({
                   order:
                     ordered.rownum === index ? (ordered.order + 1) % 3 : 1,
@@ -162,6 +162,13 @@ function PriceTable(props: PriceTableProps) {
                   src={
                     baseimgsURL +
                     getStore(element.storeID, props.storeModel).images.banner
+                  }
+                ></img>
+                <img
+                  className="logo2"
+                  src={
+                    baseimgsURL +
+                    getStore(element.storeID, props.storeModel).images.logo
                   }
                 ></img>
               </td>
