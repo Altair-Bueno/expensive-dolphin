@@ -28,14 +28,6 @@ function ExpensiveNavbar(props:ExpensiveNavbarProps) {
         </Nav.Link>
       </LinkContainer>
     ));
-    const externalList = [
-        {icon:"bi-github", page:"https://github.com/Altair-Bueno/expensive-dolphin"}
-    ].map(x=>(
-        <a href={x.page} target="_blank" className={"nav-link"}>
-            <i className={`${x.icon} h4`}/>
-        </a>
-    ))
-
     return <Navbar collapseOnSelect={true}
         bg="dark" variant="dark" expand="lg" sticky="top">
         <Container>
@@ -45,10 +37,12 @@ function ExpensiveNavbar(props:ExpensiveNavbarProps) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">{linkList}</Nav>
-          </Navbar.Collapse>
             <Nav>
-                {externalList}
+                <a href={"https://github.com/Altair-Bueno/expensive-dolphin"} target="_blank" className={"nav-link"}>
+                    <i className={"bi-github"}/> GitHub
+                </a>
             </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
 }
