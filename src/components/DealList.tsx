@@ -22,7 +22,6 @@ interface DealListProps {
 }
 
 function DealList(props: DealListProps) {
-  // RECEIVED EXACTLY 6 DEALS FROM OUTSIDE
     const [numberOfDeals,setNumberOfDeals] = useState(6)
     const deals = props.elements.slice(0,numberOfDeals)
     const showMore = () => {

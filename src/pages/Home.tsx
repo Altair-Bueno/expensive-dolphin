@@ -1,6 +1,3 @@
-import {ShowMore} from "../components/ShowMore";
-import {BannerSize, LowestBanner} from "../components/game/LowestBanner";
-import {AlertType, ExpensiveAlert} from "../components/ExpensiveAlert";
 import {DealList} from "../components/DealList";
 
 export {
@@ -49,6 +46,8 @@ const deals = [
         lastChange: 1647539816,
         dealRating: "10.0",
         thumb: "https://cdn.cloudflare.steamstatic.com/steam/apps/1307710/capsule_sm_120.jpg?t=1646752436",
+        lowestEver:true
+
     },
     {
         internalName: "XCOM2COLLECTION",
@@ -112,6 +111,8 @@ const deals = [
         lastChange: 1647539773,
         dealRating: "10.0",
         thumb: "https://originassets.akamaized.net/origin-com-store-final-assets-prod/180831/142.0x200.0/1069752_MB_142x200_en_US_^_2018-06-03-12-41-24_8dc4a01c489c6a1fa18f100892bdceba9ed85a80.jpg",
+        lowestEver:true
+
     },
     {
         internalName: "TOMBRAIDERANNIVERSARY",
@@ -132,7 +133,8 @@ const deals = [
         releaseDate: 1181001600,
         lastChange: 1621540355,
         dealRating: "9.3",
-        thumb: "https://cdn.cloudflare.steamstatic.com/steam/apps/8000/capsule_sm_120.jpg?t=1592494287"
+        thumb: "https://cdn.cloudflare.steamstatic.com/steam/apps/8000/capsule_sm_120.jpg?t=1592494287",
+        lowestEver:true
     },
 ];
 

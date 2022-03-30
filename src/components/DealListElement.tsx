@@ -3,6 +3,7 @@ import {Rating} from "./game/Rating";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import {BannerSize, LowestBanner} from "./game/LowestBanner";
 
 export {DealListElement};
 
@@ -16,12 +17,18 @@ interface DealListElementModel {
     steamRatingPercent: string;
     thumb: string;
     isOnSale?: any | null
+    lowestEver?:any|null
 }
 
 function DealListElement(props: DealListElementModel) {
+    const lowestBanner = <div className={"position-absolute"}>
+        <LowestBanner bannerSize={BannerSize.small}/>
+    </div>
+
     return <Container>
         <Row>
             <Col md = {12} xl={3} className={"m-auto text-center"}>
+                {props.lowestEver && lowestBanner}
                 <img
                     src={props.thumb}
                     alt={props.title}
@@ -36,13 +43,10 @@ function DealListElement(props: DealListElementModel) {
             </Col>
 
             <Col md = {12} xl={3}>
-                <Row>
-                    <div className={"text-end"}>
-                        <Rating
-                            steamRatingPercent={Number.parseFloat(props.savings)}/>
-                    </div>
+                <Row className={"text-end me-1"}>
+                        <Rating steamRatingPercent={Number.parseFloat(props.savings)}/>
                 </Row>
-                <Row>
+                <Row >
                     {/*TODO pass props properly*/}
                     <Price price={Number.parseFloat(props.salePrice)}
                            retailPrice={Number.parseFloat(props.normalPrice)}
