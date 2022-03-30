@@ -28,7 +28,7 @@ function DealList(props: DealListProps) {
   return (
     <>
       <div className="root-container">
-        <h1 id="store">Steam</h1>
+        <h1 className={"text-light"} id="store">Steam</h1>
         <Container>
           <Row className="outer-row">
             <Col sm>

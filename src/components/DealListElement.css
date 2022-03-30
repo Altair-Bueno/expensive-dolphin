@@ -8,10 +8,6 @@
     background-color: #3f4655;
 }
 
-h1{
-    color: white;
-}
-
 .thumbnail{
     width: 86px;
     height: 111px;
@@ -25,3 +21,8 @@ h1{
 .container price-root text-light{
     margin-left: 0px;
 }
+
+@media screen and (max-width:991px) {
+    .deal-list-element-root {height: 250px;}
+}
+

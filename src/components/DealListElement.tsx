@@ -24,20 +24,20 @@ function DealListElement(props: DealListElementModel) {
     <>
       <Container className="deal-list-element-root">
         <Row>
-          <Col xs={2}>
+          <Col lg={2} xs={12} className={"p-1"}>
             <img
               className="thumbnail"
               src={props.thumb}
               alt={props.title}
             />
           </Col>
-          <Col xs={6}>
+          <Col lg={6} >
             <Row>
-              <h1>{props.title}</h1>
+              <h4 className={"text-light title-text ps-sm-4 ps-xs-2"}>{props.title}</h4>
             </Row>
             
           </Col>
-          <Col xs={4}>
+          <Col lg={4} xs={12}>
             <Rating steamRatingPercent={Number.parseFloat(props.savings)} />
             <Row className="price">
                 <Price price={Number.parseFloat(props.salePrice)} retailPrice={Number.parseFloat(props.normalPrice)} savings={Number.parseInt(props.savings)} isOnSale={true} />
