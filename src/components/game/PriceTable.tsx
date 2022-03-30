@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { Order, OrderEnum } from "./Order"
+import {Order, OrderEnum} from "./Order"
 import {useState} from "react";
 import "./PriceTable.css";
 
@@ -133,7 +133,7 @@ function PriceTable(props: PriceTableProps) {
               :
               res = (
               <th className="m-auto text-center">
-                <button type="button" className="btn" onClick={() => {
+                <button type="button" className="btn text-light" onClick={() => {
                 setOrdered({
                   order:
                     ordered.rownum === index ? (ordered.order + 1) % 3 : 1,
