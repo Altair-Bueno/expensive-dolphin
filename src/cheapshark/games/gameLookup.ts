@@ -1,28 +1,25 @@
-export type {
-    GameLookup
+export interface Info {
+    title: string;
+    steamAppID: string;
+    thumb: string;
 }
 
-interface GameLookup {
-    "info": Info,
-    "cheapestPriceEver": CheapPrice | null,
-    "deals": Deal [],
+export interface CheapestPriceEver {
+    price: string;
+    date: number;
 }
 
-interface CheapPrice {
-    "price": string,
-    "date": number
+export interface Deal {
+    storeID: string;
+    dealID: string;
+    price: string;
+    retailPrice: string;
+    savings: string;
 }
 
-interface Deal {
-    "storeID": string,
-    "dealID": string,
-    "price": string,
-    "retailPrice": string,
-    "savings": string
+export interface GameLookup {
+    info: Info;
+    cheapestPriceEver: CheapestPriceEver;
+    deals: Deal[];
 }
 
-interface Info {
-    "title": string,
-    "steamAppID": string,
-    "thumb": string
-}
