@@ -1,5 +1,3 @@
-import './Price.css'
-
 export {
     Price
 }
@@ -13,7 +11,7 @@ interface PriceProps {
 
 function Price(props: PriceProps) {
     const sale = props.isOnSale ?(
-        <div className={"col p-0 m-0"}>
+        <div className={"col p-0 m-0 ms-1"}>
             <div className={"row p-0 m-0"}>
                 <del className={"small p-0 m-0"}>${props.retailPrice}</del>
             </div>
@@ -26,11 +24,11 @@ function Price(props: PriceProps) {
 
 
     return (
-        <div className={"container price-root text-light m-0"}>
+        <div className={"container text-light m-0"}>
             <div className={"row p-0 m-0"}>
-                <span className={"p-0 me-2 text-start price-tag "}>
+                <div className={"col p-0 text-end h6 my-auto"}>
                     ${props.price}
-                </span>
+                </div>
                 {sale}
             </div>
         </div>
