@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {BannerSize, LowestBanner} from "./game/LowestBanner";
+import "./DealListElement.css"
 
 export {DealListElement};
 
@@ -32,21 +33,21 @@ function DealListElement(props: DealListElementModel) {
                 <img
                     src={props.thumb}
                     alt={props.title}
-                    style={{maxHeight: '75px'}}
+                    className={"deal-list-element-img"}
                 />
             </Col>
 
             <Col md = {12} xl={6}>
                 <Row>
-                    <h5 className={"text-light title-text text-truncate"}>{props.title}</h5>
+                    <h5 className={"text-light title-text text-start text-truncate"}>{props.title}</h5>
                 </Row>
             </Col>
 
             <Col md = {12} xl={3}>
-                <Row className={"text-end me-1"}>
+                <Row className={"text-start me-1"}>
                         <Rating steamRatingPercent={Number.parseFloat(props.savings)}/>
                 </Row>
-                <Row >
+                <Row className={"d-inline-flex "}>
                     {/*TODO pass props properly*/}
                     <Price price={Number.parseFloat(props.salePrice)}
                            retailPrice={Number.parseFloat(props.normalPrice)}
