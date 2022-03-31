@@ -28,26 +28,26 @@ function DealListElement(props: DealListElementModel) {
 
     return <Container>
         <Row>
-            <Col md = {12} xl={3} className={"m-auto text-center"}>
+            <Col className={"m-auto text-center"} md={3}>
                 {props.lowestEver && lowestBanner}
                 <img
                     src={props.thumb}
                     alt={props.title}
-                    className={"deal-list-element-img"}
+                    className={"img-fluid deal-list-element"}
                 />
             </Col>
 
-            <Col md = {12} xl={6}>
+            <Col md={5}>
                 <Row>
                     <h5 className={"text-light title-text text-start text-truncate"}>{props.title}</h5>
                 </Row>
-            </Col>
-
-            <Col md = {12} xl={3}>
                 <Row className={"text-start me-1"}>
                         <Rating steamRatingPercent={Number.parseFloat(props.savings)}/>
                 </Row>
-                <Row className={"d-inline-flex "}>
+            </Col>
+
+            <Col>
+                <Row className={"d-inline-flex"}>
                     {/*TODO pass props properly*/}
                     <Price price={Number.parseFloat(props.salePrice)}
                            retailPrice={Number.parseFloat(props.normalPrice)}

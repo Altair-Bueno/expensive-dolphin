@@ -1,13 +1,3 @@
-@media (max-width: 992px) {
-    .deal-list-element-img {
-        min-height: 120px;
-        max-width: 200px;
-        width: auto;
-    }
-}
-@media (min-width: 992px) {
-    .deal-list-element-img {
-        max-height: 90px;
-        max-width: 120px;
-    }
+.deal-list-element {
+    height: 130px;
 }
