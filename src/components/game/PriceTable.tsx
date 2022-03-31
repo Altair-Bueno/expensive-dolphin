@@ -81,7 +81,10 @@ function PriceTable(props: PriceTableProps) {
     rownum: 0,
   });
 
-  var sorted = props.tablemodel.sort((a, b) => {
+  const orig = [...props.tablemodel];
+  var copy = [...props.tablemodel];
+
+  var sorted = copy.sort((a, b) => {
     switch (ordered.rownum) {
       case 1:
         if (ordered.order === OrderEnum.ASCENDING) {
@@ -115,7 +118,7 @@ function PriceTable(props: PriceTableProps) {
     }
   });
 
-  var final = ordered.order === OrderEnum.NONE ? props.tablemodel : sorted;
+  var final = ordered.order === OrderEnum.NONE ? [...orig] : [...sorted];
 
   return (
     <Table striped bordered hover variant="dark" className="table align-middle text-center">
