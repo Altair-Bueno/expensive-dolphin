@@ -1,7 +1,7 @@
 import {Container, Nav, Navbar} from "react-bootstrap";
 
 import {LinkContainer} from 'react-router-bootstrap'
-import {Pages} from "../pages";
+import {Home, Pages} from "../pages";
 import logo from '../resources/logo.svg'
 
 export {
@@ -32,7 +32,7 @@ function ExpensiveNavbar(props:ExpensiveNavbarProps) {
         bg="dark" variant="dark" expand="lg" sticky="top">
         <Container>
           <Navbar.Brand>
-            <img src={logo} height="25" alt={"logo"} />
+            <img src={logo} onClick={<Home/>} height="25" alt={"logo"} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
