@@ -1,5 +1,6 @@
 import { PriceTable } from "../components/game/PriceTable";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { fetchDeals, getStores } from "../components/Query"
+
 
 const deals = [
     {
