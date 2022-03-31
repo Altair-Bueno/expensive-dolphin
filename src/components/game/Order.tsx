@@ -1,5 +1,8 @@
+import { ListOfDeals } from "../../cheapshark/deals/listOfDeals";
+
 export {
-    Order
+    Order,
+    sortData
 }
 
 export enum OrderEnum {
@@ -29,4 +32,64 @@ function Order (props:OrderProps) {
             </div>
         </div>
     </div>
+}
+
+function sortData(data: ListOfDeals[], ordered: {order: OrderEnum, rownum: number}){
+        return data.sort((a, b) => {
+                switch (ordered.rownum) {
+                        case 1:
+                                if (ordered.order === OrderEnum.ASCENDING) {
+                                        return (
+                                                parseFloat(a.salePrice) -
+                                                parseFloat(b.salePrice)
+                                        );
+                                } else if (
+                                        ordered.order === OrderEnum.DESCENDING
+                                ) {
+                                        return (
+                                                parseFloat(b.salePrice) -
+                                                parseFloat(a.salePrice)
+                                        );
+                                } else {
+                                        return 0;
+                                }
+
+                        case 2:
+                                if (ordered.order === OrderEnum.ASCENDING) {
+                                        return (
+                                                parseFloat(a.savings) -
+                                                parseFloat(b.savings)
+                                        );
+                                } else if (
+                                        ordered.order === OrderEnum.DESCENDING
+                                ) {
+                                        return (
+                                                parseFloat(b.savings) -
+                                                parseFloat(a.savings)
+                                        );
+                                } else {
+                                        return 0;
+                                }
+
+                        case 3:
+                                if (ordered.order === OrderEnum.ASCENDING) {
+                                        return (
+                                                parseFloat(a.normalPrice) -
+                                                parseFloat(b.normalPrice)
+                                        );
+                                } else if (
+                                        ordered.order === OrderEnum.DESCENDING
+                                ) {
+                                        return (
+                                                parseFloat(b.normalPrice) -
+                                                parseFloat(a.normalPrice)
+                                        );
+                                } else {
+                                        return 0;
+                                }
+
+                        default:
+                                return 0;
+                }
+        });
 }
