@@ -1,4 +1,7 @@
-export const deals = [
+import { ListOfDeals } from "./deals/listOfDeals";
+import { Store } from "./stores";
+
+export const deals = <ListOfDeals[]> [
     {
         internalName: "INSOUNDMIND",
         title: "In Sound Mind",
@@ -106,7 +109,7 @@ export const deals = [
     },
 ];
 
-export const stores = [
+export const stores = <Store[]> [
     {
         storeID: "1",
         storeName: "Steam",
