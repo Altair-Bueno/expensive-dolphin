@@ -1,17 +1,10 @@
 import { PriceTable } from "../components/game/PriceTable";
 import { ExpensiveLoading } from "../components/ExpensiveLoading";
 import { AlertType, ExpensiveAlert } from "../components/ExpensiveAlert";
-import {
-  dealsBaseAPIURL,
-  storesBaseAPIURL,
-  TApiResponse,
-  useApiGet,
-} from "../components/Query";
+import { TApiResponse, useApiGet } from "../components/Query";
+import { dealsBaseAPIURL, storesBaseAPIURL } from "../cheapshark/apiurls";
 import { deals, stores } from "../cheapshark/exampledata";
-import { Store } from "../cheapshark/stores";
 import { LoadError } from "../components/LoadError";
-import { ListOfDeals } from "../cheapshark/deals/listOfDeals";
-import { useEffect, useState } from "react";
 
 export { MyList };
 
