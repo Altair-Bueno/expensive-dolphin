@@ -1,7 +1,7 @@
 export interface Images {
     banner: string;
-    logo: string;
     icon: string;
+    logo: string;
 }
 
 export interface Store {

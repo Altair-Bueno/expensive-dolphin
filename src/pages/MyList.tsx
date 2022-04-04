@@ -1,92 +1,59 @@
 import { PriceTable } from "../components/game/PriceTable";
 import { ExpensiveLoading } from "../components/ExpensiveLoading";
 import { AlertType, ExpensiveAlert } from "../components/ExpensiveAlert";
-import { dealsBaseAPIURL, storesBaseAPIURL } from "../components/Query";
+import {
+  dealsBaseAPIURL,
+  storesBaseAPIURL,
+  TApiResponse,
+  useApiGet,
+} from "../components/Query";
 import { deals, stores } from "../cheapshark/exampledata";
-import { Store } from "../cheapshark/stores"
+import { Store } from "../cheapshark/stores";
 import { LoadError } from "../components/LoadError";
 import { ListOfDeals } from "../cheapshark/deals/listOfDeals";
 import { useEffect, useState } from "react";
 
 export { MyList };
 
-// For the "unwrapping" variation
-
-async function api<T>(url: string): Promise<T> {
-  return fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json() as Promise<{ data: T }>;
-    })
-    .then((data) => {
-      return data.data;
-    });
-}
-
-
-
 function MyList() {
-    const [data, setData] = useState({
-        tiendas: {} as Store[],
-        ofertas: {} as ListOfDeals[],
-        error: false
-    });
+  // call to the hook
 
-    useEffect(() => {
-        const fetchData =  async () => {
-            try{
-                const [respTodoOne, respTodoTwo] = await Promise.all([
-                    fetch(dealsBaseAPIURL),
-                    fetch(storesBaseAPIURL)
-                ]);
-                
-                const respT = await respTodoOne.json();
-                const respD = await respTodoTwo.json();
+  const ofertas: TApiResponse = useApiGet(dealsBaseAPIURL);
 
-                console.log(respT.json())
-                console.log(respD.json())
+  const tiendas: TApiResponse = useApiGet(storesBaseAPIURL);
 
-                setData({
-                    tiendas: respT as Store[],
-                    ofertas: respD as ListOfDeals[],
-                    error: false
-                })
-        
-                
-            } catch(err){
-                setData({
-                    tiendas: {} as Store[],
-                    ofertas: {} as ListOfDeals[],
-                    error: true
-                })
-            }
-        }
+  var loading =
+    ofertas.loading ||
+    ofertas.data === undefined ||
+    tiendas.loading ||
+    tiendas.data === undefined;
+  var error = ofertas.error != null || tiendas.error != null;
 
-    })
-
-    if(data.error){
-        return (
-            <>
-                    {LoadError()}
-                    {ExpensiveAlert({
-                            alertType: AlertType.danger,
-                            title: "Loading error",
-                            content: "An unexpected error occured while loading the data. Reaload the website to try again.",
-                            buttonText: "Close",
-                    })}
-            </>
-    );
-    }
-
+  if (error) {
     return (
-        <>
-          <h1>My List placeholder</h1>
-          <div className="col-md-10 offset-md-1">
-            <PriceTable storeModel={data.tiendas} tablemodel={data.ofertas} />
-          </div>
-        </>
-      );
-  
+      <>
+        {LoadError()}
+        {ExpensiveAlert({
+          alertType: AlertType.danger,
+          title: "Loading error",
+          content:
+            "An unexpected error occured while loading the data. Reaload the website to try again.",
+          buttonText: "Close",
+        })}
+      </>
+    );
+  }
+
+  if (loading) {
+    return <ExpensiveLoading />;
+  }
+
+  return (
+    <>
+      <h1>My List placeholder</h1>
+      <div className="col-md-10 offset-md-1">
+        <PriceTable storeModel={tiendas.data} tablemodel={ofertas.data} />
+      </div>
+    </>
+  );
 }
