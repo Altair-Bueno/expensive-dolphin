@@ -4,6 +4,7 @@ import {PriceTable} from "./PriceTable";
 import {deals, stores} from "../../cheapshark/exampledata";
 import './ExpensiveGame.css'
 import {Price} from "./Price";
+import { ListOfDealsReduced } from "../../cheapshark/deals/listOfDeals";
 import {Rating} from "./Rating";
 import Button from "react-bootstrap/Button";
 
@@ -11,18 +12,7 @@ export{
     ExpensiveGame
 }
 
-interface GameProps {
-    title: string;
-    dealID: string;
-    gameID: string;
-    salePrice: number;
-    normalPrice: number;
-    savings: number;
-    steamRatingPercent: number;
-    thumb: string;
-}
-
-function ExpensiveGame(props : GameProps){
+function ExpensiveGame(props : ListOfDealsReduced){
     return(
         <div className={"container bg-secondary"}>
             <div className="row-6 d-flex">
@@ -35,11 +25,11 @@ function ExpensiveGame(props : GameProps){
                         {props.title}
                     </div>
                     <div className="row">
-                        <Rating steamRatingPercent={props.steamRatingPercent}/>
+                        <Rating steamRatingPercent={Number.parseInt(props.steamRatingPercent)}/>
                     </div>
                     <div className="row">
                         <div className="col-5 m-0 p-0 justify-content-start">
-                            <Price price={props.salePrice} retailPrice={props.normalPrice} savings={props.savings} isOnSale={1}/>
+                            <Price price={Number.parseFloat(props.salePrice)} retailPrice={Number.parseFloat(props.normalPrice)} savings={Number.parseInt(props.savings)} isOnSale={1}/>
                         </div>
                     </div>
 
