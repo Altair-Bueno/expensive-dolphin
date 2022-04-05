@@ -4,24 +4,12 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {BannerSize, LowestBanner} from "./game/LowestBanner";
+import { ListOfDeals } from "../cheapshark/deals/listOfDeals";
 import "./DealListElement.css"
 
 export {DealListElement};
 
-interface DealListElementModel {
-    title: string;
-    dealID: string;
-    gameID: string;
-    salePrice: string;
-    normalPrice: string;
-    savings: string;
-    steamRatingPercent: string;
-    thumb: string;
-    isOnSale?: any | null
-    lowestEver?:any|null
-}
-
-function DealListElement(props: DealListElementModel) {
+function DealListElement(props: ListOfDeals) {
     const lowestBanner = <div className={"position-absolute"}>
         <LowestBanner bannerSize={BannerSize.small}/>
     </div>

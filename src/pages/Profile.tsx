@@ -32,7 +32,6 @@ const deals = [
 function Profile() {
     return (
         <>
-            <ExpensiveGame title={deals[0].title} dealID={deals[0].dealID} gameID={deals[0].gameID} salePrice={deals[0].salePrice} normalPrice={deals[0].normalPrice} savings={deals[0].savings} steamRatingPercent={deals[0].steamRatingPercent} thumb={deals[0].thumb}/>
         </>   
     );
 }

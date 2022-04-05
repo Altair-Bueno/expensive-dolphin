@@ -4,7 +4,7 @@ import {PriceTable} from "./PriceTable";
 import {deals, stores} from "../../cheapshark/exampledata";
 import './ExpensiveGame.css'
 import {Price} from "./Price";
-import { ListOfDealsReduced } from "../../cheapshark/deals/listOfDeals";
+import { ListOfDeals } from "../../cheapshark/deals/listOfDeals";
 import {Rating} from "./Rating";
 import Button from "react-bootstrap/Button";
 
@@ -12,7 +12,7 @@ export{
     ExpensiveGame
 }
 
-function ExpensiveGame(props : ListOfDealsReduced){
+function ExpensiveGame(props : ListOfDeals){
     return(
         <div className={"container bg-secondary"}>
             <div className="row-6 d-flex">
