@@ -2,7 +2,7 @@ import { PriceTable } from "../components/game/PriceTable";
 import { ExpensiveLoading } from "../components/ExpensiveLoading";
 import { AlertType, ExpensiveAlert } from "../components/ExpensiveAlert";
 import { TApiResponse, useApiGet } from "../components/Query";
-import { dealsBaseAPIURL, storesBaseAPIURL } from "../cheapshark/apiurls";
+import { gameLookUpBaseAPIURL, dealsBaseAPIURL, storesBaseAPIURL } from "../cheapshark/apiurls";
 import { deals, stores } from "../cheapshark/exampledata";
 import { LoadError } from "../components/LoadError";
 
@@ -11,7 +11,7 @@ export { MyList };
 function MyList() {
   // call to the hook
 
-  const ofertas: TApiResponse = useApiGet(dealsBaseAPIURL);
+  const ofertas: TApiResponse = useApiGet(gameLookUpBaseAPIURL + "612");
 
   const tiendas: TApiResponse = useApiGet(storesBaseAPIURL);
 
@@ -37,6 +37,9 @@ function MyList() {
     );
   }
 
+  console.log(ofertas)
+  console.log(tiendas)
+
   if (loading) {
     return <ExpensiveLoading />;
   }
@@ -45,7 +48,7 @@ function MyList() {
     <>
       <h1>My List placeholder</h1>
       <div className="col-md-10 offset-md-1">
-        <PriceTable storeModel={tiendas.data} tablemodel={ofertas.data} />
+        <PriceTable storeModel={tiendas.data} tablemodel={ofertas.data.deals} />
       </div>
     </>
   );

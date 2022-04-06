@@ -4,17 +4,16 @@ import { Order, OrderEnum, sortData } from "./Order";
 import { ListOfDeals } from "../../cheapshark/deals/listOfDeals";
 import { Store } from "../../cheapshark/stores";
 import { useState } from "react";
+import { baseimgsURL, redirectDeal, openInNewTab } from "../../cheapshark/apiurls";
 import "./PriceTable.css";
+import { Deal } from "../../cheapshark/games/gameLookup";
 
 export { PriceTable };
 
-const baseimgsURL = "https://www.cheapshark.com";
-const baseapiURL = "https://www.cheapshark.com/api/1.0";
-const redirectDeal = "https://www.cheapshark.com/redirect?dealID=";
 const headers = ["Shop", "Current Price", "Deal", "Retail Price", "Link"];
 
 export interface PriceTableProps {
-  tablemodel: ListOfDeals[];
+  tablemodel: Deal[];
   storeModel: Store[];
 }
 
@@ -38,9 +37,6 @@ function getStore(id: string, stores: Store[]) {
   return stores.find((element) => element.storeID === id)!;
 }
 
-function openInNewTab(url: string) {
-  window.open(url, "_blank")?.focus();
-}
 
 function PriceTable(props: PriceTableProps) {
   const [ordered, setOrdered] = useState({
@@ -125,9 +121,9 @@ function PriceTable(props: PriceTableProps) {
                   }
                 ></img>
               </td>
-              <td>${element.salePrice}</td>
+              <td>${element.price}</td>
               <td>{toFixed(parseFloat(element.savings), 2)}%</td>
-              <td>${element.normalPrice}</td>
+              <td>${element.retailPrice}</td>
               <td>
                 <Button
                   variant="primary"

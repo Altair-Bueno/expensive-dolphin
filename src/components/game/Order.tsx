@@ -1,3 +1,4 @@
+import { Deal } from "../../cheapshark/games/gameLookup";
 import { ListOfDeals } from "../../cheapshark/deals/listOfDeals";
 
 export {
@@ -34,21 +35,21 @@ function Order (props:OrderProps) {
     </div>
 }
 
-function sortData(data: ListOfDeals[], ordered: {order: OrderEnum, rownum: number}){
+function sortData(data: Deal[], ordered: {order: OrderEnum, rownum: number}){
         return data.sort((a, b) => {
                 switch (ordered.rownum) {
                         case 1:
                                 if (ordered.order === OrderEnum.ASCENDING) {
                                         return (
-                                                parseFloat(a.salePrice) -
-                                                parseFloat(b.salePrice)
+                                                parseFloat(a.price) -
+                                                parseFloat(b.price)
                                         );
                                 } else if (
                                         ordered.order === OrderEnum.DESCENDING
                                 ) {
                                         return (
-                                                parseFloat(b.salePrice) -
-                                                parseFloat(a.salePrice)
+                                                parseFloat(b.price) -
+                                                parseFloat(a.price)
                                         );
                                 } else {
                                         return 0;
@@ -74,15 +75,15 @@ function sortData(data: ListOfDeals[], ordered: {order: OrderEnum, rownum: numbe
                         case 3:
                                 if (ordered.order === OrderEnum.ASCENDING) {
                                         return (
-                                                parseFloat(a.normalPrice) -
-                                                parseFloat(b.normalPrice)
+                                                parseFloat(a.retailPrice) -
+                                                parseFloat(b.retailPrice)
                                         );
                                 } else if (
                                         ordered.order === OrderEnum.DESCENDING
                                 ) {
                                         return (
-                                                parseFloat(b.normalPrice) -
-                                                parseFloat(a.normalPrice)
+                                                parseFloat(b.retailPrice) -
+                                                parseFloat(a.retailPrice)
                                         );
                                 } else {
                                         return 0;
