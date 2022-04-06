@@ -1,7 +1,6 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { Order, OrderEnum, sortData } from "./Order";
-import { ListOfDeals } from "../../cheapshark/deals/listOfDeals";
 import { Store } from "../../cheapshark/stores";
 import { useState } from "react";
 import { baseimgsURL, redirectDeal, openInNewTab } from "../../cheapshark/apiurls";

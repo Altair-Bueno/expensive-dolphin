@@ -1,11 +1,11 @@
 import { DealListElement } from "./DealListElement";
 import Col from "react-bootstrap/Col";
-import "./DealList.css";
 import { useState } from "react";
 import { ShowMore } from "./ShowMore";
 import { ListOfDeals } from "../cheapshark/deals/listOfDeals";
 import { ExpensiveGame } from "./game/ExpensiveGame";
 import Popup from "reactjs-popup";
+import "./DealList.css";
 
 export { DealList };
 

@@ -1,17 +1,14 @@
-import { DealListElement } from "../DealListElement";
-import { DealList } from "../DealList";
 import { PriceTable } from "./PriceTable";
-import { deals, stores } from "../../cheapshark/exampledata";
 import { LoadError } from "../LoadError";
 import { ExpensiveAlert, AlertType } from "../ExpensiveAlert";
 import { ExpensiveLoading } from "../ExpensiveLoading";
 import { TApiResponse, useApiGet } from "../Query";
-import "./ExpensiveGame.css";
 import { Price } from "./Price";
 import { ListOfDeals } from "../../cheapshark/deals/listOfDeals";
 import { gameLookUpBaseAPIURL, storesBaseAPIURL } from "../../cheapshark/apiurls";
 import { Rating } from "./Rating";
 import Button from "react-bootstrap/Button";
+import "./ExpensiveGame.css";
 
 export { ExpensiveGame };
 

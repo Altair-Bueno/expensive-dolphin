@@ -3,7 +3,6 @@ import { ExpensiveLoading } from "../components/ExpensiveLoading";
 import { AlertType, ExpensiveAlert } from "../components/ExpensiveAlert";
 import { TApiResponse, useApiGet } from "../components/Query";
 import { gameLookUpBaseAPIURL, dealsBaseAPIURL, storesBaseAPIURL } from "../cheapshark/apiurls";
-import { deals, stores } from "../cheapshark/exampledata";
 import { LoadError } from "../components/LoadError";
 
 export { MyList };
