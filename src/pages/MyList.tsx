@@ -35,10 +35,7 @@ function MyList() {
       </>
     );
   }
-
-  console.log(ofertas)
-  console.log(tiendas)
-
+  
   if (loading) {
     return <ExpensiveLoading />;
   }

@@ -24,42 +24,31 @@ function DealList(props: DealListProps) {
         const closeModal = () => setOpen(false);
 
         return (
-                <div className={"container bg-secondary p-3"}>
-                        <div className={"row g-2 gy-3"}>
-                                {deals.map((x, index) => (
-                                        <Fragment key={index}>
-                                                <Col
-                                                        className="dealdiv"
-                                                        xs={12}
-                                                        md={6}
-                                                >
-                                                        <button
-                                                                type="button"
-                                                                className="btn text-light shadow-none"
-                                                                onClick={() =>
-                                                                        setOpen((o) => !o)
-                                                                }
+                <>
+                        <div className={"container bg-secondary p-3"}>
+                                <div className={"row g-2 gy-3"}>
+                                        {deals.map((x, index) => (
+                                                <Fragment key={index}>
+                                                        <Col
+                                                                className="dealdiv"
+                                                                xs={12}
+                                                                md={6}
                                                         >
-                                                                <DealListElement
-                                                                        {...x}
-                                                                />
-                                                        </button>
-                                                        <Popup
-                                                                open={open}
-                                                                
-                                                                onClose={
-                                                                        closeModal
-                                                                }
-                                                        >
-                                                                <div className="modal">
-                                                                        <a
-                                                                                className="close"
-                                                                                onClick={
-                                                                                        closeModal
-                                                                                }
-                                                                        >
-                                                                                &times;
-                                                                        </a>
+                                                                <Popup
+                                                                        trigger={
+                                                                                <button
+                                                                                        type="button"
+                                                                                        className="btn text-light shadow-none"
+                                                                                >
+                                                                                        {" "}
+                                                                                        <DealListElement
+                                                                                                {...x}
+                                                                                        />{" "}
+                                                                                </button>
+                                                                        }
+                                                                        position="right center"
+                                                                        modal
+                                                                >
                                                                         <ExpensiveGame
                                                                                 title={
                                                                                         x.title
@@ -89,17 +78,17 @@ function DealList(props: DealListProps) {
                                                                                         x.thumb
                                                                                 }
                                                                         />
-                                                                </div>
-                                                        </Popup>
-                                                </Col>
-                                        </Fragment>
-                                ))}
+                                                                </Popup>
+                                                        </Col>
+                                                </Fragment>
+                                        ))}
+                                </div>
+                                {numberOfDeals < props.elements.length ? (
+                                        <ShowMore onClick={showMore} />
+                                ) : (
+                                        <></>
+                                )}
                         </div>
-                        {numberOfDeals < props.elements.length ? (
-                                <ShowMore onClick={showMore} />
-                        ) : (
-                                <></>
-                        )}
-                </div>
+                </>
         );
 }
