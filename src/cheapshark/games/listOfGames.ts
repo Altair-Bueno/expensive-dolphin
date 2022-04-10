@@ -1,4 +1,4 @@
-export interface ListOfGames {
+export interface Game {
     gameID: string;
     steamAppID: string;
     cheapest: string;
