@@ -1,12 +1,10 @@
-import { PriceTable } from "./PriceTable";
-import { LoadError } from "../LoadError";
-import { ExpensiveAlert, AlertType } from "../ExpensiveAlert";
-import { ExpensiveLoading } from "../ExpensiveLoading";
-import { TApiResponse, useApiGet } from "../Query";
-import { Price } from "./Price";
-import { ListOfDeals } from "../../cheapshark/deals/listOfDeals";
-import { gameLookUpBaseAPIURL, storesBaseAPIURL } from "../../cheapshark/apiurls";
-import { Rating } from "./Rating";
+import {PriceTable} from "./PriceTable";
+import {LoadError} from "../LoadError";
+import {AlertType, ExpensiveAlert} from "../ExpensiveAlert";
+import {ExpensiveLoading} from "../ExpensiveLoading";
+import {Price} from "./Price";
+import {ListOfDeals} from "../../cheapshark/deals/listOfDeals";
+import {Rating} from "./Rating";
 import Button from "react-bootstrap/Button";
 import "./ExpensiveGame.css";
 
