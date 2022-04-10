@@ -1,11 +1,10 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { Order, OrderEnum, sortData } from "./Order";
-import { Store } from "../../cheapshark/stores";
-import { useState } from "react";
-import { baseimgsURL, redirectDeal, openInNewTab } from "../../cheapshark/apiurls";
+import {Order, OrderEnum, sortData} from "./Order";
+import {Store, storeImageURL} from "../../cheapshark/stores";
+import {useState} from "react";
 import "./PriceTable.css";
-import { Deal } from "../../cheapshark/games/gameLookup";
+import {Deal} from "../../cheapshark/games/gameLookup";
 
 export { PriceTable };
 
@@ -108,17 +107,17 @@ function PriceTable(props: PriceTableProps) {
                 <img
                   className="logo"
                   src={
-                    baseimgsURL +
-                    getStore(element.storeID, props.storeModel).images.banner
+                      storeImageURL +
+                      getStore(element.storeID, props.storeModel).images.banner
                   }
-                ></img>
+                  />
                 <img
                   className="logo2"
                   src={
-                    baseimgsURL +
+                    storeImageURL +
                     getStore(element.storeID, props.storeModel).images.logo
                   }
-                ></img>
+                />
               </td>
               <td>${element.price}</td>
               <td>{toFixed(parseFloat(element.savings), 2)}%</td>
@@ -126,9 +125,7 @@ function PriceTable(props: PriceTableProps) {
               <td>
                 <Button
                   variant="primary"
-                  onClick={() => {
-                    openInNewTab(`${redirectDeal}${element.dealID}`);
-                  }}
+                  onClick={() => window.open(`${storeImageURL}${element.dealID}`,'_blank')}
                   bsPrefix="btn"
                   className={"btn-primary"}
                 >
