@@ -26,7 +26,7 @@ function DealList(props: DealListProps) {
         {deals.map((x) => (
           <>
             <Col className="dealdiv" xs={12} md={6}>
-              <Popup trigger={<button type="button" className="btn text-light shadow-none"> <DealListElement {...x} /> </button>} position="right center">
+              <Popup trigger={<button type="button" className="btn text-light shadow-none"> <DealListElement {...x} /> </button>} position="right center" modal>
                 <ExpensiveGame
                   title={x.title}
                   dealID={x.dealID}

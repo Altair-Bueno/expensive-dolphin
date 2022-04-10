@@ -43,8 +43,6 @@ function ExpensiveGame(props: ListOfDeals) {
     return <ExpensiveLoading />;
   }
 
-  
-  console.log(ofertas)
 
   return (
     <div className={"container bg-secondary"}>
