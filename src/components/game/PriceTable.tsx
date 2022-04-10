@@ -38,8 +38,8 @@ function getStore(id: string, stores: Store[]) {
 
 function PriceTable(props: PriceTableProps) {
   const [ordered, setOrdered] = useState({
-    order: OrderEnum.NONE,
-    rownum: 0,
+    order: OrderEnum.ASCENDING,
+    rownum: 1,
   });
 
   const orig = [...props.tablemodel];
