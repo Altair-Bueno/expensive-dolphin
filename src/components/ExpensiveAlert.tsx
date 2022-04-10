@@ -16,7 +16,7 @@ export enum AlertType {
     dark = "dark"
 }
 
-interface AlertProps {
+export interface AlertProps {
     alertType: AlertType
     title: string
     content: string
