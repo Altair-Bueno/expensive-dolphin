@@ -4,15 +4,17 @@ import {AlertType, ExpensiveAlert} from "../components/ExpensiveAlert";
 import {LoadError} from "../components/LoadError";
 import {useCheapShark} from "../cheapshark";
 import {gamesURL} from "../cheapshark/games";
-import {Store, storesInfoURL} from "../cheapshark/stores";
+import {Store} from "../cheapshark/stores/stores";
+
 import {UseQueryResult} from "react-query";
+import {storesURL} from "../cheapshark/stores";
 
 export { MyList };
 
 function MyList() {
   // call to the hook
   const ofertas = useCheapShark(gamesURL,{id:612})
-  const tiendas = useCheapShark(storesInfoURL) as UseQueryResult<Store[],any>
+  const tiendas = useCheapShark(storesURL) as UseQueryResult<Store[],any>
 
   const loading = ofertas.isLoading || tiendas.isLoading
 

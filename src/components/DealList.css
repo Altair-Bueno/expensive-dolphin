@@ -10,11 +10,36 @@
   padding-top: 25px;
 }
 
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
 
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+}
+
+.popup-content {
+  margin: auto;
+  background-color: #2F343F;
+  width: 50%;
+  padding: 27px;
+}
 
 .dealdiv:hover{
   background-color: #3b404d;
   box-shadow: 3px 3px 10px black;
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  padding: 2px 5px;
+  right: -10px;
+  top: -10px;
+  background: none;
+  box-shadow: none;
+  border: none;
+  font-size: 24px;
 }
 
 #store {

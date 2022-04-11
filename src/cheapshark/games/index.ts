@@ -2,7 +2,7 @@ export const gamesURL = 'https://www.cheapshark.com/api/1.0/games'
 
 export interface ListOfGamesParam {
     title:string,
-    streamAppId?:number,
+    steamAppId?:number,
     limit?:number,
     exact?:number,
 }

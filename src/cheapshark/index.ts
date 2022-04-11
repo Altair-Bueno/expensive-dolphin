@@ -10,6 +10,7 @@ import {
 import {Game} from "./games/listOfGames";
 import {GameLookup} from "./games/gameLookup";
 import {EditAlertParam, ManageAlertsParam} from "./alerts";
+import {Store} from "./stores/stores";
 
 type CheapSharkParameters = ListOfDealsParam | DealLookupParam | ListOfGamesParam | GameLookupParam | MultipleGameLookupParam | EditAlertParam | ManageAlertsParam
 type CheapSharkResult = ListOfDeals | DealLookup | Game[] | GameLookup | GameLookup[] | string | any
@@ -24,6 +25,7 @@ export function useCheapShark(baseURL:string, props:DealLookupParam):UseQueryRes
 export function useCheapShark(baseURL:string, props:ListOfGamesParam):UseQueryResult<Game[],any>
 export function useCheapShark(baseURL:string, props:GameLookupParam):UseQueryResult<GameLookup,any>
 export function useCheapShark(baseURL:string, props:MultipleGameLookupParam):UseQueryResult<GameLookup[],any>
+export function useCheapShark(baseURL:string):UseQueryResult<Store[], any>
 export function useCheapShark(baseURL:string, props:EditAlertParam):UseQueryResult<string,any>
 export function useCheapShark(baseURL:string, props:ManageAlertsParam):UseQueryResult<string,any>
 export function useCheapShark(baseURL:string):UseQueryResult<any,any>

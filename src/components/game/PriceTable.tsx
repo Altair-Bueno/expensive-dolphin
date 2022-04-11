@@ -1,10 +1,11 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import {Order, OrderEnum, sortData} from "./Order";
-import {Store, storeImageURL} from "../../cheapshark/stores";
+import {Store} from "../../cheapshark/stores/stores";
 import {useState} from "react";
 import "./PriceTable.css";
 import {Deal} from "../../cheapshark/games/gameLookup";
+import {imageURL} from "../../cheapshark/stores";
 
 export { PriceTable };
 
@@ -107,14 +108,14 @@ function PriceTable(props: PriceTableProps) {
                 <img
                   className="logo"
                   src={
-                      storeImageURL +
+                      imageURL +
                       getStore(element.storeID, props.storeModel).images.banner
                   }
                   />
                 <img
                   className="logo2"
                   src={
-                    storeImageURL +
+                    imageURL +
                     getStore(element.storeID, props.storeModel).images.logo
                   }
                 />
@@ -125,7 +126,7 @@ function PriceTable(props: PriceTableProps) {
               <td>
                 <Button
                   variant="primary"
-                  onClick={() => window.open(`${storeImageURL}${element.dealID}`,'_blank')}
+                  onClick={() => window.open(`${imageURL}${element.dealID}`,'_blank')}
                   bsPrefix="btn"
                   className={"btn-primary"}
                 >
