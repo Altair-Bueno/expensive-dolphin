@@ -18,7 +18,7 @@ function Profile() {
     } else if (ofertas.data && tiendas.data) {
         return (
             <>
-                <ExpensiveGame tiendas={tiendas.data} oferta={ofertas.data[0]}/>
+                <ExpensiveGame oferta={ofertas.data[0]}/>
             </>
         );
     } else {

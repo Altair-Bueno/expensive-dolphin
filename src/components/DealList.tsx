@@ -11,14 +11,13 @@ export {DealList};
 
 interface DealListProps {
     elements: Deal[],
+    numberOfDeals?:number
 }
 
 function DealList(props: DealListProps) {
-    const [numberOfDeals, setNumberOfDeals] = useState(6);
+    const [numberOfDeals, setNumberOfDeals] = useState(props.numberOfDeals);
+    const isShowMoreEnabled = props.numberOfDeals && numberOfDeals
     const deals = props.elements.slice(0, numberOfDeals);
-    const showMore = () => {
-        setNumberOfDeals(numberOfDeals + 6);
-    };
     return (
         <>
             <div className={"container bg-secondary p-3"}>
@@ -55,11 +54,11 @@ function DealList(props: DealListProps) {
                         </Fragment>
                     ))}
                 </div>
-                {numberOfDeals < props.elements.length ? (
-                    <ShowMore onClick={showMore}/>
-                ) : (
-                    <></>
-                )}
+                {
+                    isShowMoreEnabled &&
+                    numberOfDeals < props.elements.length &&
+                    <ShowMore onClick={()=>setNumberOfDeals(props.numberOfDeals ? props.numberOfDeals + numberOfDeals : undefined)}/>
+                }
             </div>
         </>
     );

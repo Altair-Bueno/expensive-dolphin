@@ -21,7 +21,7 @@ function Home() {
     } else if (ofertas.data && tiendas.data) {
         return (
             <div className={"d-flex justify-content-center m-3"}>
-                <DealList elements={ofertas.data} stores={tiendas.data}/>
+                <DealList elements={ofertas.data} numberOfDeals={6}/>
             </div>
         );
     } else {
