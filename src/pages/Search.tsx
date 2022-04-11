@@ -6,14 +6,39 @@ import {
     AlertType,
     ExpensiveAlert
 } from "../components/ExpensiveAlert";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
+import {Form, FormControl, FormGroup,} from "react-bootstrap";
+import {UseQueryResult} from "react-query";
+import {ListOfDeals} from "../cheapshark/deals/listOfDeals";
+import {DealListElement} from "../components/DealListElement";
+import {ListOfDealsParam} from "../cheapshark/deals";
 
 export {
     Search
 }
+
+interface FilterProps {
+    updateTitle: (x:ChangeEvent<HTMLInputElement>) => void
+}
+
+function Filter(props:FilterProps) {
+    const {updateTitle} = props
+    return <Form>
+        <FormGroup>
+            <Form.Label>Title</Form.Label>
+            <FormControl type={"search"} onChange={updateTitle}/>
+        </FormGroup>
+    </Form>
+}
+
 function Search() {
-    const [query,setQuery] = useState({title:"elder"})
-    const gameList = query ? useCheapShark(gamesURL, query) : null
+    const init: ListOfDealsParam = { title:"" }
+    const [filter,setFilter] = useState(init)
+    const gameList:UseQueryResult<ListOfDeals[],any> = useCheapShark(gamesURL, filter)
+
+    const filterProps:FilterProps= {
+        updateTitle: x => setFilter({...filter,title:x.target.value})
+    }
 
     let main;
     if (!gameList) {
@@ -29,14 +54,12 @@ function Search() {
         }
         main = <ExpensiveAlert {...props}/>
     } else if (gameList.data) {
-        main = gameList.data.map(x =><div>
-            {JSON.stringify(x)}
-        </div>)
+        main = gameList.data.map(x=><DealListElement {...x}/>)
     }
     return <div className={"container"}>
         <div className={"row"}>
             <aside className={"col-lg-4 col-md-12"}>
-                {"placeholder"}
+                <Filter {...filterProps}/>
             </aside>
             <main className={"col-lg col-md-12"}>
                 {main}
