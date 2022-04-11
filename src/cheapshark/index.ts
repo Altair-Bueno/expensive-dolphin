@@ -17,7 +17,7 @@ type CheapSharkResult = ListOfDeals | DealLookup | Game[] | GameLookup | GameLoo
 
 async function createQuery(baseURL:string, parameters:any) {
     const url = `${baseURL}?${new URLSearchParams(parameters as any)}`
-    return fetch(url).then(x=>x.json())
+    return await fetch(url).then(x=>x.json())
 }
 
 export function useCheapShark(baseURL:string, props:ListOfDealsParam):UseQueryResult<ListOfDeals[],any>
