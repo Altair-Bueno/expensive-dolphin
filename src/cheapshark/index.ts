@@ -12,22 +12,22 @@ import {GameLookup} from "./games/gameLookup";
 import {EditAlertParam, ManageAlertsParam} from "./alerts";
 import {Store} from "./stores/stores";
 
-type CheapSharkParameters = ListOfDealsParam | DealLookupParam | ListOfGamesParam | GameLookupParam | MultipleGameLookupParam | EditAlertParam | ManageAlertsParam
-type CheapSharkResult = ListOfDeals | DealLookup | Game[] | GameLookup | GameLookup[] | string | any
-
 async function createQuery(baseURL:string, parameters:any) {
     const url = `${baseURL}?${new URLSearchParams(parameters as any)}`
     return await fetch(url).then(x=>x.json())
 }
 
-export function useCheapShark(baseURL:string, props:ListOfDealsParam):UseQueryResult<ListOfDeals[],any>
-export function useCheapShark(baseURL:string, props:DealLookupParam):UseQueryResult<DealLookup,any>
-export function useCheapShark(baseURL:string, props:ListOfGamesParam):UseQueryResult<Game[],any>
-export function useCheapShark(baseURL:string, props:GameLookupParam):UseQueryResult<GameLookup,any>
-export function useCheapShark(baseURL:string, props:MultipleGameLookupParam):UseQueryResult<GameLookup[],any>
-export function useCheapShark(baseURL:string):UseQueryResult<Store[], any>
-export function useCheapShark(baseURL:string, props:EditAlertParam):UseQueryResult<string,any>
-export function useCheapShark(baseURL:string, props:ManageAlertsParam):UseQueryResult<string,any>
+type CheapSharkParameters = ListOfDealsParam | DealLookupParam | ListOfGamesParam | GameLookupParam | MultipleGameLookupParam | EditAlertParam | ManageAlertsParam
+type CheapSharkResult = ListOfDeals | DealLookup | Game[] | GameLookup | GameLookup[] | string | any
+
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/deals', props:ListOfDealsParam):UseQueryResult<ListOfDeals[],any>
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/deals', props:DealLookupParam):UseQueryResult<DealLookup,any>
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/games', props:ListOfGamesParam):UseQueryResult<Game[],any>
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/games', props:GameLookupParam):UseQueryResult<GameLookup,any>
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/games', props:MultipleGameLookupParam):UseQueryResult<GameLookup[],any>
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/stores'):UseQueryResult<Store[], any>
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/alerts', props:EditAlertParam):UseQueryResult<string,any>
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/alerts', props:ManageAlertsParam):UseQueryResult<string,any>
 export function useCheapShark(baseURL:string):UseQueryResult<any,any>
 
 export function useCheapShark(baseURL:string, props?:CheapSharkParameters):UseQueryResult<CheapSharkResult,any> {
