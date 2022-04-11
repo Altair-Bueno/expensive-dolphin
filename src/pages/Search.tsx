@@ -1,41 +1,23 @@
 import {useCheapShark} from "../cheapshark";
 import {ExpensiveLoading} from "../components/ExpensiveLoading";
-import {
-    AlertProps,
-    AlertType,
-    ExpensiveAlert
-} from "../components/ExpensiveAlert";
-import {ChangeEvent, useState} from "react";
-import {Form, FormControl, FormGroup,} from "react-bootstrap";
+import {AlertProps, ExpensiveAlert} from "../components/ExpensiveAlert";
+import {useState} from "react";
 import {UseQueryResult} from "react-query";
 import {Deal} from "../cheapshark/deals/listOfDeals";
 import {DealListElement} from "../components/DealListElement";
 import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
+import {Filter, FilterProps} from "../components/search/Filter";
 
 export {
     Search
 }
 
-interface FilterProps {
-    updateTitle: (x:ChangeEvent<HTMLInputElement>) => void
-}
-
-function Filter(props:FilterProps) {
-    const {updateTitle} = props
-    return <Form>
-        <FormGroup>
-            <Form.Label>Title</Form.Label>
-            <FormControl type={"search"} onChange={updateTitle}/>
-        </FormGroup>
-    </Form>
-}
-
 function Search() {
     const init: ListOfDealsParam = { title:"" }
     const [filter,setFilter] = useState(init)
-    const gameList:UseQueryResult<Deal[],any> = useCheapShark(dealsURL, filter)
+    const gameList:UseQueryResult<Deal[],AlertProps> = useCheapShark(dealsURL, filter)
 
-    const filterProps:FilterProps= {
+    const filterProps:FilterProps = {
         updateTitle: x => setFilter({...filter,title:x.target.value})
     }
 
@@ -43,15 +25,9 @@ function Search() {
     if (gameList.isLoading) {
         main = <ExpensiveLoading/>
     } else if (gameList.isError) {
-        const props: AlertProps = {
-            alertType: AlertType.danger,
-            buttonText: "Error",
-            content: "Foo",
-            title: "Baz"
-        }
-        main = <ExpensiveAlert {...props}/>
+        main = <ExpensiveAlert {...gameList.error}/>
     } else if (gameList.data) {
-        main = gameList.data.map(x=><DealListElement {...x}/>)
+        main = gameList.data.map(DealListElement)
     }
     return <div className={"container"}>
         <div className={"row"}>
