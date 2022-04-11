@@ -26,7 +26,7 @@ function ExpensiveGame(props: ExpensiveGameProps) { // Game ID for lookup
         return <ExpensiveLoading/>;
     } else if (juego.data) {
         return (
-            <div className={"container bg-secondary"}>
+            <div className={"container-sm bg-secondary"}>
                 <div className="row-6 d-flex">
                     <div className="col-2 m-0 p-0 d-flex justify-content-center">
                         <img src={juego.data.info.thumb} className={"img-fluid"}/>
@@ -61,7 +61,7 @@ function ExpensiveGame(props: ExpensiveGameProps) { // Game ID for lookup
                     </div>
                 </div>
 
-                <div className="row-6 d-flex justify-content-center">
+                <div className="row-6 d-flex">
                     <div className="col-6">
                         <PriceTable storeModel={props.tiendas} tablemodel={juego.data.deals}/>
                     </div>

@@ -4,7 +4,6 @@ import {ExpensiveLoading} from "../components/ExpensiveLoading";
 import {LoadError} from "../components/LoadError";
 import {useCheapShark} from "../cheapshark";
 import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
-import {Store} from "../cheapshark/stores/stores";
 import {storesURL} from "../cheapshark/stores";
 
 export {

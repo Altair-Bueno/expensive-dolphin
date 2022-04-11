@@ -22,9 +22,6 @@ function DealList(props: DealListProps) {
         setNumberOfDeals(numberOfDeals + 6);
     };
 
-    const [open, setOpen] = useState(false);
-    const closeModal = () => setOpen(false);
-
     return (
         <>
             <div className={"container bg-secondary p-3"}>
@@ -48,6 +45,11 @@ function DealList(props: DealListProps) {
                                     position="top center"
                                     modal
                                 >
+                                    <button className={"close"} onClick={() => {close()}}>
+                                        <div className={"text-danger"}>
+                                            <i className="bi bi-x-square"></i>
+                                        </div>
+                                        </button>
                                     <ExpensiveGame
                                         oferta={x} tiendas={props.stores}
                                     />
