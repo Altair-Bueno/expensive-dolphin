@@ -2,7 +2,7 @@ import {DealListElement} from "./DealListElement";
 import Col from "react-bootstrap/Col";
 import {Fragment, useState} from "react";
 import {ShowMore} from "./ShowMore";
-import {ListOfDeals} from "../cheapshark/deals/listOfDeals";
+import {Deal} from "../cheapshark/deals/listOfDeals";
 import {ExpensiveGame} from "./game/ExpensiveGame";
 import Popup from "reactjs-popup";
 import "./DealList.css";
@@ -11,7 +11,7 @@ import {Store} from "../cheapshark/stores/stores";
 export {DealList};
 
 interface DealListProps {
-    elements: ListOfDeals[],
+    elements: Deal[],
     stores: Store[];
 }
 

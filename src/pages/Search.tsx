@@ -1,5 +1,4 @@
 import {useCheapShark} from "../cheapshark";
-import {gamesURL} from "../cheapshark/games";
 import {ExpensiveLoading} from "../components/ExpensiveLoading";
 import {
     AlertProps,
@@ -9,9 +8,9 @@ import {
 import {ChangeEvent, useState} from "react";
 import {Form, FormControl, FormGroup,} from "react-bootstrap";
 import {UseQueryResult} from "react-query";
-import {ListOfDeals} from "../cheapshark/deals/listOfDeals";
+import {Deal} from "../cheapshark/deals/listOfDeals";
 import {DealListElement} from "../components/DealListElement";
-import {ListOfDealsParam} from "../cheapshark/deals";
+import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
 
 export {
     Search
@@ -34,16 +33,14 @@ function Filter(props:FilterProps) {
 function Search() {
     const init: ListOfDealsParam = { title:"" }
     const [filter,setFilter] = useState(init)
-    const gameList:UseQueryResult<ListOfDeals[],any> = useCheapShark(gamesURL, filter)
+    const gameList:UseQueryResult<Deal[],any> = useCheapShark(dealsURL, filter)
 
     const filterProps:FilterProps= {
         updateTitle: x => setFilter({...filter,title:x.target.value})
     }
 
     let main;
-    if (!gameList) {
-        main = "Placeholder"
-    } else if (gameList.isLoading) {
+    if (gameList.isLoading) {
         main = <ExpensiveLoading/>
     } else if (gameList.isError) {
         const props: AlertProps = {

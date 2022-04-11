@@ -1,6 +1,6 @@
 import {useQuery, UseQueryResult} from "react-query";
 import {DealLookupParam, ListOfDealsParam} from "./deals";
-import {ListOfDeals} from "./deals/listOfDeals";
+import {Deal} from "./deals/listOfDeals";
 import {DealLookup} from "./deals/dealLookup";
 import {
     GameLookupParam,
@@ -18,9 +18,9 @@ async function createQuery(baseURL:string, parameters:any) {
 }
 
 type CheapSharkParameters = ListOfDealsParam | DealLookupParam | ListOfGamesParam | GameLookupParam | MultipleGameLookupParam | EditAlertParam | ManageAlertsParam
-type CheapSharkResult = ListOfDeals | DealLookup | Game[] | GameLookup | GameLookup[] | string | any
+type CheapSharkResult = Deal[] | DealLookup | Game[] | GameLookup | GameLookup[] | string | any
 
-export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/deals', props:ListOfDealsParam):UseQueryResult<ListOfDeals[],any>
+export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/deals', props:ListOfDealsParam):UseQueryResult<Deal[],any>
 export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/deals', props:DealLookupParam):UseQueryResult<DealLookup,any>
 export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/games', props:ListOfGamesParam):UseQueryResult<Game[],any>
 export function useCheapShark(baseURL:'https://www.cheapshark.com/api/1.0/games', props:GameLookupParam):UseQueryResult<GameLookup,any>

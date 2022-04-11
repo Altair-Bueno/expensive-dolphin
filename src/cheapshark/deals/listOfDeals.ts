@@ -1,4 +1,4 @@
-export interface ListOfDeals {
+export interface Deal {
   internalName?: string;
   title: string;
   metacriticLink?: null | string;

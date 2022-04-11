@@ -9,13 +9,13 @@ import "./ExpensiveGame.css";
 import {useCheapShark} from "../../cheapshark";
 import {GameLookupParam, gamesURL} from "../../cheapshark/games";
 import {Store} from "../../cheapshark/stores/stores";
-import {ListOfDeals} from "../../cheapshark/deals/listOfDeals";
+import {Deal} from "../../cheapshark/deals/listOfDeals";
 
 export {ExpensiveGame};
 
 interface ExpensiveGameProps {
     tiendas: Store[]
-    oferta: ListOfDeals
+    oferta: Deal
 }
 
 function ExpensiveGame(props: ExpensiveGameProps) { // Game ID for lookup
