@@ -4,22 +4,18 @@ import {AlertProps, ExpensiveAlert} from "../components/ExpensiveAlert";
 import {useState} from "react";
 import {UseQueryResult} from "react-query";
 import {Deal} from "../cheapshark/deals/listOfDeals";
-import {DealListElement} from "../components/DealListElement";
-import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
+import {dealsURL} from "../cheapshark/deals";
 import {Filter, FilterProps} from "../components/search/Filter";
+import {DealList} from "../components/DealList";
 
 export {
     Search
 }
 
 function Search() {
-    const init: ListOfDealsParam = { title:"" }
-    const [filter,setFilter] = useState(init)
+    const [filter,setFilter] = useState({})
     const gameList:UseQueryResult<Deal[],AlertProps> = useCheapShark(dealsURL, filter)
-
-    const filterProps:FilterProps = {
-        updateTitle: x => setFilter({...filter,title:x.target.value})
-    }
+    const filterProps:FilterProps = { setFilter, filter }
 
     let main;
     if (gameList.isLoading) {
@@ -27,7 +23,7 @@ function Search() {
     } else if (gameList.isError) {
         main = <ExpensiveAlert {...gameList.error}/>
     } else if (gameList.data) {
-        main = gameList.data.map(DealListElement)
+        main = <DealList elements={gameList.data}/>
     }
     return <div className={"container"}>
         <div className={"row"}>

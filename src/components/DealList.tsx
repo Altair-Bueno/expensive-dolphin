@@ -6,13 +6,11 @@ import {Deal} from "../cheapshark/deals/listOfDeals";
 import {ExpensiveGame} from "./game/ExpensiveGame";
 import Popup from "reactjs-popup";
 import "./DealList.css";
-import {Store} from "../cheapshark/stores/stores";
 
 export {DealList};
 
 interface DealListProps {
     elements: Deal[],
-    stores: Store[];
 }
 
 function DealList(props: DealListProps) {
@@ -21,7 +19,6 @@ function DealList(props: DealListProps) {
     const showMore = () => {
         setNumberOfDeals(numberOfDeals + 6);
     };
-
     return (
         <>
             <div className={"container bg-secondary p-3"}>
@@ -51,7 +48,7 @@ function DealList(props: DealListProps) {
                                         </div>
                                         </button>
                                     <ExpensiveGame
-                                        oferta={x} tiendas={props.stores}
+                                        oferta={x}
                                     />
                                 </Popup>
                             </Col>
