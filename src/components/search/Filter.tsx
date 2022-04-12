@@ -22,11 +22,11 @@ function Filter(props: FilterProps) {
     const {setFilter, filter,stores} = props
 
     const steamRatingProps: RatingFilterProps = {
-        maxRating: 5, rating: (filter.steamRating || 0) + 1,
+        maxRating: 5, rating: filter.steamRating,
         setRating: (x) => setFilter({...filter, steamRating: x})
     }
     const metacriticRatingProps: RatingFilterProps = {
-        maxRating: 5, rating: (filter.metacritic || 0) + 1,
+        maxRating: 5, rating:filter.metacritic,
         setRating: (x) => setFilter({...filter, metacritic: x})
     }
     const priceRangeSliderProps:PriceRangeSliderProps = {

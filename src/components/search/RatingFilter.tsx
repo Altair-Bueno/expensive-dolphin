@@ -1,8 +1,8 @@
 export interface RatingFilterProps {
-    rating:number
-    maxRating:number
-    setRating: (rating: number) => void
-    className?:string
+    rating?: number
+    maxRating: number
+    setRating: (rating?: number) => void
+    className?: string
 }
 
 export function RatingFilter(props: RatingFilterProps) {
@@ -11,11 +11,15 @@ export function RatingFilter(props: RatingFilterProps) {
     const commonClasses = 'text-warning h5'
     const fillIcon = 'bi-star-fill'
     const emptyIcon = 'bi-star'
+
+    const fillAmount = rating ? rating : 0
+    const emptyAmount = maxRating - fillAmount
+
     const stars = [
-        ...Array.from({length: rating}).map(() => fillIcon),
-        ...Array.from({length: maxRating - rating }).map(() => emptyIcon)
+        ...Array.from({length: fillAmount}).map(() => fillIcon),
+        ...Array.from({length: emptyAmount}).map(() => emptyIcon)
     ].map((value, index) => <i className={`${commonClasses} ${value}`}
-                               onClick={() => setRating(index)}/>)
+                               onClick={() => setRating(rating === index + 1 ? undefined : index + 1)}/>)
     return (
         <div className={props.className}>{stars}</div>
     );
