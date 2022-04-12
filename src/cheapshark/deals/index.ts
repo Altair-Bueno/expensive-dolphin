@@ -1,10 +1,22 @@
 export const dealsURL = 'https://www.cheapshark.com/api/1.0/deals'
 
+export enum SortByOptions {
+    DealRating = "Deal Rating",
+    Title = "Title",
+    Savings = "Savings",
+    Price = "Price",
+    Metacritic = "Metacritic",
+    Reviews = "Reviews",
+    Release = "Release",
+    Store = "Store",
+    Recent = "recent"
+}
+
 export interface ListOfDealsParam {
     storeID?: string
     pageNumber?:number,
     pageSize?:number,
-    sortBy?: string,
+    sortBy?: SortByOptions,
     desc?:boolean ,
     lowerPrice?: number,
     upperPrice?:number,
