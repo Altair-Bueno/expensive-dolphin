@@ -1,7 +1,6 @@
 import {ExpensiveGame} from "../components/game/ExpensiveGame";
 import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
 import {useCheapShark} from "../cheapshark";
-import {storesURL} from "../cheapshark/stores";
 import {ExpensiveLoading} from "../components/ExpensiveLoading";
 import {AlertType, ExpensiveAlert} from "../components/ExpensiveAlert";
 import {LoadError} from "../components/LoadError";
@@ -12,10 +11,9 @@ function Profile() {
     const query: ListOfDealsParam = {}
     const ofertas = useCheapShark(dealsURL, query);
 
-    const tiendas = useCheapShark(storesURL)
-    if (ofertas.isLoading || tiendas.isLoading) {
+    if (ofertas.isLoading) {
         return <ExpensiveLoading/>;
-    } else if (ofertas.data && tiendas.data) {
+    } else if (ofertas.data) {
         return (
             <>
                 <ExpensiveGame oferta={ofertas.data[0]}/>

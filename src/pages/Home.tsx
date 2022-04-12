@@ -4,7 +4,6 @@ import {ExpensiveLoading} from "../components/ExpensiveLoading";
 import {LoadError} from "../components/LoadError";
 import {useCheapShark} from "../cheapshark";
 import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
-import {storesURL} from "../cheapshark/stores";
 
 export {
     Home
@@ -13,12 +12,9 @@ export {
 function Home() {
     const query: ListOfDealsParam = {}
     const ofertas = useCheapShark(dealsURL, query);
-
-    const tiendas = useCheapShark(storesURL)
-
-    if (ofertas.isLoading || tiendas.isLoading) {
+    if (ofertas.isLoading ) {
         return <ExpensiveLoading/>;
-    } else if (ofertas.data && tiendas.data) {
+    } else if (ofertas.data) {
         return (
             <div className={"d-flex justify-content-center m-3"}>
                 <DealList elements={ofertas.data} numberOfDeals={6}/>

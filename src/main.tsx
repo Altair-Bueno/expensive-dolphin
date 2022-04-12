@@ -7,8 +7,12 @@ import {ExpensiveNavbar} from "./components/ExpensiveNavbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Help, Home, MyList, NotFound, Pages, Profile, Search,} from "./pages";
 import {QueryClient, QueryClientProvider} from "react-query";
+import {storesURL} from "./cheapshark/stores";
+import {Store} from "./cheapshark/stores/stores";
+import {StoresContext} from "./ExpensiveContext";
 
 const queryClient = new QueryClient()
+const stores = await queryClient.fetchQuery([storesURL, undefined], async () => await fetch(storesURL).then(async x => await x.json() as Store[]))
 const expensiveRouter = (
     <BrowserRouter>
         <ExpensiveNavbar/>
@@ -18,7 +22,7 @@ const expensiveRouter = (
             <Route path={Pages.Help} element={<Help/>}/>
             <Route path={Pages.Search} element={<Search/>}/>
             <Route path={Pages.Profile} element={<Profile/>}/>
-            <Route path="*" element = {<NotFound/>}/>
+            <Route path="*" element={<NotFound/>}/>
         </Routes>
     </BrowserRouter>
 )
@@ -26,9 +30,11 @@ const expensiveRouter = (
 ReactDOM.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
-            <div>
-                {expensiveRouter}
-            </div>
+            <StoresContext.Provider value={stores}>
+                <div id={"page-content"}>
+                    {expensiveRouter}
+                </div>
+            </StoresContext.Provider>
         </QueryClientProvider>
     </React.StrictMode>,
     document.getElementById("root")

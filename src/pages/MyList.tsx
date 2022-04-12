@@ -4,25 +4,23 @@ import {AlertType, ExpensiveAlert} from "../components/ExpensiveAlert";
 import {LoadError} from "../components/LoadError";
 import {useCheapShark} from "../cheapshark";
 import {gamesURL} from "../cheapshark/games";
-import {Store} from "../cheapshark/stores/stores";
-
-import {UseQueryResult} from "react-query";
-import {storesURL} from "../cheapshark/stores";
+import {useContext} from "react";
+import {StoresContext} from "../ExpensiveContext";
 
 export { MyList };
 
 function MyList() {
   // call to the hook
   const ofertas = useCheapShark(gamesURL,{id:612})
-  const tiendas = useCheapShark(storesURL) as UseQueryResult<Store[],any>
+  const stores = useContext(StoresContext)
 
-  const loading = ofertas.isLoading || tiendas.isLoading
+  const loading = ofertas.isLoading
 
   if (loading) {
     return <ExpensiveLoading />;
   } else if (ofertas.data) {
     const props:PriceTableProps = {
-      storeModel: tiendas.data as any as Store [],
+      storeModel: stores,
       tablemodel: ofertas.data.deals
     }
     return <>

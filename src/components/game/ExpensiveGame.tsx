@@ -9,7 +9,8 @@ import "./ExpensiveGame.css";
 import {useCheapShark} from "../../cheapshark";
 import {GameLookupParam, gamesURL} from "../../cheapshark/games";
 import {Deal} from "../../cheapshark/deals/listOfDeals";
-import {storesURL} from "../../cheapshark/stores";
+import {useContext} from "react";
+import {StoresContext} from "../../ExpensiveContext";
 
 export {ExpensiveGame};
 
@@ -20,7 +21,7 @@ interface ExpensiveGameProps {
 function ExpensiveGame(props: ExpensiveGameProps) { // Game ID for lookup
     const query: GameLookupParam = {id: Number.parseInt(props.oferta.gameID)}
     const juego = useCheapShark(gamesURL, query);
-    const stores = useCheapShark(storesURL)
+    const stores = useContext(StoresContext)
 
     if (juego.isLoading) {
         return <ExpensiveLoading/>;
@@ -63,9 +64,7 @@ function ExpensiveGame(props: ExpensiveGameProps) { // Game ID for lookup
 
                 <div className="row-6 d-flex">
                     <div className="col-6">
-                        {
-                            stores.data && <PriceTable storeModel={stores.data} tablemodel={juego.data.deals}/>
-                        }
+                        <PriceTable storeModel={stores} tablemodel={juego.data.deals}/>
                     </div>
                 </div>
             </div>
