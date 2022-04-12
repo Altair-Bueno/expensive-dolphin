@@ -25,7 +25,10 @@ function Search() {
     } else if (gameList.data) {
         main = <DealList elements={gameList.data}/>
     }
-    return <div className={"container"}>
+    return <div className={"container mt-3"}>
+        <div className={"row mb-3"}>
+            <h1 className={"text-light"}>Search titles on CheapShark</h1>
+        </div>
         <div className={"row"}>
             <aside className={"col-lg-4 col-md-12"}>
                 <Filter {...filterProps}/>

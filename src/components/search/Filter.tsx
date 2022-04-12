@@ -63,46 +63,49 @@ function Filter(props: FilterProps) {
         desc: x.currentTarget.checked
     });
     return <form onSubmit={x => x.preventDefault()}>
-        <div>
-            <label>Title</label>
-            <input type={"search"} onChange={onChangeSearch}/>
+        <div className={"mb-3"}>
+            <input type={"search"} className={"form-control"}
+                   onChange={onChangeSearch} placeholder={"Title"}/>
         </div>
-        <div>
-            <label>Price range:
+        <div className={"mb-3"}>
+            <label className={"form-label"}>Price range:
                 From {filter.lowerPrice} to {filter.upperPrice}</label>
             <PriceRangeSlider {...priceRangeSliderProps}/>
         </div>
-        <br/>
-        <div>
-            <label>Metacritic rating</label>
+        <div className={"mb-3"}>
+            <label className={"form-label"}>Metacritic rating</label>
             <RatingFilter {...metacriticRatingProps}/>
         </div>
-        <br/>
-        <div>
-            <label>Steam rating</label>
+        <div className={"mb-3"}>
+            <label className={"form-label"}>Steam rating</label>
             <RatingFilter {...steamRatingProps}/>
         </div>
-        <div>
-            <label>On Sale</label>
-            <input type={"checkbox"} onChange={onChangeSale}/>
+        <h3>Other options</h3>
+        <div className={"mb-3"}>
+            <div className={"form-check"}>
+                <input type={"checkbox"} onChange={onChangeSale} className={"form-check-input"}/>
+                <label className={"form-check-label"}>On Sale</label>
+
+            </div>
+            <div className={"form-check"}>
+                <input type={"checkbox"} onChange={onChangeSteamWorks} className={"form-check-input"}/>
+                <label className={"form-check-label"}>Steam works</label>
+            </div>
+            <div className={"form-check"}>
+                <input type={"checkbox"} onChange={onChangeAAA} className={"form-check-input"}/>
+                <label className={"form-check-label"}>AAA</label>
+            </div>
         </div>
-        <div>
-            <label>Steam works</label>
-            <input type={"checkbox"} onChange={onChangeSteamWorks}/>
-        </div>
-        <div>
-            <label>AAA</label>
-            <input type={"checkbox"} onChange={onChangeAAA}/>
-        </div>
-        <div>
+        <h3>Sorting</h3>
+        <div className={"mb-3"}>
             <label>Sort By</label>
-            <select onChange={onChangeSortBy}>
+            <select onChange={onChangeSortBy} className={"form-select"}>
                 {sortByOptions}
             </select>
         </div>
-        <div>
-            <label>Descending</label>
-            <input type={"checkbox"} onChange={onChangeDesc}/>
+        <div className={"form-check"}>
+            <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input"}/>
+            <label className={"form-check-label"}>Descending</label>
         </div>
     </form>
 }
