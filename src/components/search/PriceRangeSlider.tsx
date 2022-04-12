@@ -1,5 +1,4 @@
 import './PriceRangeSlider.css'
-import FormRange from "react-bootstrap/FormRange";
 
 export interface PriceRange {
     lowerPrice?:number,
@@ -10,13 +9,14 @@ export interface PriceRangeSliderProps {
     min?:number,
     max?:number,
     step?:number
+    className?:string
     onchange:(range:PriceRange)=>void
 }
 
 export function PriceRangeSlider (props: PriceRangeSliderProps) {
     // from https://dev.to/sandra_lewis/building-a-multi-range-slider-in-react-from-scratch-4dl1
-    return <div>
-        <FormRange
+    return <div className={props.className}>
+        <input type={"range"}
                className="thumb thumb--zindex-3"
                defaultValue={props.min}
                min={props.min}
@@ -24,7 +24,7 @@ export function PriceRangeSlider (props: PriceRangeSliderProps) {
                onChange={x=>props.onchange({lowerPrice:Number.parseInt(x.target.value)})}
                step={props.step}
         />
-        <FormRange
+        <input type={"range"}
                className="thumb thumb--zindex-4"
                defaultValue={props.max}
                min={props.min}

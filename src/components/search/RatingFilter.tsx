@@ -2,6 +2,7 @@ export interface RatingFilterProps {
     rating:number
     maxRating:number
     setRating: (rating: number) => void
+    className?:string
 }
 
 export function RatingFilter(props: RatingFilterProps) {
@@ -16,6 +17,6 @@ export function RatingFilter(props: RatingFilterProps) {
     ].map((value, index) => <i className={`${commonClasses} ${value}`}
                                onClick={() => setRating(index)}/>)
     return (
-        <div>{stars}</div>
+        <div className={props.className}>{stars}</div>
     );
 }
