@@ -6,6 +6,7 @@ import {
 } from "./PriceRangeSlider";
 import {RatingFilter, RatingFilterProps} from "./RatingFilter";
 import {ChangeEvent} from "react";
+import {Store} from "../../cheapshark/stores/stores";
 
 export {
     Filter
@@ -14,10 +15,11 @@ export {
 export interface FilterProps {
     setFilter: (filter: ListOfDealsParam) => void
     filter: ListOfDealsParam
+    stores: Store[]
 }
 
 function Filter(props: FilterProps) {
-    const {setFilter, filter} = props
+    const {setFilter, filter,stores} = props
 
     const steamRatingProps: RatingFilterProps = {
         maxRating: 5, rating: (filter.steamRating || 0) + 1,
@@ -55,13 +57,30 @@ function Filter(props: FilterProps) {
         ...filter,
         sortBy: x.currentTarget.value as SortByOptions
     });
-    const sortByOptions = Object.entries(SortByOptions).map(([_, value]) =>
-        <option>{value}</option>)
 
     const onChangeDesc = (x: ChangeEvent<HTMLInputElement>) => setFilter({
         ...filter,
         desc: x.currentTarget.checked
     });
+
+    const sortByOptions = Object.entries(SortByOptions).map(([_, value]) =>
+        <option>{value}</option>)
+
+    const storesCheckBox = stores.map(store=><div className={"form-check"} key={store.storeID}>
+        <input type={"checkbox"} className={"form-check-input"}
+               onChange={x=>{
+                   const selfStoreID = Number.parseInt(store.storeID);
+                   if (x.currentTarget.checked) {
+                       const updatedStore = filter.storeID ? [...filter.storeID,selfStoreID] : [selfStoreID]
+                       setFilter({...filter,storeID:updatedStore})
+                   } else {
+                        const updatedStore = filter.storeID?.filter(id=>id !== selfStoreID)
+                        setFilter({...filter,storeID:updatedStore})
+                   }
+               }}/>
+        <label className={"form-check-label"}>{store.storeName}</label>
+    </div> )
+
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3"}>
             <input type={"search"} className={"form-control"}
@@ -80,6 +99,21 @@ function Filter(props: FilterProps) {
             <label className={"form-label"}>Steam rating</label>
             <RatingFilter {...steamRatingProps}/>
         </div>
+        <h3>Stores</h3>
+        <div>
+            {storesCheckBox}
+        </div>
+        <h3>Sorting</h3>
+        <div className={"mb-3"}>
+            <label>Sort By</label>
+            <select onChange={onChangeSortBy} className={"form-select"}>
+                {sortByOptions}
+            </select>
+        </div>
+        <div className={"form-check"}>
+            <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input"}/>
+            <label className={"form-check-label"}>Descending</label>
+        </div>
         <h3>Other options</h3>
         <div className={"mb-3"}>
             <div className={"form-check"}>
@@ -96,16 +130,6 @@ function Filter(props: FilterProps) {
                 <label className={"form-check-label"}>AAA</label>
             </div>
         </div>
-        <h3>Sorting</h3>
-        <div className={"mb-3"}>
-            <label>Sort By</label>
-            <select onChange={onChangeSortBy} className={"form-select"}>
-                {sortByOptions}
-            </select>
-        </div>
-        <div className={"form-check"}>
-            <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input"}/>
-            <label className={"form-check-label"}>Descending</label>
-        </div>
+
     </form>
 }
