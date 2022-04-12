@@ -18,7 +18,7 @@ function ExpensiveNavbar(props:ExpensiveNavbarProps) {
     const linkList = [
       { page: Pages.Home, icon: "bi-currency-dollar", name: "Today's Deals" },
       { page: Pages.Search, icon: "bi-search", name: "Search" },
-      { page: Pages.MyList, icon: "bi-bag", name: "My List" },
+      //{ page: Pages.MyList, icon: "bi-bag", name: "My List" },
       { page: Pages.Profile, icon: "bi-person-circle", name: username },
       { page: Pages.Help, icon: "bi-question-circle", name: "Help" },
     ].map((x) => (

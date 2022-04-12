@@ -1,6 +1,5 @@
 import {Help} from "./Help";
 import {Home} from "./Home";
-import {MyList} from "./MyList";
 import {NotFound} from "./NotFound";
 import {Profile} from "./Profile";
 import {Search} from "./Search";
@@ -14,5 +13,5 @@ export enum Pages {
 }
 
 export {
-    Help, Home, MyList, NotFound, Profile, Search
+    Help, Home, NotFound, Profile, Search
 }
