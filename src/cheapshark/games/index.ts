@@ -8,7 +8,7 @@ export interface ListOfGamesParam {
 }
 
 export interface GameLookupParam {
-    id:number
+    id:string
 }
 
 export interface MultipleGameLookupParam {

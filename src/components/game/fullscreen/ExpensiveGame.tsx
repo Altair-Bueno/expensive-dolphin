@@ -2,7 +2,6 @@ import {PriceTable} from "./PriceTable";
 import {Price} from "../common/Price";
 import {Rating} from "../common/Rating";
 import Button from "react-bootstrap/Button";
-import {Deal} from "../../../cheapshark/deals/listOfDeals";
 import {useContext} from "react";
 import {StoresContext} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
@@ -10,21 +9,29 @@ import {GameLookup} from "../../../cheapshark/games/gameLookup";
 export {ExpensiveGame};
 
 interface ExpensiveGameProps {
-    deal: Deal,
     gameLookup: GameLookup
 }
 
-function ExpensiveGame(props: ExpensiveGameProps) { // Game ID for lookup
-    const {deal, gameLookup} = props;
+function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     const stores = useContext(StoresContext)
-
+/*
     const priceProps = {
         price:Number.parseFloat(deal.salePrice),
         retailPrice:Number.parseFloat(deal.normalPrice),
         savings:Number.parseInt(deal.savings),
         isOnSale:deal.isOnSale
     }
-    const ratingProps = { steamRatingPercent:Number.parseInt(deal.steamRatingPercent) }
+
+ */
+    // TODO lmao i hate this API
+    const priceProps = {
+        price:Number.parseFloat(gameLookup.deals[0].price),
+        retailPrice:Number.parseFloat(gameLookup.deals[0].retailPrice),
+        savings:Number.parseInt(gameLookup.deals[0].savings),
+        // TODO
+        isOnSale:true
+    }
+    const ratingProps = { steamRatingPercent:10 }
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
 
     return <div className={"container-sm bg-secondary"}>
