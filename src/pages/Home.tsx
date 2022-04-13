@@ -1,7 +1,7 @@
-import {DealList} from "../components/DealList";
-import {AlertType, ExpensiveAlert} from "../components/ExpensiveAlert";
-import {ExpensiveLoading} from "../components/ExpensiveLoading";
-import {LoadError} from "../components/LoadError";
+import {DealList} from "../components/game/list/DealList";
+import {AlertType, ExpensiveAlert} from "../components/wrappers/ExpensiveAlert";
+import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
+import {ExpensiveError} from "../components/wrappers/ExpensiveError";
 import {useCheapShark} from "../cheapshark";
 import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
 
@@ -28,7 +28,7 @@ function Home() {
             buttonText: "Close",
         }
         return <>
-            <LoadError/>
+            <ExpensiveError/>
             <ExpensiveAlert {...alert}/>
         </>
     }

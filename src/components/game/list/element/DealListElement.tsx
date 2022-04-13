@@ -1,10 +1,10 @@
-import {Price} from "./game/Price";
-import {Rating} from "./game/Rating";
+import {Price} from "../../common/Price";
+import {Rating} from "../../common/Rating";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {BannerSize, LowestBanner} from "./game/LowestBanner";
-import {Deal} from "../cheapshark/deals/listOfDeals";
+import {BannerSize, LowestBanner} from "../../common/LowestBanner";
+import {Deal} from "../../../../cheapshark/deals/listOfDeals";
 import "./DealListElement.css"
 
 export {DealListElement};

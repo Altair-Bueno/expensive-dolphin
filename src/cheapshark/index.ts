@@ -11,7 +11,7 @@ import {Game} from "./games/listOfGames";
 import {GameLookup} from "./games/gameLookup";
 import {EditAlertParam, ManageAlertsParam} from "./alerts";
 import {Store} from "./stores/stores";
-import {AlertProps, AlertType} from "../components/ExpensiveAlert";
+import {AlertProps, AlertType} from "../components/wrappers/ExpensiveAlert";
 
 async function createQuery(baseURL:string, parameters:any):Promise<CheapSharkResult> {
     const url = `${baseURL}?${new URLSearchParams(parameters as any)}`

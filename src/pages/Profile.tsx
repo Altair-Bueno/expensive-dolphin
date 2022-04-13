@@ -1,9 +1,9 @@
-import {ExpensiveGame} from "../components/game/ExpensiveGame";
+import {ExpensiveGame} from "../components/game/fullscreen/ExpensiveGame";
 import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
 import {useCheapShark} from "../cheapshark";
-import {ExpensiveLoading} from "../components/ExpensiveLoading";
-import {AlertType, ExpensiveAlert} from "../components/ExpensiveAlert";
-import {LoadError} from "../components/LoadError";
+import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
+import {AlertType, ExpensiveAlert} from "../components/wrappers/ExpensiveAlert";
+import {ExpensiveError} from "../components/wrappers/ExpensiveError";
 
 export {Profile};
 
@@ -28,7 +28,7 @@ function Profile() {
         }
         return (
             <>
-                <LoadError/>
+                <ExpensiveError/>
                 <ExpensiveAlert {...alert}/>
             </>
         );

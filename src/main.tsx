@@ -1,15 +1,15 @@
-import "./expensive-dark.sass";
+import "./sass/dark.sass";
 
 import React from "react";
 import ReactDOM from "react-dom";
 
-import {ExpensiveNavbar} from "./components/ExpensiveNavbar";
+import {ExpensiveNavbar} from "./components/wrappers/ExpensiveNavbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Help, Home, NotFound, Pages, Profile, Search,} from "./pages";
 import {QueryClient, QueryClientProvider} from "react-query";
 import {storesURL} from "./cheapshark/stores";
 import {Store} from "./cheapshark/stores/stores";
-import {StoresContext} from "./ExpensiveContext";
+import {StoresContext} from "./context";
 
 const queryClient = new QueryClient()
 const expensiveRouter = (

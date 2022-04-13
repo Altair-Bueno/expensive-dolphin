@@ -1,11 +1,11 @@
 import {useCheapShark} from "../cheapshark";
-import {ExpensiveLoading} from "../components/ExpensiveLoading";
-import {ExpensiveAlert} from "../components/ExpensiveAlert";
+import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
+import {ExpensiveAlert} from "../components/wrappers/ExpensiveAlert";
 import {useContext, useState} from "react";
 import {dealsURL} from "../cheapshark/deals";
 import {Filter} from "../components/search/Filter";
-import {DealList} from "../components/DealList";
-import {StoresContext} from "../ExpensiveContext";
+import {DealList} from "../components/game/list/DealList";
+import {StoresContext} from "../context";
 
 export {
     Search

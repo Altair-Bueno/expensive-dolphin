@@ -1,9 +1,9 @@
-import {DealListElement} from "./DealListElement";
+import {DealListElement} from "./element/DealListElement";
 import Col from "react-bootstrap/Col";
 import {Fragment, useState} from "react";
 import {ShowMore} from "./ShowMore";
-import {Deal} from "../cheapshark/deals/listOfDeals";
-import {ExpensiveGame} from "./game/ExpensiveGame";
+import {Deal} from "../../../cheapshark/deals/listOfDeals";
+import {ExpensiveGame} from "../fullscreen/ExpensiveGame";
 import Popup from "reactjs-popup";
 import "./DealList.css";
 

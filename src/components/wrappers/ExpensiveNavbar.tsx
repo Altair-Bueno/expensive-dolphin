@@ -1,8 +1,8 @@
 import {Container, Nav, Navbar} from "react-bootstrap";
 
 import {LinkContainer} from 'react-router-bootstrap'
-import {Pages} from "../pages";
-import logo from '../resources/logo.svg'
+import {Pages} from "../../pages";
+import logo from '../../resources/logo.svg'
 
 export {
     ExpensiveNavbar

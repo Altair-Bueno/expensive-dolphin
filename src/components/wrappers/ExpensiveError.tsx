@@ -1,10 +1,10 @@
-import './LoadError.css'
+import './ExpensiveError.css'
 
 export{
-    LoadError
+    ExpensiveError
 }
 
-function LoadError(){
+function ExpensiveError(){
     return(
         <div className={"loaderror-root container-md-12 p-4 text-light"}>
             <div className={"row"}>

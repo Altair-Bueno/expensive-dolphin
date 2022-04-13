@@ -1,16 +1,15 @@
 import {PriceTable} from "./PriceTable";
-import {LoadError} from "../LoadError";
-import {AlertType, ExpensiveAlert} from "../ExpensiveAlert";
-import {ExpensiveLoading} from "../ExpensiveLoading";
-import {Price} from "./Price";
-import {Rating} from "./Rating";
+import {ExpensiveError} from "../../wrappers/ExpensiveError";
+import {AlertType, ExpensiveAlert} from "../../wrappers/ExpensiveAlert";
+import {ExpensiveLoading} from "../../wrappers/ExpensiveLoading";
+import {Price} from "../common/Price";
+import {Rating} from "../common/Rating";
 import Button from "react-bootstrap/Button";
-import "./ExpensiveGame.css";
-import {useCheapShark} from "../../cheapshark";
-import {GameLookupParam, gamesURL} from "../../cheapshark/games";
-import {Deal} from "../../cheapshark/deals/listOfDeals";
+import {useCheapShark} from "../../../cheapshark";
+import {GameLookupParam, gamesURL} from "../../../cheapshark/games";
+import {Deal} from "../../../cheapshark/deals/listOfDeals";
 import {useContext} from "react";
-import {StoresContext} from "../../ExpensiveContext";
+import {StoresContext} from "../../../context";
 
 export {ExpensiveGame};
 
@@ -77,7 +76,7 @@ function ExpensiveGame(props: ExpensiveGameProps) { // Game ID for lookup
             buttonText: "Close",
         }
         return <>
-            <LoadError/>
+            <ExpensiveError/>
             <ExpensiveAlert {...alert}/>
         </>
     }

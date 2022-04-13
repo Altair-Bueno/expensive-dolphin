@@ -1,11 +1,11 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import {Order, OrderEnum, sortData} from "./Order";
-import {Store} from "../../cheapshark/stores/stores";
+import {Store} from "../../../cheapshark/stores/stores";
 import {useState} from "react";
 import "./PriceTable.css";
-import {Deal} from "../../cheapshark/games/gameLookup";
-import {imageURL} from "../../cheapshark/stores";
+import {Deal} from "../../../cheapshark/games/gameLookup";
+import {imageURL} from "../../../cheapshark/stores";
 
 export { PriceTable };
 

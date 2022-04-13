@@ -1,4 +1,4 @@
-import { Deal } from "../../cheapshark/games/gameLookup";
+import {Deal} from "../../../cheapshark/games/gameLookup";
 
 export {
     Order,

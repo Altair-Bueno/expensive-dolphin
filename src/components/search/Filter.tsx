@@ -3,8 +3,8 @@ import {
     PriceRange,
     PriceRangeSlider,
     PriceRangeSliderProps
-} from "./PriceRangeSlider";
-import {RatingFilter, RatingFilterProps} from "./RatingFilter";
+} from "./controls/PriceRangeSlider";
+import {RatingFilter, RatingFilterProps} from "./controls/RatingFilter";
 import {ChangeEvent} from "react";
 import {Store} from "../../cheapshark/stores/stores";
 
