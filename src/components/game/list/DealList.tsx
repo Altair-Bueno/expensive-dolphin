@@ -1,4 +1,4 @@
-import {DealListElement} from "./element/DealListElement";
+import {DealListElement} from "./DealListElement";
 import Col from "react-bootstrap/Col";
 import {Fragment, useState} from "react";
 import {ShowMore} from "./ShowMore";
