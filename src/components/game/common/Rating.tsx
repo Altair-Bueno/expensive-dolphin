@@ -13,18 +13,19 @@ function Rating(props: RatingProps) {
     const empty = 5 - (fill + half)
 
     const commonClasses = 'text-warning h5'
-    const fillIcon = <i className={`bi-star-fill ${commonClasses}`}/>
-    const halfIcon = <i className={`bi-star-half ${commonClasses}`}/>
-    const emptyIcon = <i className={`bi-star ${commonClasses}`}/>
+    const fillIconClass = 'bi-star-fill'
+    const halfIconClass = 'bi-star-half'
+    const emptyIconClass = 'bi-star'
+
+    const stars = [
+        ...Array.from({length:fill}).map(()=>fillIconClass),
+        ...Array.from({length:half}).map(()=>halfIconClass),
+        ...Array.from({length:empty}).map(()=>emptyIconClass)
+    ].map(x=><i className={`${x} ${commonClasses}`}/>)
 
     return (
         <div>
-            {Array.from({length: fill})
-                .map(() => fillIcon)}
-            {Array.from({length: half})
-                .map(() => halfIcon)}
-            {Array.from({length: empty})
-                .map(() => emptyIcon)}
+            {stars}
             {props.steamRatingCount &&
                 <small>{`${props.steamRatingCount} reviews`}</small>}
         </div>
