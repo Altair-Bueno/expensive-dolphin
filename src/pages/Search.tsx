@@ -1,18 +1,22 @@
 import {useCheapShark} from "../cheapshark";
 import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
 import {ExpensiveAlert} from "../components/wrappers/ExpensiveAlert";
-import {useContext, useState} from "react";
-import {dealsURL} from "../cheapshark/deals";
+import {useContext} from "react";
+import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
 import {Filter} from "../components/search/Filter";
 import {DealList} from "../components/game/list/DealList";
 import {StoresContext} from "../types";
+import {useSearchParams} from "react-router-dom";
 
 export {
     Search
 }
 
 function Search() {
-    const [filter,setFilter] = useState({})
+    const [searchParams,setSearchParams] = useSearchParams()
+    const filter = Object.fromEntries(new URLSearchParams(searchParams));
+    const setFilter= (newFilter:ListOfDealsParam) => setSearchParams(new URLSearchParams(newFilter as any))
+
     const gameList = useCheapShark(dealsURL, filter)
     const stores = useContext(StoresContext)
 
