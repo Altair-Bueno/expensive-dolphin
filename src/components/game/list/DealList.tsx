@@ -19,7 +19,7 @@ function mapDeal(deal: Deal, location: Location) {
     const state: LocationState = {backgroundLocation: location}
     const to = `${Pages.Game}?${new URLSearchParams(searchParams)}`
 
-    return <Link to={to} state={state}>
+    return <Link to={to} state={state} className={"btn"}>
         <DealListElement {...deal}/>
     </Link>
 }
