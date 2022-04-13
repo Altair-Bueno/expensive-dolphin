@@ -5,7 +5,7 @@ import {useContext, useState} from "react";
 import {dealsURL} from "../cheapshark/deals";
 import {Filter} from "../components/search/Filter";
 import {DealList} from "../components/game/list/DealList";
-import {StoresContext} from "../context";
+import {StoresContext} from "../types";
 
 export {
     Search

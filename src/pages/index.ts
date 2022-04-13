@@ -3,15 +3,17 @@ import {Home} from "./Home";
 import {NotFound} from "./NotFound";
 import {Profile} from "./Profile";
 import {Search} from "./Search";
+import {Game} from "./Game"
 
 export enum Pages {
+    // Modal: May be shown as an overlay
+    Game = "/game",
     Home = "/",
-    MyList = "/mylist",
     Help = "/help",
     Search = "/search",
     Profile = "/profile",
 }
 
 export {
-    Help, Home, NotFound, Profile, Search
+    Help, Home, NotFound, Profile, Search, Game
 }

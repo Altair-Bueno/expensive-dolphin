@@ -1,65 +1,48 @@
 import {DealListElement} from "./DealListElement";
-import Col from "react-bootstrap/Col";
-import {Fragment, useState} from "react";
+import {useState} from "react";
 import {ShowMore} from "./ShowMore";
 import {Deal} from "../../../cheapshark/deals/listOfDeals";
-import {ExpensiveGame} from "../fullscreen/ExpensiveGame";
-import Popup from "reactjs-popup";
 import "./DealList.css";
+import {Link, Location, useLocation} from "react-router-dom";
+import {Pages} from "../../../pages";
+import {LocationState} from "../../../types";
 
 export {DealList};
 
 interface DealListProps {
     elements: Deal[],
-    numberOfDeals?:number
+    numberOfDeals?: number
+}
+
+function mapDeal(deal: Deal, location: Location) {
+    const searchParams = {id: deal.dealID}
+    const state: LocationState = {backgroundLocation: location}
+    const to = `${Pages.Game}?${new URLSearchParams(searchParams)}`
+
+    return <Link to={to} state={state}>
+        <DealListElement {...deal}/>
+    </Link>
 }
 
 function DealList(props: DealListProps) {
     const [numberOfDeals, setNumberOfDeals] = useState(props.numberOfDeals);
-    const isShowMoreEnabled = props.numberOfDeals && numberOfDeals
-    const deals = props.elements.slice(0, numberOfDeals);
-    return (
-        <>
-            <div className={"container bg-secondary p-3"}>
-                <div className={"row g-2 gy-3"}>
-                    {deals.map((x, index) => (
-                        <Fragment key={index}>
-                            <Col
-                                className="dealdiv"
-                                xs={12}
-                                md={6}
-                            >
-                                <Popup
-                                    trigger={
-                                        <button
-                                            type="button"
-                                            className="btn text-light shadow-none"
-                                        >
-                                            <DealListElement {...x} />
-                                        </button>
-                                    }
-                                    position="top center"
-                                    modal
-                                >
-                                    <button className={"close"} onClick={() => {close()}}>
-                                        <div className={"text-danger"}>
-                                            <i className="bi bi-x-square"></i>
-                                        </div>
-                                        </button>
-                                    <ExpensiveGame
-                                        oferta={x}
-                                    />
-                                </Popup>
-                            </Col>
-                        </Fragment>
-                    ))}
-                </div>
-                {
-                    isShowMoreEnabled &&
-                    numberOfDeals < props.elements.length &&
-                    <ShowMore onClick={()=>setNumberOfDeals(props.numberOfDeals ? props.numberOfDeals + numberOfDeals : undefined)}/>
-                }
-            </div>
-        </>
-    );
+    const location = useLocation()
+    const deals = props.elements.slice(0, numberOfDeals).map((deal) => mapDeal(deal, location));
+
+    const onClickShowMore = () => {
+        const newNumberOfDeals: number | undefined = props.numberOfDeals && numberOfDeals ?
+            props.numberOfDeals + numberOfDeals : undefined
+        setNumberOfDeals(newNumberOfDeals)
+    }
+    const isShowMoreEnabled = props.numberOfDeals && numberOfDeals && numberOfDeals < props.elements.length
+    const showMoreDiv = <div className={"text-center"}>
+        <ShowMore onClick={onClickShowMore}/>
+    </div>
+
+    return <div className={"container g-3"}>
+        <div className={"row row-cols-1 row-cols-xxl-2"}>
+            {deals}
+        </div>
+        {isShowMoreEnabled && showMoreDiv}
+    </div>
 }

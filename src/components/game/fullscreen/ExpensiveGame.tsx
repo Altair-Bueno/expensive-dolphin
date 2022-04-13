@@ -9,7 +9,7 @@ import {useCheapShark} from "../../../cheapshark";
 import {GameLookupParam, gamesURL} from "../../../cheapshark/games";
 import {Deal} from "../../../cheapshark/deals/listOfDeals";
 import {useContext} from "react";
-import {StoresContext} from "../../../context";
+import {StoresContext} from "../../../types";
 
 export {ExpensiveGame};
 
