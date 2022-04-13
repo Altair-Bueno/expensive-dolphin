@@ -10,8 +10,7 @@ interface PriceProps {
 }
 
 function Price(props: PriceProps) {
-    const sale = props.isOnSale ?(
-        <div className={"col p-0 m-0 ms-1"}>
+    const sale = <div className={"col p-0 m-0 ms-1"}>
             <div className={"row p-0 m-0"}>
                 <del className={"small p-0 m-0"}>${props.retailPrice}</del>
             </div>
@@ -20,8 +19,8 @@ function Price(props: PriceProps) {
                     -{props.savings}%
                 </span>
             </div>
-        </div>) : <div className={"col"}/>
-
+        </div>
+    const notSale = <div className={"col"}/>
 
     return (
         <div className={"container text-light m-0"}>
@@ -29,7 +28,7 @@ function Price(props: PriceProps) {
                 <div className={"col p-0 text-end h4 my-auto"}>
                     ${props.price}
                 </div>
-                {sale}
+                {props.isOnSale ? sale : notSale}
             </div>
         </div>
     )
