@@ -1,10 +1,26 @@
 import {Link, Route, Routes} from "react-router-dom";
 import {ProfilePages} from "./index";
+import {useExpensiveUser} from "../types";
+import {SearchHistory} from "./profile/SearchHistory";
+import {ManageAlerts} from "./profile/ManageAlerts";
+import {Favourites} from "./profile/Favourites";
+import {ManageMyData} from "./profile/ManageMyData";
+
+function ProfilePlaceholder() {
+    return <h1>
+        Just a main panel placeholder
+    </h1>
+}
 
 export function Profile() {
+    const [user,_] = useExpensiveUser()
+    const headerText = user ? user.name : "My account"
+
     const asideList = [
-        { name: "Search history", to: ProfilePages.Recent },
-        { name: "Your data" , to: ProfilePages.YourData }
+        { name: "Search history", to: ProfilePages.SearchHistory },
+        { name: "Manage alerts" , to: ProfilePages.ManageAlerts },
+        { name: "Favourites" , to: ProfilePages.Favourites },
+        { name: "Manage my Data" , to: ProfilePages.ManageMyData}
     ].map(x=><li className={"list-group-item"} key={x.name}>
         <Link to={x.to}>
             {x.name}
@@ -12,15 +28,17 @@ export function Profile() {
     </li>)
 
     const profileRoutes = [
-        { element:<h1>Placeholder</h1>, index: true },
-        { element: <h1>Placeholder 2</h1>, path: ProfilePages.Recent },
-        { element: <h1>Placeholder 3</h1>, path: ProfilePages.YourData }
+        { element: <ProfilePlaceholder/>, index: true },
+        { element: <SearchHistory/>, path: ProfilePages.SearchHistory },
+        { element: <ManageAlerts/>, path: ProfilePages.ManageAlerts },
+        { element: <Favourites/>, path: ProfilePages.Favourites },
+        { element: <ManageMyData/>, path: ProfilePages.ManageMyData }
     ].map(x=><Route {...x}/>)
 
     return <div className={"container mt-3"}>
         <div className={"row mb-3"}>
             <h1 className={"text-light"}>
-                Search titles on CheapShark
+                {headerText}
             </h1>
         </div>
         <div className={"row"}>

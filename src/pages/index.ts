@@ -15,9 +15,10 @@ export enum Pages {
 }
 
 export enum ProfilePages {
-    Index = "/profile",
-    Recent = "/profile/recent",
-    YourData = "/profile/data"
+    SearchHistory = "recent",
+    Favourites = "favourites",
+    ManageAlerts = "manageAlerts",
+    ManageMyData = "manageMyData",
 
 }
 
