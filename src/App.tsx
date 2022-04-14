@@ -13,7 +13,7 @@ export function App() {
         Home: <Route path={Pages.Home} element={<Home/>}/>,
         Help: <Route path={Pages.Help} element={<Help/>}/>,
         Search: <Route path={Pages.Search} element={<Search/>}/>,
-        Profile: <Route path={Pages.Profile} element={<Profile/>}/>,
+        Profile: <Route path={`${Pages.Profile}/*`} element={<Profile/>}/>,
         Game: <Route path={Pages.Game} element={<Game/>}/>,
         all: <Route path="*" element={<NotFound/>}/>,
     }

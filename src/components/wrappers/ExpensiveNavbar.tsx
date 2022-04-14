@@ -8,18 +8,12 @@ export {
     ExpensiveNavbar
 }
 
-interface ExpensiveNavbarProps {
-    username?:string|null
-}
-
-function ExpensiveNavbar(props:ExpensiveNavbarProps) {
-    const username = props.username || "My account";
-    
+function ExpensiveNavbar() {
     const linkList = [
       { page: Pages.Home, icon: "bi-currency-dollar", name: "Today's Deals" },
       { page: Pages.Search, icon: "bi-search", name: "Search" },
       //{ page: Pages.MyList, icon: "bi-bag", name: "My List" },
-      { page: Pages.Profile, icon: "bi-person-circle", name: username },
+      { page: Pages.Profile, icon: "bi-person-circle", name: "My account" },
       { page: Pages.Help, icon: "bi-question-circle", name: "Help" },
     ].map((x) => (
       <LinkContainer to={x.page}>
