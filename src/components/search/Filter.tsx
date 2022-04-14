@@ -66,8 +66,8 @@ function Filter(props: FilterProps) {
     const sortByOptions = Object.entries(SortByOptions).map(([_, value]) =>
         <option>{value}</option>)
 
-    const storesCheckBox = stores.map(store=><div className={"form-check"} key={store.storeID}>
-        <input type={"checkbox"} className={"form-check-input"}
+    const storesCheckBox = stores.map(store=><div className={"form-check"}>
+        <input type={"checkbox"} className={"form-check-input"} key={store.storeID}
                onChange={x=>{
                    const selfStoreID = Number.parseInt(store.storeID);
                    if (x.currentTarget.checked) {

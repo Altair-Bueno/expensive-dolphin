@@ -18,7 +18,8 @@ export function RatingFilter(props: RatingFilterProps) {
     const stars = [
         ...Array.from({length: fillAmount}).map(() => fillIcon),
         ...Array.from({length: emptyAmount}).map(() => emptyIcon)
-    ].map((value, index) => <i className={`${commonClasses} ${value}`}
+    ].map((value, index) => <i key={index}
+                               className={`${commonClasses} ${value}`}
                                onClick={() => setRating(rating === index + 1 ? undefined : index + 1)}/>)
     return (
         <div className={props.className}>{stars}</div>
