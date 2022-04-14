@@ -37,7 +37,7 @@ function queryToContent(query: UseQueryResult<Deal[],AlertProps>, store: Store) 
 function Home() {
     const stores = useContext(StoresContext)
     const mainContent = stores
-        .map(x=> [useCheapShark(dealsURL, {storeID: x.storeID}),x] as [UseQueryResult<Deal[],AlertProps>,Store])
+        .map(x=> [useCheapShark(dealsURL, {storeID: [Number.parseInt(x.storeID)]}),x] as [UseQueryResult<Deal[],AlertProps>,Store])
         .map(([x,y])=>queryToContent(x,y))
 
     return <main className={"container"}>
