@@ -15,7 +15,7 @@ interface DealListProps {
 }
 
 function mapDeal(deal: Deal, location: Location) {
-    const searchParams = {id: deal.dealID}
+    const searchParams = {id: deal.gameID}
     const state: LocationState = {backgroundLocation: location}
     const to = `${Pages.Game}?${new URLSearchParams(searchParams)}`
 
