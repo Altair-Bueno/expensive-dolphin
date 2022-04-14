@@ -14,6 +14,14 @@ export enum Pages {
     Profile = "/profile",
 }
 
+export enum ProfilePages {
+    Index = "/profile",
+    Recent = "/profile/recent",
+    YourData = "/profile/data"
+
+}
+
+
 export {
     Help, Home, NotFound, Profile, Search, Game
 }

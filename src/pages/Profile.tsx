@@ -1,9 +1,5 @@
 import {Link, Route, Routes} from "react-router-dom";
-
-export enum ProfilePages {
-    Recent = "recent",
-    YourData = "data"
-}
+import {ProfilePages} from "./index";
 
 export function Profile() {
     const asideList = [
