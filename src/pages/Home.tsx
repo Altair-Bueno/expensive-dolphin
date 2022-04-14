@@ -1,35 +1,46 @@
 import {DealList} from "../components/game/list/DealList";
-import {AlertType, ExpensiveAlert} from "../components/wrappers/ExpensiveAlert";
+import {
+    AlertProps,
+    ExpensiveAlert
+} from "../components/wrappers/ExpensiveAlert";
 import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
-import {ExpensiveError} from "../components/wrappers/ExpensiveError";
 import {useCheapShark} from "../cheapshark";
-import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
+import {dealsURL} from "../cheapshark/deals";
+import {useContext} from "react";
+import {StoresContext} from "../types";
+import {UseQueryResult} from "react-query";
+import {Store} from "../cheapshark/stores/stores";
+import {Deal} from "../cheapshark/deals/listOfDeals";
 
 export {
     Home
 }
 
-function Home() {
-    const query: ListOfDealsParam = {}
-    const ofertas = useCheapShark(dealsURL, query);
-    if (ofertas.isLoading ) {
-        return <ExpensiveLoading/>;
-    } else if (ofertas.data) {
-        return (
-            <div className={"d-flex justify-content-center m-3"}>
-                <DealList elements={ofertas.data} numberOfDeals={6}/>
-            </div>
-        );
-    } else {
-        const alert = {
-            alertType: AlertType.danger,
-            title: "Loading error",
-            content: "An unexpected error occurred while loading the data. Reload the website to try again.",
-            buttonText: "Close",
-        }
-        return <>
-            <ExpensiveError/>
-            <ExpensiveAlert {...alert}/>
-        </>
+
+function queryToContent(query: UseQueryResult<Deal[],AlertProps>, store: Store) {
+    let result;
+
+    if (query.isLoading) {
+        result = <ExpensiveLoading/>
+    } else if (query.error) {
+        result = <ExpensiveAlert {...query.error}/>
+    } else if (query.data) {
+        result = <DealList elements={query.data} numberOfDeals={4}/>
     }
+
+    return <div className={"bg-dark"} key={store.storeID}>
+        <h1 className={"text-light"}>{store.storeName}</h1>
+        {result}
+    </div>;
+}
+
+function Home() {
+    const stores = useContext(StoresContext)
+    const mainContent = stores
+        .map(x=> [useCheapShark(dealsURL, {storeID: x.storeID}),x] as [UseQueryResult<Deal[],AlertProps>,Store])
+        .map(([x,y])=>queryToContent(x,y))
+
+    return <main className={"container"}>
+        {mainContent}
+    </main>
 }
