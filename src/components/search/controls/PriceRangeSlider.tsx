@@ -15,6 +15,7 @@ export interface PriceRangeSliderProps {
 
 export function PriceRangeSlider (props: PriceRangeSliderProps) {
     // from https://dev.to/sandra_lewis/building-a-multi-range-slider-in-react-from-scratch-4dl1
+    // FIXME: Spawns over the Game modal page
     return <div className={props.className}>
         <input type={"range"}
                className="thumb thumb--zindex-3"
