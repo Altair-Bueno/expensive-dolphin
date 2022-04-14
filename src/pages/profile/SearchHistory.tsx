@@ -1,3 +1,6 @@
+import {useSearchHistory} from "../../types";
+
 export function SearchHistory() {
-    return <h1>Search history</h1>
+    const [searchHistory,_] = useSearchHistory()
+    return <h1>{JSON.stringify(searchHistory)}</h1>
 }

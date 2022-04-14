@@ -5,7 +5,7 @@ import {useContext, useEffect, useState} from "react";
 import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
 import {Filter} from "../components/search/Filter";
 import {DealList} from "../components/game/list/DealList";
-import {StoresContext} from "../types";
+import {StoresContext, useSearchHistory} from "../types";
 import {useSearchParams} from "react-router-dom";
 
 export {
@@ -15,6 +15,7 @@ export {
 function Search() {
     // When the component it's first mounted on React, it fetches the initial
     // state from the URL params (link shared or saved on bookmarks)
+    const [searchHistory,setSearchHistory] = useSearchHistory()
     const [searchParams,setSearchParams] = useSearchParams()
     const [filter,setFilter] = useState(()=>{
         const params = new URLSearchParams(searchParams)
@@ -25,6 +26,10 @@ function Search() {
     // browser's URL
     useEffect(()=>{
         setSearchParams(new URLSearchParams(filter as any))
+        // TODO improve the search history
+        if (searchHistory.length === 40) searchHistory.pop()
+        searchHistory.unshift(filter)
+        setSearchHistory(searchHistory)
     },[filter])
 
     const gameList = useCheapShark(dealsURL, filter)
