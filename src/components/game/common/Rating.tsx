@@ -21,7 +21,7 @@ function Rating(props: RatingProps) {
         ...Array.from({length:fill}).map(()=>fillIconClass),
         ...Array.from({length:half}).map(()=>halfIconClass),
         ...Array.from({length:empty}).map(()=>emptyIconClass)
-    ].map(x=><i className={`${x} ${commonClasses}`}/>)
+    ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>)
 
     return (
         <div>
