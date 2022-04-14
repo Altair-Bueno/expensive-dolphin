@@ -1,7 +1,7 @@
 import {useCheapShark} from "../cheapshark";
 import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
 import {ExpensiveAlert} from "../components/wrappers/ExpensiveAlert";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {dealsURL, ListOfDealsParam} from "../cheapshark/deals";
 import {Filter} from "../components/search/Filter";
 import {DealList} from "../components/game/list/DealList";
@@ -13,12 +13,23 @@ export {
 }
 
 function Search() {
+    // When the component it's first mounted on React, it fetches the initial
+    // state from the URL params (link shared or saved on bookmarks)
     const [searchParams,setSearchParams] = useSearchParams()
-    const filter = Object.fromEntries(new URLSearchParams(searchParams));
-    const setFilter= (newFilter:ListOfDealsParam) => setSearchParams(new URLSearchParams(newFilter as any))
+    const [filter,setFilter] = useState(()=>{
+        const params = new URLSearchParams(searchParams)
+        return Object.fromEntries(params) as ListOfDealsParam
+    })
+    // After each component re-render, if `filter` gets updated, we also update
+    // the URL parameters. This way we keep the component state updated with the
+    // browser's URL
+    useEffect(()=>{
+        setSearchParams(new URLSearchParams(filter as any))
+    },[filter])
 
     const gameList = useCheapShark(dealsURL, filter)
     const stores = useContext(StoresContext)
+
 
     let main;
     if (gameList.isLoading) {
