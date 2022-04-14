@@ -6,6 +6,13 @@ import {
 } from "react-router-dom";
 import {LocationState} from "../types";
 import {Pages} from "./index";
+import {useEffect} from "react";
+
+const CLOSE_KEYS = [
+    // Escape key
+    "27",
+    "Escape"
+]
 
 export function Game() {
     const [parameters, _] = useSearchParams();
@@ -17,10 +24,20 @@ export function Game() {
         return <Navigate to={Pages.Home} replace={true}/>
     }
 
-    const onClickDismiss = ()=> {
+    const dismissHandler = ()=> {
         const state = location.state as LocationState | undefined
         state && state.backgroundLocation && navigation(state.backgroundLocation)
     }
+
+    useEffect(()=>{
+        const handler = (keyboardEvent:KeyboardEvent)=> {
+            if (CLOSE_KEYS.includes(keyboardEvent.code)) {
+                dismissHandler()
+            }
+        }
+        window.addEventListener('keypress',handler)
+        return () => window.removeEventListener('keypress',handler)
+    },[])
 
     // const gameLookup = useCheapShark(gamesURL, { id: id })
     // const backgroundLocation = useLocation().state as LocationState | undefined
@@ -35,7 +52,7 @@ export function Game() {
         main = <h1>ERROR I GUESS</h1>
     }
     */
-    return <div onClick={onClickDismiss} className={"position-absolute top-50 start-50 translate-middle w-100 h-100"}>
+    return <div onClick={dismissHandler} className={"position-absolute top-50 start-50 translate-middle w-100 h-100"}>
         <div className={"position-absolute top-50 start-50 translate-middle"}>
             <h1 className={"text-light"}>Something is in my ass</h1>
         </div>
