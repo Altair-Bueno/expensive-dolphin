@@ -1,26 +1,43 @@
-import {useLocation, useSearchParams} from "react-router-dom";
+import {
+    Navigate,
+    useLocation,
+    useNavigate,
+    useSearchParams
+} from "react-router-dom";
 import {LocationState} from "../types";
-import {ExpensiveGame} from "../components/game/fullscreen/ExpensiveGame";
-import {NotFound} from "./NotFound";
-import {useCheapShark} from "../cheapshark";
-import {gamesURL} from "../cheapshark/games";
-import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
+import {Pages} from "./index";
 
 export function Game() {
     const [parameters, _] = useSearchParams();
+    const location = useLocation()
+    const navigation = useNavigate()
     const id = parameters.get("id")
 
     if (!id) {
-        return <NotFound/>
+        return <Navigate to={Pages.Home} replace={true}/>
     }
 
-    const gameLookup = useCheapShark(gamesURL, { id: id })
-    const backgroundLocation = useLocation().state as LocationState | undefined
+    const onClickDismiss = ()=> {
+        const state = location.state as LocationState | undefined
+        state && state.backgroundLocation && navigation(state.backgroundLocation)
+    }
 
+    // const gameLookup = useCheapShark(gamesURL, { id: id })
+    // const backgroundLocation = useLocation().state as LocationState | undefined
+
+    let main;
+        /*
     if (gameLookup.isLoading) {
-        return <ExpensiveLoading/>
+        main =  <ExpensiveLoading/>
     } else if (gameLookup.data) {
-        return <ExpensiveGame gameLookup={gameLookup.data}/>
+        main =  <ExpensiveGame gameLookup={gameLookup.data}/>
+    } else {
+        main = <h1>ERROR I GUESS</h1>
     }
-    return <div>IDK man</div>
+    */
+    return <div onClick={onClickDismiss} className={"position-absolute top-50 start-50 translate-middle w-100 h-100"}>
+        <div className={"position-absolute top-50 start-50 translate-middle"}>
+            <h1 className={"text-light"}>Something is in my ass</h1>
+        </div>
+    </div>
 }
