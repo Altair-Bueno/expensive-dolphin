@@ -7,6 +7,11 @@ import {
 import {LocationState} from "../types";
 import {Pages} from "./index";
 import {useEffect} from "react";
+import {useCheapShark} from "../cheapshark";
+import {gamesURL} from "../cheapshark/games";
+import {ExpensiveGame} from "../components/game/fullscreen/ExpensiveGame";
+import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
+import {ExpensiveAlert} from "../components/wrappers/ExpensiveAlert";
 
 const CLOSE_KEYS = [
     // Escape key
@@ -39,22 +44,25 @@ export function Game() {
         return () => window.removeEventListener('keypress',handler)
     },[])
 
-    // const gameLookup = useCheapShark(gamesURL, { id: id })
+    const gameLookup = useCheapShark(gamesURL, { id: id })
     // const backgroundLocation = useLocation().state as LocationState | undefined
 
     let main;
-        /*
     if (gameLookup.isLoading) {
         main =  <ExpensiveLoading/>
     } else if (gameLookup.data) {
         main =  <ExpensiveGame gameLookup={gameLookup.data}/>
-    } else {
-        main = <h1>ERROR I GUESS</h1>
+    } else if (gameLookup.error){
+        main = <ExpensiveAlert {...gameLookup.error}/>
     }
-    */
-    return <div onClick={dismissHandler} className={"position-absolute top-50 start-50 translate-middle w-100 h-100"}>
-        <div className={"position-absolute top-50 start-50 translate-middle"}>
-            <h1 className={"text-light"}>Something is in my ass</h1>
+    return <div onClick={dismissHandler}
+                className={"position-absolute top-50 start-50 translate-middle w-100 h-100 well"}>
+        <div className={"position-absolute top-50 start-50 translate-middle bg-secondary p-3 rounded rounded-3"}>
+            <button type="button"
+                    onClick={dismissHandler}
+                    className="btn-close btn-close-white position-absolute top-0 end-0 mt-3 me-3"
+                    aria-label="Close"/>
+            {main}
         </div>
     </div>
 }
