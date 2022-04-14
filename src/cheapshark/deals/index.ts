@@ -13,7 +13,7 @@ export enum SortByOptions {
 }
 
 export interface ListOfDealsParam {
-    storeID?: number[],
+    storeID?: number[] | number | string,
     pageNumber?:number,
     pageSize?:number,
     sortBy?: SortByOptions,
