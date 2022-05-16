@@ -90,8 +90,6 @@ function Filter(props: FilterProps) {
         <label className={"form-check-label"}>{store.storeName}</label>
     </div> )
 
-    // @ts-ignore
-    // @ts-ignore
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
             <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
@@ -142,7 +140,7 @@ function Filter(props: FilterProps) {
             </div>
 
             <div>
-                <button onClick={() => buscar(document.getElementById("titleFilter").value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
+                <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
             </div>
         </div>
 
