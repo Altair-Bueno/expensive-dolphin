@@ -6,10 +6,8 @@ import {ManageAlerts} from "./profile/ManageAlerts";
 import {Favourites} from "./profile/Favourites";
 import {ManageMyData} from "./profile/ManageMyData";
 
-function ProfilePlaceholder() {
-    return <h1>
-        Just a main panel placeholder
-    </h1>
+function ProfilePlaceholder() { //TODO: Hacer que en el navegador la ruta sea /profile/recent
+    return <SearchHistory/>
 }
 
 export function Profile() {
@@ -21,8 +19,8 @@ export function Profile() {
         { name: "Manage alerts" , to: ProfilePages.ManageAlerts },
         { name: "Favourites" , to: ProfilePages.Favourites },
         { name: "Manage my Data" , to: ProfilePages.ManageMyData}
-    ].map(x=><li className={"list-group-item"} key={x.name}>
-        <Link to={x.to}>
+    ].map(x=><li className={"btn btn-primary bg-dark m-1"} key={x.name}>
+        <Link className={"text-light text-decoration-none"} to={x.to}>
             {x.name}
         </Link>
     </li>)
@@ -42,7 +40,7 @@ export function Profile() {
             </h1>
         </div>
         <div className={"row"}>
-            <aside className={"col-lg-4 col-md-12"}>
+            <aside className={"col-lg-3 col-md-12"}>
                 <ul className={"list-group"}>
                     {asideList}
                 </ul>

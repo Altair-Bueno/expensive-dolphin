@@ -66,7 +66,7 @@ function Filter(props: FilterProps) {
     const sortByOptions = Object.entries(SortByOptions).map(([_, value]) =>
         <option>{value}</option>)
 
-    const storesCheckBox = stores.map(store=><div className={"form-check"}>
+    const storesCheckBox = stores.map(store=><div className={"form-check text-light"}>
         <input type={"checkbox"} className={"form-check-input"} key={store.storeID}
                onChange={x=>{
                    const selfStoreID = Number.parseInt(store.storeID);
@@ -82,50 +82,50 @@ function Filter(props: FilterProps) {
     </div> )
 
     return <form onSubmit={x => x.preventDefault()}>
-        <div className={"mb-3"}>
-            <input type={"search"} className={"form-control"}
+        <div className={"mb-3 text-light"}>
+            <input type={"search"} className={"form-control text-light"}
                    onChange={onChangeSearch} placeholder={"Title"}/>
         </div>
-        <div className={"mb-3"}>
+        <div className={"mb-3 text-light"}>
             <label className={"form-label"}>Price range:
                 From {filter.lowerPrice} to {filter.upperPrice}</label>
             <PriceRangeSlider {...priceRangeSliderProps}/>
         </div>
         <div className={"mb-3"}>
-            <label className={"form-label"}>Metacritic rating</label>
+            <label className={"form-label text-light"}>Metacritic rating</label>
             <RatingFilter {...metacriticRatingProps}/>
         </div>
         <div className={"mb-3"}>
-            <label className={"form-label"}>Steam rating</label>
+            <label className={"form-label text-light"}>Steam rating</label>
             <RatingFilter {...steamRatingProps}/>
         </div>
-        <h3>Stores</h3>
+        <h3 className={"text-light"}>Stores</h3>
         <div>
             {storesCheckBox}
         </div>
-        <h3>Sorting</h3>
-        <div className={"mb-3"}>
+        <h3 className={"text-light"}>Sorting</h3>
+        <div className={"mb-3 text-light"}>
             <label>Sort By</label>
             <select onChange={onChangeSortBy} className={"form-select"}>
                 {sortByOptions}
             </select>
         </div>
-        <div className={"form-check"}>
+        <div className={"form-check text-light"}>
             <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input"}/>
             <label className={"form-check-label"}>Descending</label>
         </div>
         <h3>Other options</h3>
-        <div className={"mb-3"}>
+        <div className={"mb-3 text-light"}>
             <div className={"form-check"}>
                 <input type={"checkbox"} onChange={onChangeSale} className={"form-check-input"}/>
                 <label className={"form-check-label"}>On Sale</label>
 
             </div>
-            <div className={"form-check"}>
+            <div className={"form-check text-light"}>
                 <input type={"checkbox"} onChange={onChangeSteamWorks} className={"form-check-input"}/>
                 <label className={"form-check-label"}>Steam works</label>
             </div>
-            <div className={"form-check"}>
+            <div className={"form-check text-light"}>
                 <input type={"checkbox"} onChange={onChangeAAA} className={"form-check-input"}/>
                 <label className={"form-check-label"}>AAA</label>
             </div>

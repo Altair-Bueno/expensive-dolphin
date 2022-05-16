@@ -1,3 +1,3 @@
 export function ManageAlerts() {
-    return <h1>Manage alerts</h1>
+    return <h1 className={"text-light"}>Manage alerts</h1>
 }

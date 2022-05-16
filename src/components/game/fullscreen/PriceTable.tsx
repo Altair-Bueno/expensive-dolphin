@@ -5,7 +5,7 @@ import {Store} from "../../../cheapshark/stores/stores";
 import {useState} from "react";
 import "./PriceTable.css";
 import {Deal} from "../../../cheapshark/games/gameLookup";
-import {imageURL} from "../../../cheapshark/stores";
+import {gameURL, imageURL} from "../../../cheapshark/stores";
 
 export { PriceTable };
 
@@ -50,6 +50,7 @@ function PriceTable(props: PriceTableProps) {
   var sorted = sortData(copy, ordered);
 
   var final = ordered.order === OrderEnum.NONE ? [...orig] : [...sorted];
+  var finalRecortado: Deal[] = final.length > 4 ? [final[0], final[1], final[2], final[3]] : final;
 
   return (
     <Table
@@ -101,9 +102,9 @@ function PriceTable(props: PriceTableProps) {
         </tr>
       </thead>
       <tbody>
-        {final.map((element) => {
+        {finalRecortado.map((element) => {
           return (
-            <tr key={final.indexOf(element)}>
+            <tr key={finalRecortado.indexOf(element)}>
               <td>
                 <img
                   className="logo"
@@ -126,7 +127,7 @@ function PriceTable(props: PriceTableProps) {
               <td>
                 <Button
                   variant="primary"
-                  onClick={() => window.open(`${imageURL}${element.dealID}`,'_blank')}
+                  onClick={() => window.open(`${gameURL}${element.dealID}`,'_blank')}
                   bsPrefix="btn"
                   className={"btn-primary"}
                 >

@@ -1,3 +1,3 @@
 export function ManageMyData(){
-    return <h1>Manage my data</h1>
+    return <h1 className={"text-light"}>Manage my data</h1>
 }

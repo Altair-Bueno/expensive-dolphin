@@ -1,6 +1,15 @@
 import {useSearchHistory} from "../../types";
 
 export function SearchHistory() {
-    const [searchHistory,_] = useSearchHistory()
-    return <h1>{JSON.stringify(searchHistory)}</h1>
+    let [searchHistory,setSearchHistory] = useSearchHistory()
+
+    return <div>
+        <h1 className={"text-light"}>
+            Search history:
+            <button onClick={x=>setSearchHistory([])} className={"btn btn-primary ms-5"}>Clear search history
+            </button>
+        </h1>
+
+        <h5 className={"text-light"}>{searchHistory.map(x => <>{x.title} <br/></>)}</h5>
+        </div>
 }
