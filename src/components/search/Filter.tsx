@@ -93,7 +93,7 @@ function Filter(props: FilterProps) {
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
             <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
-                   /*onChange={onChangeSearch}*/ placeholder={"Title"}/>
+                   placeholder={"Title"}/>
         </div>
         <div className={"mb-3 text-light"}>
             <label className={"form-label"}>Price range:
