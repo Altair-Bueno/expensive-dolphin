@@ -19,6 +19,7 @@ const CLOSE_KEYS = [
     "Escape"
 ]
 
+
 export function Game() {
     const [parameters, _] = useSearchParams();
     const location = useLocation()
@@ -62,9 +63,10 @@ export function Game() {
                   animation={false}
                   centered={true}
                   onHide={dismissHandler}
-                  onRequestClose={dismissHandler}>
-        <Modal.Header closeButton={true}/>
-        <Modal.Body>{main}</Modal.Body>
+                  onRequestClose={dismissHandler}
+                  style={{border: "#1c1f26"}}>
+        <Modal.Header style={{background: "#1c1f26", backgroundColor: "#1c1f26", outline: "none", border: "#1c1f26"}} closeButton={true}/>
+        <Modal.Body style={{background: "#2F343F"}}>{main}</Modal.Body>
     </Modal>
     /*
     return <div onClick={dismissHandler}

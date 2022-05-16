@@ -15,7 +15,7 @@ function Price(props: PriceProps) {
                 <del className={"small p-0 m-0"}>${props.retailPrice}</del>
             </div>
             <div className={"row p-0 m-0 w-76 "}>
-                <span className={"rounded rounded-2 bg-danger small text-center p-0 m-0 h-auto w-auto"} >
+                <span className={"rounded rounded-2 bg-danger small text-center p-1 m-0 h-auto w-auto"} >
                     -{props.savings}%
                 </span>
             </div>

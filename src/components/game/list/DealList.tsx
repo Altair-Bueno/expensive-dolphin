@@ -14,13 +14,6 @@ interface DealListProps {
     numberOfDeals?: number
 }
 
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
 function mapDeal(deal: Deal, location: Location) {
     const searchParams = {id: deal.gameID}
     const state: LocationState = {backgroundLocation: location}
@@ -47,7 +40,7 @@ function DealList(props: DealListProps) {
     </div>
 
     return <div className={"container g-3"}>
-        <div onClick={() => scrollToTop()} className={"row row-cols-1 row-cols-xxl-2"}>
+        <div className={"row row-cols-1 row-cols-xxl-2"}>
             {deals}
         </div>
         {isShowMoreEnabled && showMoreDiv}
