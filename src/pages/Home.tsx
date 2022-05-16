@@ -31,8 +31,8 @@ function queryToContent(query: UseQueryResult<Deal[],AlertProps>, store: Store) 
     }
 
     if(!noDataFound){
-        return <div className={"bg-dark my-2"} key={store.storeID}>
-            <h1 className={"text-light"}>{store.storeName}</h1>
+        return <div className={"bg-dark my-3 p-2 rounded"} key={store.storeID}>
+            <h1 className={"text-light ms-3"}>{store.storeName}</h1>
             {result}
         </div>;
     } else {

@@ -55,7 +55,21 @@ export function Game() {
     } else if (gameLookup.error){
         main = <ExpensiveAlert {...gameLookup.error}/>
     }
+
+    /* Con este al clickar en cualquier lado cerraba el componente de juego.
     return <div onClick={dismissHandler}
+                className={"position-absolute top-50 start-50 translate-middle w-100 h-100 well"}>
+        <div className={"position-absolute top-50 start-50 translate-middle bg-secondary p-3 rounded rounded-3"}>
+            <button type="button"
+                    onClick={dismissHandler}
+                    className="btn-close btn-close-white position-absolute top-0 end-0 mt-3 me-3"
+                    aria-label="Close"/>
+            {main}
+        </div>
+    </div>
+     */
+
+    return <div
                 className={"position-absolute top-50 start-50 translate-middle w-100 h-100 well"}>
         <div className={"position-absolute top-50 start-50 translate-middle bg-secondary p-3 rounded rounded-3"}>
             <button type="button"

@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import {useContext} from "react";
 import {StoresContext} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
+import {gameURL, steamURL} from "../../../cheapshark/stores";
 
 export {ExpensiveGame};
 
@@ -31,7 +32,8 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         // TODO
         isOnSale:true
     }
-    const ratingProps = { steamRatingPercent:10 }
+
+    const ratingProps = {steamRatingPercent: Number.parseFloat(gameLookup.deals[0].savings)}
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
 
     return <div className={"container-sm"}>
@@ -54,8 +56,10 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                 </div>
                 <div className="row">
                     <div className="col-3 m-0 p-0">
-                        <Button variant={"primary"}>
-                            On Steam
+                        <Button
+                            onClick={() => window.open(`${steamURL}${gameLookup.info.steamAppID}`,'_blank')}
+                            variant={"primary"}>
+                                On Steam
                         </Button>
                     </div>
                     <div className="col-3 m-0 p-0">

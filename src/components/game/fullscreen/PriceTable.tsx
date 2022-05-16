@@ -5,7 +5,7 @@ import {Store} from "../../../cheapshark/stores/stores";
 import {useState} from "react";
 import "./PriceTable.css";
 import {Deal} from "../../../cheapshark/games/gameLookup";
-import {imageURL} from "../../../cheapshark/stores";
+import {gameURL, imageURL} from "../../../cheapshark/stores";
 
 export { PriceTable };
 
@@ -127,7 +127,7 @@ function PriceTable(props: PriceTableProps) {
               <td>
                 <Button
                   variant="primary"
-                  onClick={() => window.open(`${imageURL}${element.dealID}`,'_blank')}
+                  onClick={() => window.open(`${gameURL}${element.dealID}`,'_blank')}
                   bsPrefix="btn"
                   className={"btn-primary"}
                 >
