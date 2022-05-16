@@ -1,6 +1,6 @@
 .logo{
   height: 50px;
-  width: auto;
+  width: 280px;
 }
 
 .logo2{
@@ -12,4 +12,5 @@
 @media screen and (max-width:991px) {
   .logo{display: none;}
   .logo2{display: block;}
-}
+  .labelBotonWebsite{display: none;}
+  }

@@ -38,7 +38,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
     return <div className={"container-sm"}>
         <div className="row-6 d-flex">
-            <div className="col-2 me-4 p-0 d-flex justify-content-center">
+            <div className="col-4 me-4 ms-0 p-0 d-flex justify-content-center">
                 <img src={gameLookup.info.thumb} className={"img-fluid"} alt={gameLookup.info.title}/>
             </div>
 
@@ -53,21 +53,21 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                     <Rating {...ratingProps}/>
                 </div>
                 <div className="row">
-                    <div className="col-5 ms-1 p-0 justify-content-start">
+                    <div className="col-5 ms-1 p-0">
                         <Price {...priceProps}/>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-3 mt-5 p-0">
+                    <div className="col-3 mt-5 me-3 p-0">
                         <Button
                             onClick={() => window.open(`${steamURL}${gameLookup.info.steamAppID}`,'_blank')}
                             variant={"primary"}>
                                 On Steam
                         </Button>
                     </div>
-                    <div className="col-3 mt-5 p-0">
+                    <div className="col-6 mt-5 ms-1 p-0">
                         <Button variant={"primary"}>
-                            Add to list
+                            Add to favourites list
                         </Button>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         </div>
 
         <div className="row-6 d-flex">
-            <div className="col-6">
+            <div className="row-6">
                 <PriceTable {...priceTableProps}/>
             </div>
         </div>
