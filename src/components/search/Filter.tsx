@@ -5,7 +5,7 @@ import {
     PriceRangeSliderProps
 } from "./controls/PriceRangeSlider";
 import {RatingFilter, RatingFilterProps} from "./controls/RatingFilter";
-import {ChangeEvent} from "react";
+import {ChangeEvent, FormEvent, FormEventHandler, MouseEventHandler} from "react";
 import {Store} from "../../cheapshark/stores/stores";
 
 export {
@@ -39,6 +39,8 @@ function Filter(props: FilterProps) {
         ...filter,
         title: x.target.value
     })
+
+
     const onChangeSale = (x: ChangeEvent<HTMLInputElement>) => setFilter({
         ...filter,
         onSale: x.currentTarget.checked
@@ -63,6 +65,13 @@ function Filter(props: FilterProps) {
         desc: x.currentTarget.checked
     });
 
+    const buscar = (title : string) => setFilter({
+        ...filter,
+        title: title
+    })
+
+
+
     const sortByOptions = Object.entries(SortByOptions).map(([_, value]) =>
         <option>{value}</option>)
 
@@ -81,10 +90,12 @@ function Filter(props: FilterProps) {
         <label className={"form-check-label"}>{store.storeName}</label>
     </div> )
 
+    // @ts-ignore
+    // @ts-ignore
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
-            <input type={"search"} className={"form-control text-light"}
-                   onChange={onChangeSearch} placeholder={"Title"}/>
+            <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
+                   /*onChange={onChangeSearch}*/ placeholder={"Title"}/>
         </div>
         <div className={"mb-3 text-light"}>
             <label className={"form-label"}>Price range:
@@ -128,6 +139,10 @@ function Filter(props: FilterProps) {
             <div className={"form-check text-light"}>
                 <input type={"checkbox"} onChange={onChangeAAA} className={"form-check-input"}/>
                 <label className={"form-check-label"}>AAA</label>
+            </div>
+
+            <div>
+                <button onClick={() => buscar(document.getElementById("titleFilter").value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
             </div>
         </div>
 
