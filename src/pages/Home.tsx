@@ -30,6 +30,9 @@ function queryToContent(query: UseQueryResult<Deal[],AlertProps>, store: Store) 
         noDataFound = query.data.length === 0;
     }
 
+    /**
+     * Only returns info of that shop in case it has store.gameList.length > 0
+     */
     if(!noDataFound){
         return <div className={"bg-dark my-3 p-2 rounded"} key={store.storeID}>
             <h1 className={"text-light ms-3"}>{store.storeName}</h1>

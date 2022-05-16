@@ -13,11 +13,14 @@ import {ExpensiveLoading} from "../components/wrappers/ExpensiveLoading";
 import {ExpensiveAlert} from "../components/wrappers/ExpensiveAlert";
 import {Modal} from 'react-bootstrap'
 
+/* Not in use -- Jota.
 const CLOSE_KEYS = [
     // Escape key
     "27",
     "Escape"
 ]
+
+ */
 
 
 export function Game() {
@@ -60,7 +63,7 @@ export function Game() {
                   size={"lg"}
                   keyboard={true}
                   backdrop={true}
-                  animation={false}
+                  animation={true}
                   centered={true}
                   onHide={dismissHandler}
                   onRequestClose={dismissHandler}
