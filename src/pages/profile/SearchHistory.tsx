@@ -10,6 +10,6 @@ export function SearchHistory() {
             </button>
         </h1>
 
-        <h5 className={"text-light"}>{searchHistory.map(x => <>{x.title} <br/></>)}</h5>
+        <h5 className={"text-light"}>{searchHistory.map(x => <>-{x.title} <br/></>)}</h5>
         </div>
 }
