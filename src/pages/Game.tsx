@@ -65,13 +65,7 @@ export function Game() {
                   onHide={dismissHandler}
                   onRequestClose={dismissHandler}
                   style={{border: "#1c1f26"}}>
-        <Modal.Header style={{background: "#1c1f26", backgroundColor: "#1c1f26", outline: "none", border: "#1c1f26"}} closeButton={true}/>
+        <Modal.Header style={{background: "#1c1f26", backgroundColor: "#1c1f26", outline: "none", border: "#1c1f26", }} closeButton={true} closeVariant={'white'}/>
         <Modal.Body style={{background: "#2F343F"}}>{main}</Modal.Body>
     </Modal>
-    /*
-    return <div onClick={dismissHandler}
-                className={"position-absolute top-50 start-50 translate-middle w-100 h-100 well"}>
-
-    </div>
-    */
 }
