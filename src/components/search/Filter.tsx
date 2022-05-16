@@ -91,6 +91,7 @@ function Filter(props: FilterProps) {
     </div> )
 
     // @ts-ignore
+    // @ts-ignore
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
             <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
