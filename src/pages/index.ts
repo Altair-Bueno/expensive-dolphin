@@ -11,7 +11,7 @@ export enum Pages {
     Home = "/",
     Help = "/help",
     Search = "/search",
-    Profile = "/profile",
+    Profile = "/profile/recent",
 }
 
 export enum ProfilePages {
