@@ -33,6 +33,15 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         isOnSale:true
     }
 
+    const createAlert = () => {
+        console.log("hola");
+        if(document.cookie.includes("email")){ //Hay email
+
+        } else {
+            window.alert("We need your e-mail. \nGo to Profile -> My account -> Manage my data")
+        }
+    }
+
     const ratingProps = {steamRatingPercent: Number.parseFloat(gameLookup.deals[0].savings)}
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
 
@@ -66,7 +75,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                         </Button>
                     </div>
                     <div className="col-6 mt-5 ms-1 p-0">
-                        <Button variant={"primary"} className={"alertButtonGame"}>
+                        <Button variant={"primary"} className={"alertButtonGame"} onClick={() => createAlert()} >
                             <i className="bi bi-alarm"></i> Create alert
                         </Button>
                     </div>
