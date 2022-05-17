@@ -35,6 +35,8 @@ function Search() {
     const gameList = useCheapShark(dealsURL, filter)
     const stores = useContext(StoresContext)
 
+    document.title = "Expensive Dolphin -  Search";
+
 
     let main;
     if (gameList.isLoading) {

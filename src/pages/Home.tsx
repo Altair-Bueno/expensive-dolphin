@@ -46,6 +46,7 @@ function queryToContent(query: UseQueryResult<Deal[],AlertProps>, store: Store) 
 }
 
 function Home() {
+    document.title = "Expensive Dolphin -  Home";
     const stores = useContext(StoresContext)
     const mainContent = stores
         .map(x=> [useCheapShark(dealsURL, {storeID: [Number.parseInt(x.storeID)]}),x] as [UseQueryResult<Deal[],AlertProps>,Store])

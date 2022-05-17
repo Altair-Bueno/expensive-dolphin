@@ -14,6 +14,8 @@ function NotFound() {
     const linkTo = Pages.Home
     const url = location.href
 
+    document.title = "Expensive Dolphin -  Not found";
+
     return (
         <div className={"position-absolute top-50 start-50 translate-middle"}>
             <div className={"text-light bg-dark rounded rounded-5 shadow p-4"}>

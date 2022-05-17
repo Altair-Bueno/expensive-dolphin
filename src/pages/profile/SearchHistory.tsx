@@ -2,7 +2,7 @@ import {useSearchHistory} from "../../types";
 
 export function SearchHistory() {
     let [searchHistory,setSearchHistory] = useSearchHistory()
-
+    document.title = "Expensive Dolphin - Search history";
     return <div>
         <h1 className={"text-light"}>
             Search history:

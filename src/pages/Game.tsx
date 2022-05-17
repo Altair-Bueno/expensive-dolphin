@@ -33,6 +33,8 @@ export function Game() {
         return <Navigate to={Pages.Home} replace={true}/>
     }
 
+    document.title = "Expensive Dolphin - Game";
+
     const dismissHandler = ()=> {
         const state = location.state as LocationState | undefined
         state && state.backgroundLocation && navigation(state.backgroundLocation)

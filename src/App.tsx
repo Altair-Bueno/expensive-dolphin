@@ -4,6 +4,7 @@ import {Game, Help, Home, NotFound, Pages, Profile, Search} from "./pages";
 import {ExpensiveNavbar} from "./components/wrappers/ExpensiveNavbar";
 import React from "react";
 
+
 export function App() {
     const currentLocation = useLocation()
     const state = currentLocation.state as LocationState | undefined

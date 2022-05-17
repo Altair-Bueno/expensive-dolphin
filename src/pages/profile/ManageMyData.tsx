@@ -1,6 +1,7 @@
 
 
 export function ManageMyData(){
+    document.title = "Expensive Dolphin - Manage my data";
     return <div className={"text-light"}>
         <h1>Manage my data</h1>
         <form className={"w-50"}>
