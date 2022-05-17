@@ -115,7 +115,7 @@ function Filter(props: FilterProps) {
         <h3 className={"text-light"}>Sorting</h3>
         <div className={"mb-3 text-light"}>
             <label>Sort By</label>
-            <select onChange={onChangeSortBy} className={"form-select"}>
+            <select onChange={onChangeSortBy} className={"form-select text-light"}>
                 {sortByOptions}
             </select>
         </div>
@@ -123,7 +123,7 @@ function Filter(props: FilterProps) {
             <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input"}/>
             <label className={"form-check-label"}>Descending</label>
         </div>
-        <h3>Other options</h3>
+        <h3 className={"text-light"}>Other options</h3>
         <div className={"mb-3 text-light"}>
             <div className={"form-check"}>
                 <input type={"checkbox"} onChange={onChangeSale} className={"form-check-input"}/>
@@ -136,7 +136,7 @@ function Filter(props: FilterProps) {
             </div>
             <div className={"form-check text-light"}>
                 <input type={"checkbox"} onChange={onChangeAAA} className={"form-check-input"}/>
-                <label className={"form-check-label"}>AAA</label>
+                <label className={"form-check-label text-light"}>AAA</label>
             </div>
 
             <div>
