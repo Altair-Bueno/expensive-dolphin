@@ -59,15 +59,15 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                 </div>
                 <div className="row">
                     <div className="col-3 mt-5 me-3 p-0">
-                        <Button
+                        <Button className={"steamButtonGame"}
                             onClick={() => window.open(`${steamURL}${gameLookup.info.steamAppID}`,'_blank')}
                             variant={"primary"}>
-                                On Steam
+                            <i className="bi bi-controller"></i> Steam
                         </Button>
                     </div>
                     <div className="col-6 mt-5 ms-1 p-0">
-                        <Button variant={"primary"}>
-                            Add to favourites list
+                        <Button variant={"primary"} className={"alertButtonGame"}>
+                            <i className="bi bi-alarm"></i> Create alert
                         </Button>
                     </div>
                 </div>
