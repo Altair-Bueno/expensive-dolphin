@@ -3,6 +3,7 @@ import React from "react";
 import {Location} from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 import {ListOfDealsParam} from "./cheapshark/deals";
+import {Alert} from "react-bootstrap";
 
 const defaultStores: Store[] = []
 export const StoresContext = React.createContext(defaultStores)

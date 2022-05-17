@@ -41,8 +41,6 @@ function queryToContent(query: UseQueryResult<Deal[],AlertProps>, store: Store) 
     } else {
         return <></>
     }
-
-
 }
 
 function Home() {

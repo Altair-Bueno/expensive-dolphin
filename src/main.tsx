@@ -98,6 +98,6 @@ const importantMessages = [
 ]
 main().then(() => {
     for (const message of importantMessages) {
-        console.log("%c" + message, "font-family:monospace")
+        //console.log("%c" + message, "font-family:monospace")
     }
 })
