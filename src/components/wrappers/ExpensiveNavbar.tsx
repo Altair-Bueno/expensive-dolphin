@@ -10,14 +10,14 @@ export {
 
 function ExpensiveNavbar() {
     const linkList = [
-      { page: Pages.Home, icon: "bi-currency-dollar", name: "Today's Deals" },
-      { page: Pages.Search, icon: "bi-search", name: "Search" },
+      { page: Pages.Home, icon: "bi-currency-dollar", name: "Today's Deals", tabindex: "1" },
+      { page: Pages.Search, icon: "bi-search", name: "Search", tabindex: "2" },
       //{ page: Pages.MyList, icon: "bi-bag", name: "My List" },
-      { page: Pages.Profile, icon: "bi-person-circle", name: "My account" },
-      { page: Pages.Help, icon: "bi-question-circle", name: "Help" },
+      { page: Pages.Profile, icon: "bi-person-circle", name: "My account", tabindex: "3" },
+      { page: Pages.Help, icon: "bi-question-circle", name: "Help", tabindex: "4" },
     ].map((x) => (
       <LinkContainer to={x.page}>
-        <Nav.Link active={false}>
+        <Nav.Link active={false} tabindex={x.tabindex} >
           <i className={x.icon} /> {x.name}
         </Nav.Link>
       </LinkContainer>
