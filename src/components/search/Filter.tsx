@@ -7,6 +7,7 @@ import {
 import {RatingFilter, RatingFilterProps} from "./controls/RatingFilter";
 import {ChangeEvent, FormEvent, FormEventHandler, MouseEventHandler} from "react";
 import {Store} from "../../cheapshark/stores/stores";
+import {SearchHistory} from "../../pages/profile/SearchHistory";
 
 export {
     Filter
@@ -92,8 +93,7 @@ function Filter(props: FilterProps) {
 
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
-            <label>Title<input type={"search"} id={"titleFilter"} className={"form-control text-light"}/></label>
-
+            <label>Title<input type={"search"} id={"titleFilter"} className={"form-control text-light"} maxLength={50}/></label>
         </div>
         <div className={"mb-3 text-light"}>
             <label className={"form-label"}>Price range:
