@@ -56,8 +56,8 @@ function Search() {
 
         <div className={"row"}>
             <aside className={"col-lg-4 col-md-12"}>
-                {SearchHistory()}
                 <Filter setFilter={setFilter} filter={filter} stores={stores}/>
+                <SearchHistory/>
             </aside>
             <main className={"col-lg col-md-12"}>
                 {main}
