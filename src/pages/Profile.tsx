@@ -17,7 +17,7 @@ export function Profile() {
     const asideList = [
         { name: "Search history", to: ProfilePages.SearchHistory },
         { name: "Manage alerts" , to: ProfilePages.ManageAlerts },
-        { name: "Favourites" , to: ProfilePages.Favourites },
+        //{ name: "Favourites" , to: ProfilePages.Favourites },
         { name: "Manage my Data" , to: ProfilePages.ManageMyData}
     ].map(x=><li className={"btn btn-primary bg-dark m-1"} key={x.name}>
         <Link className={"text-light text-decoration-none"} to={x.to}>
@@ -29,7 +29,7 @@ export function Profile() {
         { element: <ProfilePlaceholder/>, index: true },
         { element: <SearchHistory/>, path: ProfilePages.SearchHistory },
         { element: <ManageAlerts/>, path: ProfilePages.ManageAlerts },
-        { element: <Favourites/>, path: ProfilePages.Favourites },
+        //{ element: <Favourites/>, path: ProfilePages.Favourites },
         { element: <ManageMyData/>, path: ProfilePages.ManageMyData }
     ].map(x=><Route {...x}/>)
 

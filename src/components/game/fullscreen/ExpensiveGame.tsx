@@ -6,6 +6,8 @@ import {useContext} from "react";
 import {StoresContext} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
 import {gameURL, steamURL} from "../../../cheapshark/stores";
+import {Modal, ModalBody} from "react-bootstrap";
+import {checkEmail, setCookie} from "../../../pages/profile/ManageMyData";
 
 export {ExpensiveGame};
 
@@ -34,11 +36,16 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     }
 
     const createAlert = () => {
-        console.log("hola");
-        if(document.cookie.includes("email")){ //Hay email
+        if(!document.cookie.includes("email")){ //No hay email
+            const email = prompt("Please enter your email:");
 
-        } else {
-            window.alert("We need your e-mail. \nGo to Profile -> My account -> Manage my data")
+            if(email == null || email == "" || !checkEmail(email)){
+                window.alert("Alert has not been created. Please introduce a valid email.")
+            } else{
+                setCookie("email", email);
+            }
+        } else { //Hay email, creamos la alerta
+            window.alert("Alert has been created.")
         }
     }
 
@@ -76,7 +83,10 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                     </div>
                     <div className="col-6 mt-5 ms-1 p-0">
                         <Button variant={"primary"} className={"alertButtonGame"} onClick={() => createAlert()} >
-                            <i className="bi bi-alarm"></i> Create alert
+                            <div className={"d-none d-lg-block"}>
+                                <i className="bi bi-alarm m-1"></i>
+                                <label>Create alert</label>
+                            </div>
                         </Button>
                     </div>
                 </div>
