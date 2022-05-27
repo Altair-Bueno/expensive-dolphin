@@ -7,7 +7,6 @@ import {
 import {RatingFilter, RatingFilterProps} from "./controls/RatingFilter";
 import {ChangeEvent, FormEvent, FormEventHandler, MouseEventHandler} from "react";
 import {Store} from "../../cheapshark/stores/stores";
-import {SearchHistory} from "../../pages/profile/SearchHistory";
 
 export {
     Filter
@@ -93,11 +92,11 @@ function Filter(props: FilterProps) {
 
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
-            <label>
-                Title<input type={"search"} id={"titleFilter"} className={"form-control text-light"} maxLength={50}/>
-            </label>
-
-            <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light ms-2 mb-1"} type={"submit"}>Filtrar</button>
+            <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
+                   placeholder={"Title"}/>
+        </div>
+        <div>
+            <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
         </div>
         <div className={"mb-3 text-light"}>
             <label className={"form-label"}>Price range:
@@ -116,7 +115,6 @@ function Filter(props: FilterProps) {
         <div>
             {storesCheckBox}
         </div>
-        &nbsp;
         <h3 className={"text-light"}>Sorting</h3>
         <div className={"mb-3 text-light"}>
             <label>Sort By</label>
@@ -128,7 +126,6 @@ function Filter(props: FilterProps) {
             <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input"}/>
             <label className={"form-check-label"}>Descending</label>
         </div>
-        &nbsp;
         <h3 className={"text-light"}>Other options</h3>
         <div className={"mb-3 text-light"}>
             <div className={"form-check"}>
@@ -144,10 +141,8 @@ function Filter(props: FilterProps) {
                 <input type={"checkbox"} onChange={onChangeAAA} className={"form-check-input"}/>
                 <label className={"form-check-label text-light"}>AAA</label>
             </div>
-            &nbsp;
-            <div>
 
-            </div>
+
         </div>
 
     </form>
