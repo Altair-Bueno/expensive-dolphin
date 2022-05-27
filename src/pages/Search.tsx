@@ -7,7 +7,6 @@ import {Filter} from "../components/search/Filter";
 import {DealList} from "../components/game/list/DealList";
 import {StoresContext, useSearchHistory} from "../types";
 import {useSearchParams} from "react-router-dom";
-import {SearchHistory} from "./profile/SearchHistory";
 
 export {
     Search
@@ -56,8 +55,7 @@ function Search() {
 
         <div className={"row"}>
             <aside className={"col-lg-4 col-md-12"}>
-                <Filter setFilter={setFilter} filter={filter} stores={stores}/>
-                <SearchHistory/>
+                <Filter setFilter={setFilter} filter={filter} stores={stores} showHistory={true}/>
             </aside>
             <main className={"col-lg col-md-12"}>
                 {main}

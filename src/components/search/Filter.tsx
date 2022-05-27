@@ -5,8 +5,9 @@ import {
     PriceRangeSliderProps
 } from "./controls/PriceRangeSlider";
 import {RatingFilter, RatingFilterProps} from "./controls/RatingFilter";
-import {ChangeEvent, FormEvent, FormEventHandler, MouseEventHandler} from "react";
+import {ChangeEvent} from "react";
 import {Store} from "../../cheapshark/stores/stores";
+import {SearchHistory} from "../../pages/profile/SearchHistory";
 
 export {
     Filter
@@ -16,6 +17,7 @@ export interface FilterProps {
     setFilter: (filter: ListOfDealsParam) => void
     filter: ListOfDealsParam
     stores: Store[]
+    showHistory?:any
 }
 
 function Filter(props: FilterProps) {
@@ -92,11 +94,18 @@ function Filter(props: FilterProps) {
 
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
-            <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
-                   placeholder={"Title"}/>
+            <div className={"row"}>
+                <div className={"col"}>
+                    <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
+                       placeholder={"Title"}/>
+                </div>
+                <div className={"col-1"}>
+                    <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
+                </div>
+            </div>
         </div>
+        {props.showHistory && <SearchHistory/>}
         <div>
-            <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
         </div>
         <div className={"mb-3 text-light"}>
             <label className={"form-label"}>Price range:
