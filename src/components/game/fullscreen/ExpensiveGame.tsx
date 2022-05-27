@@ -76,7 +76,10 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                     </div>
                     <div className="col-6 mt-5 ms-1 p-0">
                         <Button variant={"primary"} className={"alertButtonGame"} onClick={() => createAlert()} >
-                            <i className="bi bi-alarm"></i> Create alert
+                            <div className={"d-none d-lg-block"}>
+                                <i className="bi bi-alarm m-1"></i>
+                                <label>Create alert</label>
+                            </div>
                         </Button>
                     </div>
                 </div>

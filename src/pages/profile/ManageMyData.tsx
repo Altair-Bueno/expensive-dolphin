@@ -39,6 +39,7 @@ export function ManageMyData(){
     return <div className={"text-light"}>
         <h1>Manage my data</h1>
         Current email: {getCookieEmail()}
+        <br/>
         <form method={"get"} className={"w-50"}>
             Email: <input type={"text"} maxLength={50} size={10} id={"userEmailInput"} className={"form-control text-light"}/>
             <button type={"submit"} className={"btn btn-primary mt-2"} onClick={() => (setCookie("email",(document.getElementById("userEmailInput")! as HTMLInputElement).value))}>Change my e-mail</button>
