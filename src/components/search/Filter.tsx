@@ -93,7 +93,11 @@ function Filter(props: FilterProps) {
 
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
-            <label>Title<input type={"search"} id={"titleFilter"} className={"form-control text-light"} maxLength={50}/></label>
+            <label>
+                Title<input type={"search"} id={"titleFilter"} className={"form-control text-light"} maxLength={50}/>
+            </label>
+
+            <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light ms-2 mb-1"} type={"submit"}>Filtrar</button>
         </div>
         <div className={"mb-3 text-light"}>
             <label className={"form-label"}>Price range:
@@ -142,7 +146,7 @@ function Filter(props: FilterProps) {
             </div>
             &nbsp;
             <div>
-                <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
+
             </div>
         </div>
 
