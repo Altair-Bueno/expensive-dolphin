@@ -2,8 +2,7 @@ import {Link, Route, Routes} from "react-router-dom";
 import {ProfilePages} from "./index";
 import {useExpensiveUser} from "../types";
 import {SearchHistory} from "./profile/SearchHistory";
-import {ManageAlerts} from "./profile/ManageAlerts";
-import {Favourites} from "./profile/Favourites";
+import {Alerts} from "./Alerts";
 import {ManageMyData} from "./profile/ManageMyData";
 
 function ProfilePlaceholder() { //TODO: Hacer que en el navegador la ruta sea /profile/recent
@@ -28,7 +27,7 @@ export function Profile() {
     const profileRoutes = [
         { element: <ProfilePlaceholder/>, index: true },
         { element: <SearchHistory/>, path: ProfilePages.SearchHistory },
-        { element: <ManageAlerts/>, path: ProfilePages.ManageAlerts },
+        { element: <Alerts/>, path: ProfilePages.ManageAlerts },
         //{ element: <Favourites/>, path: ProfilePages.Favourites },
         { element: <ManageMyData/>, path: ProfilePages.ManageMyData }
     ].map(x=><Route {...x}/>)

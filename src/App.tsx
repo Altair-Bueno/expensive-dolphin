@@ -1,8 +1,9 @@
 import {Route, Routes, useLocation} from "react-router-dom";
 import {LocationState} from "./types";
-import {Game, Help, Home, NotFound, Pages, Profile, Search} from "./pages";
+import {Game, Help, Home, NotFound, Pages, Search} from "./pages";
 import {ExpensiveNavbar} from "./components/wrappers/ExpensiveNavbar";
 import React from "react";
+import {Alerts} from "./pages/Alerts";
 
 
 export function App() {
@@ -14,7 +15,7 @@ export function App() {
         Home: <Route path={Pages.Home} element={<Home/>}/>,
         Help: <Route path={Pages.Help} element={<Help/>}/>,
         Search: <Route path={Pages.Search} element={<Search/>}/>,
-        Profile: <Route path={`${Pages.Profile}/*`} element={<Profile/>}/>,
+        Alerts: <Route path={Pages.Alerts} element={<Alerts/>}/>,
         Game: <Route path={Pages.Game} element={<Game/>}/>,
         all: <Route path="*" element={<NotFound/>}/>,
     }

@@ -12,7 +12,7 @@ function ExpensiveNavbar() {
     const linkList = [
       { page: Pages.Home, icon: "bi-currency-dollar", name: "Today's Deals" },
       { page: Pages.Search, icon: "bi-search", name: "Search"},
-      { page: Pages.Profile, icon: "bi-person-circle", name: "My account"},
+      { page: Pages.Alerts, icon: "bi-alarm", name: "Alerts"},
       //{ page: Pages.Help, icon: "bi-question-circle", name: "Help" },
     ].map((x,tabIndex) => (
       <LinkContainer to={x.page}>
