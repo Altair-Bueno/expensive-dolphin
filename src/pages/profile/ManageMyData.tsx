@@ -2,13 +2,13 @@
  * source: https://gist.github.com/joduplessis/7b3b4340353760e945f972a69e855d11
  * General utils for managing cookies in Typescript.
  */
-const setCookie = (name: string, val: string) => {
+export const setCookie = (name: string, val: string) => {
     document.cookie = "";
 
     const date = new Date();
     console.log("Nombre" + name + " , email: " + val)
     const value = val;
-    if(value.length > 0 && (value.indexOf("@") != -1)){
+    if(checkEmail(value)){
         // Set it expire in 1 year
         date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
         // Set it
@@ -18,20 +18,28 @@ const setCookie = (name: string, val: string) => {
     }
 }
 
+export let checkEmail:(email: String) => boolean = function (
+    email:String
+) {
+    let emailParts = email.split("@");
+
+    if(emailParts.length === 2){ //Tiene dos partes separadas por @ --> ["test", "uma.es"]
+        if(emailParts[1].split(".").length >= 2){ //Tiene dominio --> ["uma", "es"]
+            return true;
+        }
+    }
+    return false;
+}
+
+
 export function getCookieEmail() {
     const cookie = document.cookie;
     const split = cookie.split("=");
     return split[1];
 }
 
-export function deleteCookieEmail(email: string) {
-    const date = new Date();
-
-    // Set it expire in -1 days
-    date.setTime(date.getTime() + (-1 * 24 * 60 * 60 * 1000));
-
-    // Set it
-    document.cookie.replace("email=" + email, "");
+export function deleteCookieEmail() {
+    document.cookie = "";
 }
 
 export function ManageMyData(){

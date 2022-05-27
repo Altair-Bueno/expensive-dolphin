@@ -6,6 +6,8 @@ import {useContext} from "react";
 import {StoresContext} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
 import {gameURL, steamURL} from "../../../cheapshark/stores";
+import {Modal, ModalBody} from "react-bootstrap";
+import {checkEmail, setCookie} from "../../../pages/profile/ManageMyData";
 
 export {ExpensiveGame};
 
@@ -34,11 +36,16 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     }
 
     const createAlert = () => {
-        console.log("hola");
-        if(document.cookie.includes("email")){ //Hay email
+        if(!document.cookie.includes("email")){ //No hay email
+            const email = prompt("Please enter your email:");
 
-        } else {
-            window.alert("We need your e-mail. \nGo to Profile -> My account -> Manage my data")
+            if(email == null || email == "" || !checkEmail(email)){
+                window.alert("Alert has not been created. Please introduce a valid email.")
+            } else{
+                setCookie("email", email);
+            }
+        } else { //Hay email, creamos la alerta
+            window.alert("Alert has been created.")
         }
     }
 
