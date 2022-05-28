@@ -69,7 +69,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                     <Rating {...ratingProps}/>
                 </div>
                 <div className="row">
-                    <div className="col-5 ms-1 p-0">
+                    <div className="col-5 ms-1 p-0" >
                         <Price {...priceProps}/>
                     </div>
                 </div>
