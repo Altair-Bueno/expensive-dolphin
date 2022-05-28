@@ -16,7 +16,7 @@ function ExpensiveNavbar() {
       //{ page: Pages.Help, icon: "bi-question-circle", name: "Help" },
     ].map((x,tabIndex) => (
       <LinkContainer to={x.page}>
-        <Nav.Link active={false} tabIndex={tabIndex} >
+        <Nav.Link active={false} >
           <i className={x.icon} /> {x.name}
         </Nav.Link>
       </LinkContainer>

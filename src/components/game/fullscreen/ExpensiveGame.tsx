@@ -8,6 +8,7 @@ import {GameLookup} from "../../../cheapshark/games/gameLookup";
 import {gameURL, steamURL} from "../../../cheapshark/stores";
 import {Modal, ModalBody} from "react-bootstrap";
 import {checkEmail, setCookie} from "../../../pages/profile/ManageMyData";
+import './ExpensiveGame.css'
 
 export {ExpensiveGame};
 
@@ -52,9 +53,9 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     const ratingProps = {steamRatingPercent: Number.parseFloat(gameLookup.deals[0].savings)}
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
 
-    return <div className={"container-sm"}>
-        <div className="row-6 d-flex">
-            <div className="col-4 me-4 ms-0 p-0 d-flex justify-content-center">
+    return <div className={"container-sm"} >
+        <div className="row-6 d-flex background">
+            <div className="col-4 me-4 ms-0 p-0 d-flex justify-content-center" >
                 <img src={gameLookup.info.thumb} className={"img-fluid"} alt={gameLookup.info.title}/>
             </div>
 
