@@ -70,7 +70,7 @@ export function Game() {
                   onHide={dismissHandler}
                   onRequestClose={dismissHandler}
                   style={{border: "#1c1f26"}}>
-        <Modal.Header style={{background: "#1c1f26", backgroundColor: "#1c1f26", outline: "none", border: "#1c1f26", }} closeButton={true} closeVariant={'white'}/>
+        <Modal.Header style={{background: "#1c1f26", backgroundColor: "#1c1f26", outline: "none", border: "#1c1f26", }} closeButton={true} closeVariant={'white'} acceskey={"esc"}/>
         <Modal.Body style={{background: "#2F343F"}}>{main}</Modal.Body>
     </Modal>
 }
