@@ -50,7 +50,7 @@ function PriceTable(props: PriceTableProps) {
     var sorted = sortData(copy, ordered);
 
     var final = ordered.order === OrderEnum.NONE ? [...orig] : [...sorted];
-    var finalRecortado: Deal[] = final.length > 4 ? [final[0], final[1], final[2], final[3]] : final;
+    //var finalRecortado: Deal[] = final.length > 4 ? [final[0], final[1], final[2], final[3]] : final;
 
     return (
         <Table
@@ -102,9 +102,9 @@ function PriceTable(props: PriceTableProps) {
             </tr>
             </thead>
             <tbody>
-            {finalRecortado.map((element) => {
+            {final.map((element) => {
                 return (
-                    <tr key={finalRecortado.indexOf(element)}>
+                    <tr key={final.indexOf(element)}>
                         <td>
                             <img
                                 className="logo"
