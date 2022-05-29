@@ -108,7 +108,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         </div>
 
         <div className="row-6 d-flex">
-            <div className="row-6">
+            <div className="row-6 table-responsive">
                 <PriceTable {...priceTableProps}/>
             </div>
         </div>
