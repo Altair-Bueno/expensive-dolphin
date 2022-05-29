@@ -3,12 +3,10 @@ import {Price} from "../common/Price";
 import {Rating} from "../common/Rating";
 import Button from "react-bootstrap/Button";
 import {useContext} from "react";
-import {StoresContext} from "../../../types";
+import {StoresContext, useEmailStorage} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
 import {gameURL, steamURL} from "../../../cheapshark/stores";
 import {Modal, ModalBody} from "react-bootstrap";
-import {checkEmail, setCookie} from "../../../pages/profile/ManageMyData";
-import './ExpensiveGame.css'
 
 export {ExpensiveGame};
 
@@ -36,26 +34,41 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         isOnSale:true
     }
 
-    const createAlert = () => {
-        if(!document.cookie.includes("email")){ //No hay email
-            const email = prompt("Please enter your email:");
+    const [email, setEmail] = useEmailStorage();
 
-            if(email == null || email == "" || !checkEmail(email)){
+    function createAlert(): void {
+        if(email === undefined){ //No hay email
+            const emailInput = prompt("Please enter your email:");
+            if(emailInput === null || emailInput === "" || !isValidEmail(emailInput)){
                 window.alert("Alert has not been created. Please introduce a valid email.")
             } else{
-                setCookie("email", email);
+                setEmail(emailInput);
+                window.alert("Alert has been created.")
             }
         } else { //Hay email, creamos la alerta
             window.alert("Alert has been created.")
         }
     }
 
+    function isValidEmail(address : String): boolean {
+        if (address != '' && address.search) {
+            if (address.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        // allow empty strings to return true - screen these with either a 'required' test or a 'length' test
+        return true;
+    }
+
+
     const ratingProps = {steamRatingPercent: Number.parseFloat(gameLookup.deals[0].savings)}
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
 
-    return <div className={"container-sm"} >
-        <div className="row-6 d-flex background">
-            <div className="col-4 me-4 ms-0 p-0 d-flex justify-content-center" >
+    return <div className="container-sm">
+        <div className="row-6 d-flex" >
+            <div className="col-4 me-4 ms-0 p-0 d-flex justify-content-center">
                 <img src={gameLookup.info.thumb} className={"img-fluid"} alt={gameLookup.info.title}/>
             </div>
 
@@ -70,7 +83,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                     <Rating {...ratingProps}/>
                 </div>
                 <div className="row">
-                    <div className="col-5 ms-1 p-0" >
+                    <div className="col-5 ms-1 p-0">
                         <Price {...priceProps}/>
                     </div>
                 </div>

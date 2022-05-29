@@ -6,7 +6,7 @@ import {Alerts} from "./Alerts";
 import {ManageMyData} from "./profile/ManageMyData";
 
 function ProfilePlaceholder() { //TODO: Hacer que en el navegador la ruta sea /profile/recent
-    return <SearchHistory/>
+    return <ManageMyData/>
 }
 
 export function Profile() {
@@ -14,7 +14,7 @@ export function Profile() {
     const headerText = user ? user.name : "My account"
 
     const asideList = [
-        { name: "Search history", to: ProfilePages.SearchHistory },
+        //{ name: "Search history", to: ProfilePages.SearchHistory },
         { name: "Manage alerts" , to: ProfilePages.ManageAlerts },
         //{ name: "Favourites" , to: ProfilePages.Favourites },
         { name: "Manage my Data" , to: ProfilePages.ManageMyData}
@@ -26,7 +26,7 @@ export function Profile() {
 
     const profileRoutes = [
         { element: <ProfilePlaceholder/>, index: true },
-        { element: <SearchHistory/>, path: ProfilePages.SearchHistory },
+        //{ element: <SearchHistory/>, path: ProfilePages.SearchHistory },
         { element: <Alerts/>, path: ProfilePages.ManageAlerts },
         //{ element: <Favourites/>, path: ProfilePages.Favourites },
         { element: <ManageMyData/>, path: ProfilePages.ManageMyData }

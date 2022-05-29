@@ -26,6 +26,11 @@ export function useSearchHistory():[SearchHistory, (searchHistory: SearchHistory
     return [searchHistory ? searchHistory : [], setSearchHistory]
 }
 
+export function useEmailStorage():[String | undefined, (email: String) => void] {
+    const [email, setEmail] = useLocalStorageState('email') as any as [String | undefined, (email: String) => void];
+    return [email ? email : undefined, setEmail]
+}
+
 export function useExpensiveUser() {
     return useLocalStorageState('user') as any as [User | undefined, (user: User) => void];
 }
