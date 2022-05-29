@@ -99,9 +99,9 @@ function Filter(props: FilterProps) {
                     <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
                        placeholder={"Title"}/>
                 </div>
-                <div className={"col-1"}>
-                    <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
-                </div>
+            </div>
+            <div className={"col-1 mt-1"}>
+                <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
             </div>
         </div>
         {props.showHistory && <SearchHistory/>}
