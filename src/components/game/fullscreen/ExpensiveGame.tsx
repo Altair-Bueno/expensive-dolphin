@@ -6,6 +6,7 @@ import {useContext} from "react";
 import {StoresContext, useEmailStorage} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
 import {gameURL, steamURL} from "../../../cheapshark/stores";
+import './ExpensiveGame.css'
 import {Modal, ModalBody} from "react-bootstrap";
 import {CreateAlert} from "../common/CreateAlert";
 
@@ -68,8 +69,8 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
     return <div className="container-sm">
         <div className="row-6 d-flex" >
-            <div className="col-4 me-4 ms-0 p-0 d-flex justify-content-center">
-                <img src={gameLookup.info.thumb} className={"img-fluid"} alt={gameLookup.info.title}/>
+            <div className="col-5 me-4 ms-0 p-0 fotojuego d-flex aligns-items-center">
+                <img src={gameLookup.info.thumb} className={"mx-auto d-block"} alt={gameLookup.info.title}/>
             </div>
 
             <div className="col-6 text-light m-0 p-0 justify-content-start">
@@ -87,15 +88,16 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                         <Price {...priceProps}/>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-3 mt-5 me-3 p-0">
+                <div className="row ms-3">
+                    <div className="col-12 mt-5 me-3 ms-0 me-lg-0 p-0">
                         <Button className={"steamButtonGame"}
                             onClick={() => window.open(`${steamURL}${gameLookup.info.steamAppID}`,'_blank')}
                             variant={"primary"}>
-                            <i className="bi bi-controller"></i> Steam
+                            <i className="bi bi-controller m-1"></i>
+                            <label className={"d-lg-block"}>On Steam</label>
                         </Button>
                     </div>
-                    <div className="col-6 mt-5 ms-1 p-0">
+                    <div className="col-12 mt-3 ms-0 p-0">
 
                         {/*<Button variant={"primary"} className={"alertButtonGame"}
                                 data-bs-toggle={"modal"}
@@ -104,10 +106,10 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                             <label>Create alert modal</label>
                         </Button>*/}
 
-                        <Button variant={"primary"} className={"alertButtonGame"} onClick={() => createAlert()} >
-                            <div className={"d-none d-lg-block"}>
+                        <Button variant={"primary"} className={""} onClick={() => createAlert()} >
+                            <div className={"d-lg-block"}>
                                 <i className="bi bi-alarm m-1"></i>
-                                <label>Create alert</label>
+                                <label className={"d-lg-block"}>Add alert</label>
                             </div>
                         </Button>
                     </div>

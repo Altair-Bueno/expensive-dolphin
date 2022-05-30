@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {BannerSize, LowestBanner} from "../common/LowestBanner";
 import {Deal} from "../../../cheapshark/deals/listOfDeals";
+import './DealListElement.css'
 
 export {DealListElement};
 

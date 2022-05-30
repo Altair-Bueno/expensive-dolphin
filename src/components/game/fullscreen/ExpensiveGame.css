@@ -2,6 +2,24 @@
     background-color: #3a3a3c;
 }
 
+.fotojuego{
+    background-color: #2F343F;
+    /*background-color: black;*/
+    height: 300px;
+    width: 250px;
+}
+
 @media screen and (max-width:991px) {
     .labelBotonAlerta{font-size: 0}
+    .fotojuego{
+        width:150px;
+    }
+}
+
+@media screen and (max-width:321px){
+    .fotojuego{
+        height:200px;
+        width:100px;
+        margin-bottom: 30px;
+    }
 }
