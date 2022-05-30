@@ -7,6 +7,7 @@ import {StoresContext, useEmailStorage} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
 import {gameURL, steamURL} from "../../../cheapshark/stores";
 import {Modal, ModalBody} from "react-bootstrap";
+import {CreateAlert} from "../common/CreateAlert";
 
 export {ExpensiveGame};
 
@@ -58,8 +59,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                 return false;
             }
         }
-        // allow empty strings to return true - screen these with either a 'required' test or a 'length' test
-        return true;
+        return false;
     }
 
 
@@ -96,6 +96,14 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                         </Button>
                     </div>
                     <div className="col-6 mt-5 ms-1 p-0">
+
+                        {/*<Button variant={"primary"} className={"alertButtonGame"}
+                                data-bs-toggle={"modal"}
+                                data-bs-target={"#createAlert"}>
+                            <i className="bi bi-alarm m-1"></i>
+                            <label>Create alert modal</label>
+                        </Button>*/}
+
                         <Button variant={"primary"} className={"alertButtonGame"} onClick={() => createAlert()} >
                             <div className={"d-none d-lg-block"}>
                                 <i className="bi bi-alarm m-1"></i>
