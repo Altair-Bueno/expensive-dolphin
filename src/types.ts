@@ -4,6 +4,7 @@ import {Location} from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 import {ListOfDealsParam} from "./cheapshark/deals";
 import {Alert} from "react-bootstrap";
+//import List = types.List;
 
 const defaultStores: Store[] = []
 export const StoresContext = React.createContext(defaultStores)
@@ -14,6 +15,7 @@ export interface User {
 }
 export type SearchHistory = ListOfDealsParam []
 export type Favourites = Map<string,Date>
+export type AlertMap = Map<String, String[]>
 
 export function useFavourites(): [Favourites, (searchHistory: Favourites) => void] {
     const [favourites,setFavourites] = useLocalStorageState('favourites') as any as [Favourites | undefined, (searchHistory: Favourites) => void];
@@ -30,6 +32,7 @@ export function useEmailStorage():[String | undefined, (email: String) => void] 
     const [email, setEmail] = useLocalStorageState('email') as any as [String | undefined, (email: String) => void];
     return [email ? email : undefined, setEmail]
 }
+
 
 export function useExpensiveUser() {
     return useLocalStorageState('user') as any as [User | undefined, (user: User) => void];

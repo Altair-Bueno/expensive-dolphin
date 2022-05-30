@@ -9,6 +9,10 @@ import {gameURL, steamURL} from "../../../cheapshark/stores";
 import './ExpensiveGame.css'
 import {Modal, ModalBody} from "react-bootstrap";
 import {CreateAlert} from "../common/CreateAlert";
+import {useCheapShark} from "../../../cheapshark";
+import {EditAlertParam, ManageAlertsParam} from "../../../cheapshark/alerts";
+import {UseQueryResult} from "react-query";
+import {AlertProps} from "../../wrappers/ExpensiveAlert";
 
 export {ExpensiveGame};
 
@@ -18,15 +22,6 @@ interface ExpensiveGameProps {
 
 function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     const stores = useContext(StoresContext)
-/*
-    const priceProps = {
-        price:Number.parseFloat(deal.salePrice),
-        retailPrice:Number.parseFloat(deal.normalPrice),
-        savings:Number.parseInt(deal.savings),
-        isOnSale:deal.isOnSale
-    }
-
- */
     // TODO lmao i hate this API
     const priceProps = {
         price:Number.parseFloat(gameLookup.deals[0].price),
@@ -37,18 +32,111 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     }
 
     const [email, setEmail] = useEmailStorage();
+    const argsAlertSet: EditAlertParam = {action: 'set', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
+    const argsAlertDelete: EditAlertParam = {action: 'delete', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
+    const argsAlertManage: ManageAlertsParam = {action: 'manage', email: ""}
 
-    function createAlert(): void {
-        if(email === undefined){ //No hay email
+    /*
+
+    function useCreateAlert(): void {
+        if(!email){ //No hay email
             const emailInput = prompt("Please enter your email:");
             if(emailInput === null || emailInput === "" || !isValidEmail(emailInput)){
                 window.alert("Alert has not been created. Please introduce a valid email.")
             } else{
                 setEmail(emailInput);
-                window.alert("Alert has been created.")
+                //Creamos la alerta
+                useAlertHook();
             }
         } else { //Hay email, creamos la alerta
-            window.alert("Alert has been created.")
+            useAlertHook();
+        }
+    }
+
+
+
+    function useAlertHook(): void{
+        let res: UseQueryResult<string, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/alerts', argsAlertSet)
+        console.log(res.data)
+        console.log(res.status)
+        console.log(res.isSuccess)
+        if(res.data){
+            window.alert("Alert has been created succesfully.")
+        }
+    }
+
+    function useDeleteAlert(): void {
+        let res = useCheapShark('https://www.cheapshark.com/api/1.0/alerts', argsAlertDelete)
+        if(email){
+            argsAlertDelete.email = email;
+            if(res.isSuccess.valueOf()){
+                window.alert("Alert has been deleted.")
+            }
+        }
+    }
+
+
+
+
+
+    function useAlertButton(){
+        if (email != null) {
+            argsAlertManage.email = email;
+        }
+        let res = useCheapShark('https://www.cheapshark.com/api/1.0/alerts', argsAlertManage)
+        if(email){
+            argsAlertManage.email = email;
+            console.log(gameLookup.info.steamAppID + " " + priceProps.price)
+            if(res.data === undefined){
+                argsAlertSet.email = email;
+                return <Button variant={"primary"} onClick={() => useCreateAlert()}>
+                    <div className={"d-lg-block"}>
+                        <i className="bi bi-alarm m-1"></i>
+                        <label className={"d-lg-block"}>Add alert</label>
+                    </div>
+                </Button>
+            } else {
+                return <Button variant={"danger"} onClick={() => useDeleteAlert()}>
+                    <div className={"d-lg-block"}>
+                        <i className="bi bi-alarm m-1"></i>
+                        <label className={"d-lg-block"}>Delete alert</label>
+                    </div>
+                </Button>
+            }
+        }
+        return <Button variant={"primary"} onClick={() => useCreateAlert()}>
+            <div className={"d-lg-block"}>
+                <i className="bi bi-alarm m-1"></i>
+                <label className={"d-lg-block"}>Add alert</label>
+            </div>
+        </Button>
+    }
+
+     */
+
+    function changeButton() {
+        var elem = document.getElementById("alertbuttongame");
+        if(elem!.innerText == "Delete alert"){
+            window.alert("Alert deleted successfully");
+            elem!.innerText = "Create alert"
+            elem!.className = " btn btn-primary";
+        } else {
+            if(email){
+                window.alert("Alert created successfully");
+                elem!.innerText="Delete alert";
+                elem!.className = "btn btn-danger";
+            } else {
+                const emailInput = prompt("Please enter your email:");
+                if(emailInput === null || emailInput === "" || !isValidEmail(emailInput)){
+                    window.alert("Alert has not been created. Please introduce a valid email.")
+                } else {
+                    setEmail(emailInput);
+                    window.alert("Alert created successfully");
+                    elem!.innerText="Delete alert";
+                    elem!.className = "btn btn-danger";
+                }
+            }
+
         }
     }
 
@@ -62,6 +150,8 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         }
         return false;
     }
+
+
 
 
     const ratingProps = {steamRatingPercent: Number.parseFloat(gameLookup.deals[0].savings)}
@@ -98,15 +188,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                         </Button>
                     </div>
                     <div className="col-12 mt-3 ms-0 p-0">
-
-                        {/*<Button variant={"primary"} className={"alertButtonGame"}
-                                data-bs-toggle={"modal"}
-                                data-bs-target={"#createAlert"}>
-                            <i className="bi bi-alarm m-1"></i>
-                            <label>Create alert modal</label>
-                        </Button>*/}
-
-                        <Button variant={"primary"} className={""} onClick={() => createAlert()} >
+                        <Button variant={"primary"} id={"alertbuttongame"} onClick={() => changeButton()}>
                             <div className={"d-lg-block"}>
                                 <i className="bi bi-alarm m-1"></i>
                                 <label className={"d-lg-block"}>Add alert</label>
