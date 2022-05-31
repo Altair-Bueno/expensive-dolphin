@@ -6,7 +6,7 @@ export {
 }
 
 function Help() {
-    document.title = "Expensive Dolphin -  Help";
+    document.title = "Expensive Dolphin - Help";
     return (
         <div className={"container text-light bg-dark rounded rounded-5 mt-4 p-4"}>
             <div className="row">

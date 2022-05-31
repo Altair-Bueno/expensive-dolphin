@@ -102,7 +102,7 @@ function Filter(props: FilterProps) {
                 </div>
             </div>
             <div className={"col-1 mt-1"}>
-                <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filtrar</button>
+                <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filter</button>
             </div>
         </div>
         {props.showHistory && <SearchHistory/>}

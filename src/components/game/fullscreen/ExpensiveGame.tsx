@@ -186,7 +186,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
     return <div className="container-sm">
         <div className="row-6 d-flex" >
-            <div className="col-5 me-4 ms-0 p-0 d-flex fotojuego safarionly aligns-items-center">
+            <div className="col-4 me-2 ms-0 p-0 d-flex fotojuego safarionly aligns-items-center">
                 <img src={gameLookup.info.thumb} className={"mx-auto d-block"} alt={gameLookup.info.title}/>
             </div>
 
@@ -200,13 +200,13 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                 <div className="row ms-1">
                     <Rating gameId={gameId}/>
                 </div>
-                <div className="row">
-                    <div className="col-5 ms-1 p-0">
+                <div className="row-5">
+                    <div className="col-5 ms-1 mt-3 p-0">
                         <Price {...priceProps}/>
                     </div>
                 </div>
                 <div className="row ms-3">
-                    <div className="col-12 mt-5 me-3 ms-0 me-lg-0 p-0">
+                    <div className="col-12 mt-3 me-3 ms-0 me-lg-0 p-0">
                         <Button className={"steamButtonGame"}
                             onClick={() => window.open(`${steamURL}${gameLookup.info.steamAppID}`,'_blank')}
                             variant={"primary"}>

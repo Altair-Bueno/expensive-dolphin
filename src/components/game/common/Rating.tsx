@@ -24,9 +24,9 @@ function loadDataFromGame(gameID: string){
     const queryProps : GameLookupParam = {id: decoded}
     let query : UseQueryResult<GameLookup, AlertProps> = useCheapShark(gamesURL, queryProps)
     if(query.isLoading){
-        return undefined
+        return <ExpensiveLoading/>
     } else if (query.error) {
-        return undefined
+        return <ExpensiveError/>
     } else if (query.data) {
         return loadData(query.data.deals[0].dealID) // first deal found
     }
@@ -46,12 +46,16 @@ function loadData(dealID: string) {
 }
 
 
-function Rating(receivedProps: RatingProps) {
+function Rating(receivedProps: RatingProps): JSX.Element{
+    const commonClasses = 'text-warning h5'
+    const fillIconClass = 'bi-star-fill'
+    const halfIconClass = 'bi-star-half'
+    const emptyIconClass = 'bi-star'
     let fill = 100 / 20;
     let half = 0;
     let empty = 0;
     let count = 0;
-    let result;
+    let result: JSX.Element;
     console.log("Props from Rating")
     console.log(receivedProps.dealId)
     if(receivedProps.steamRatingPercent != null && receivedProps.steamRatingCount != null){
@@ -59,69 +63,70 @@ function Rating(receivedProps: RatingProps) {
         half = receivedProps.steamRatingPercent % 20 ? 1 : 0
         empty = 5 - (fill + half)
         count = receivedProps.steamRatingCount
+
+        const stars = [
+            ...Array.from({length:fill}).map(()=>fillIconClass),
+            ...Array.from({length:half}).map(()=>halfIconClass),
+            ...Array.from({length:empty}).map(()=>emptyIconClass)
+        ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>);
+
+        result = (
+            <div className={"col-sm-8 col-lg-10"}>
+                {stars} {count && <small>{" "}</small> && <small>{` ${count} reviews`}</small>}
+            </div>
+        );
     } else if(receivedProps.dealId){
         let data = loadData(receivedProps.dealId)
+        if(data){
+            if(!(data instanceof ExpensiveLoading) && !(data instanceof ExpensiveError)){
+                let gameData = data as GameInfo
+                let rating = Number.parseFloat(gameData.steamRatingPercent)
+                fill = Math.floor(rating / 20)
+                half = rating % 20 ? 1 : 0
+                empty = 5 - (fill + half)
+                count = Number.parseInt(gameData.steamRatingCount);
 
-        if(data && !(data instanceof Element)){
-            let gameData = data as GameInfo
-            let rating = Number.parseFloat(gameData.steamRatingPercent)
-            fill = Math.floor(rating / 20)
-            half = rating % 20 ? 1 : 0
-            empty = 5 - (fill + half)
-            count = Number.parseInt(gameData.steamRatingCount);
+                const stars = [
+                    ...Array.from({length:fill}).map(()=>fillIconClass),
+                    ...Array.from({length:half}).map(()=>halfIconClass),
+                    ...Array.from({length:empty}).map(()=>emptyIconClass)
+                ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>);
 
-            const stars = [
-                ...Array.from({length:fill}).map(()=>fillIconClass),
-                ...Array.from({length:half}).map(()=>halfIconClass),
-                ...Array.from({length:empty}).map(()=>emptyIconClass)
-            ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>);
-
-            result = (
-                <div>
-                    {stars}
-                    {count &&
-                        <small>{`${count} reviews`}</small>}
-                </div>
-            );
-        } else {
-            result = data;
+                result = (
+                    <div className={"col-sm-8 col-lg-10"}>
+                        {stars} {count && <small>{" "}</small> && <small>{` ${count} reviews`}</small>}
+                    </div>
+                );
+            } else {
+                result = data as JSX.Element;
+            }
         }
     } else if(receivedProps.gameId) {
         let data = loadDataFromGame(receivedProps.gameId)
-        console.log("Data received from Rating")
-        console.log(data)
+        if(data){
+            if(!(data instanceof ExpensiveLoading)){
+                let gameData = data as GameInfo
+                let rating = Number.parseFloat(gameData.steamRatingPercent)
+                fill = Math.floor(rating / 20)
+                half = rating % 20 ? 1 : 0
+                empty = 5 - (fill + half)
+                count = Number.parseInt(gameData.steamRatingCount);
 
-        if (data && !(data instanceof Element)) {
-            let gameData = data as GameInfo
-            let rating = Number.parseFloat(gameData.steamRatingPercent)
-            fill = Math.floor(rating / 20)
-            half = rating % 20 ? 1 : 0
-            empty = 5 - (fill + half)
-            count = Number.parseInt(gameData.steamRatingCount);
+                const stars = [
+                    ...Array.from({length:fill}).map(()=>fillIconClass),
+                    ...Array.from({length:half}).map(()=>halfIconClass),
+                    ...Array.from({length:empty}).map(()=>emptyIconClass)
+                ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>);
 
-            const stars = [
-                ...Array.from({length:fill}).map(()=>fillIconClass),
-                ...Array.from({length:half}).map(()=>halfIconClass),
-                ...Array.from({length:empty}).map(()=>emptyIconClass)
-            ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>);
-
-            result = (
-                <div>
-                    {stars}
-                    {count &&
-                        <small>{`${count} reviews`}</small>}
-                </div>
-            );
-
+                result = (
+                    <div className={"col-sm-8 col-lg-10"}>
+                        {stars} {count && <small>{" "}</small> && <small>{` ${count} reviews`}</small>}
+                    </div>
+                );
+            } else {
+                result = data as JSX.Element;
+            }
         }
     }
-
-    const commonClasses = 'text-warning h5'
-    const fillIconClass = 'bi-star-fill'
-    const halfIconClass = 'bi-star-half'
-    const emptyIconClass = 'bi-star'
-
-
-
-    return result;
+    return result!;
 }

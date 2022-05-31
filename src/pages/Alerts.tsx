@@ -2,12 +2,10 @@ import {ManageMyData} from "./profile/ManageMyData";
 
 export function Alerts() {
 
-    return <div className={"ms-3"}>
+    return <div className={"container bg-dark rounded mt-4 p-4"}>
         <div>
             {ManageMyData()}
         </div>
-
-        <h1 className={"text-light"}>Manage alerts</h1>
     </div>
 
 }

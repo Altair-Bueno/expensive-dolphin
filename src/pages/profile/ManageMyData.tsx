@@ -34,11 +34,11 @@ export function ManageMyData(){
     return <div className={"text-light"}>
         <h1>Manage my data</h1>
         <br/>
-        <form method={"get"} className={"w-50"}>
-            Current email: {email === "" ? "---" : email} <br/>
-            Email: <input type={"text"} maxLength={50} size={10} id={"userEmailInput"} className={"form-control text-light"}/>
-            <button type={"button"} className={"btn btn-primary mt-2"} onClick={() => (changeEmail((document.getElementById("userEmailInput")! as HTMLInputElement).value))}>Change my e-mail</button>
-            <button type={"button"} className={"btn btn-danger mt-2 ms-2"} onClick={() => deleteEmail()}>Delete current email</button>
-        </form>
+            <form method={"get"}>
+                Current email: {email === "" ? "---" : email} <br/>
+                Email: <input type={"text"} maxLength={60} size={10} id={"userEmailInput"} className={"form-control text-light w-50"}/>
+                <button type={"button"} className={"btn btn-primary mt-2 me-2"} onClick={() => (changeEmail((document.getElementById("userEmailInput")! as HTMLInputElement).value))}>Change my e-mail</button>
+                <button type={"button"} className={"btn btn-danger mt-2 ms-sm-0"} onClick={() => deleteEmail()}>Delete current email</button>
+            </form>
     </div>
 }
