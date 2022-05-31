@@ -159,7 +159,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
     return <div className="container-sm">
         <div className="row-6 d-flex" >
-            <div className="col-5 me-4 ms-0 p-0 d-flex fotojuego aligns-items-center">
+            <div className="col-5 me-4 ms-0 p-0 d-flex fotojuego safarionly aligns-items-center">
                 <img src={gameLookup.info.thumb} className={"mx-auto d-block"} alt={gameLookup.info.title}/>
             </div>
 

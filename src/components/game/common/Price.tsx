@@ -25,7 +25,7 @@ function Price(props: PriceProps) {
     return (
         <div className={"container text-light m-0"}>
             <div className={"row p-0 m-0"}>
-                <div className={"col p-0 text-start h4 my-auto"}>
+                <div className={"col p-0 text-start me-1 h4 my-auto"}>
                     ${props.price}
                 </div>
                 {props.isOnSale ? sale : notSale}

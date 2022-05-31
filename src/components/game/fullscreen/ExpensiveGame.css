@@ -17,7 +17,7 @@
 }
 
 @media screen and (max-width:321px){
-    .fotojuego .safarionly{
+    .fotojuego{
         height:200px;
         width:100px;
         margin-bottom: 30px;
