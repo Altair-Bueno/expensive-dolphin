@@ -86,7 +86,7 @@ function DealListElement(props: Deal) {
                     </h5>
                 </Row>
                 <Row className={"text-start me-1"}>
-                    <Rating dealId={props.dealID}/>
+                    {/*<Rating dealId={props.dealID}/>*/}
                 </Row>
             </Col>
 

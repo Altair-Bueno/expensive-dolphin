@@ -1,10 +1,12 @@
 import {DealLookupParam} from "../../../cheapshark/deals";
 import {UseQueryResult} from "react-query";
-import {DealLookup} from "../../../cheapshark/deals/dealLookup";
+import {DealLookup, GameInfo} from "../../../cheapshark/deals/dealLookup";
 import {AlertProps, ExpensiveAlert} from "../../wrappers/ExpensiveAlert";
 import {useCheapShark} from "../../../cheapshark";
 import {GameLookupParam, gamesURL} from "../../../cheapshark/games";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
+import {ExpensiveLoading} from "../../wrappers/ExpensiveLoading";
+import {ExpensiveError} from "../../wrappers/ExpensiveError";
 
 export {
     Rating
@@ -35,9 +37,9 @@ function loadData(dealID: string) {
     const queryProps : DealLookupParam = {id: decoded}
     let query : UseQueryResult<DealLookup, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/deals', queryProps)
     if(query.isLoading){
-        return undefined
+        return <ExpensiveLoading />
     } else if (query.error) {
-        return undefined
+        return <ExpensiveError />
     } else if (query.data) {
         return query.data.gameInfo
     }
@@ -49,6 +51,7 @@ function Rating(receivedProps: RatingProps) {
     let half = 0;
     let empty = 0;
     let count = 0;
+    let result;
     console.log("Props from Rating")
     console.log(receivedProps.dealId)
     if(receivedProps.steamRatingPercent != null && receivedProps.steamRatingCount != null){
@@ -59,23 +62,56 @@ function Rating(receivedProps: RatingProps) {
     } else if(receivedProps.dealId){
         let data = loadData(receivedProps.dealId)
 
-        if(data){
-            let rating = Number.parseFloat(data.steamRatingPercent)
+        if(data && !(data instanceof Element)){
+            let gameData = data as GameInfo
+            let rating = Number.parseFloat(gameData.steamRatingPercent)
             fill = Math.floor(rating / 20)
             half = rating % 20 ? 1 : 0
             empty = 5 - (fill + half)
-            count = Number.parseInt(data.steamRatingCount)
+            count = Number.parseInt(gameData.steamRatingCount);
+
+            const stars = [
+                ...Array.from({length:fill}).map(()=>fillIconClass),
+                ...Array.from({length:half}).map(()=>halfIconClass),
+                ...Array.from({length:empty}).map(()=>emptyIconClass)
+            ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>);
+
+            result = (
+                <div>
+                    {stars}
+                    {count &&
+                        <small>{`${count} reviews`}</small>}
+                </div>
+            );
+        } else {
+            result = data;
         }
     } else if(receivedProps.gameId) {
         let data = loadDataFromGame(receivedProps.gameId)
         console.log("Data received from Rating")
         console.log(data)
 
-        if (data) {
-            let rating = Number.parseFloat(data.steamRatingPercent)
+        if (data && !(data instanceof Element)) {
+            let gameData = data as GameInfo
+            let rating = Number.parseFloat(gameData.steamRatingPercent)
             fill = Math.floor(rating / 20)
             half = rating % 20 ? 1 : 0
             empty = 5 - (fill + half)
+            count = Number.parseInt(gameData.steamRatingCount);
+
+            const stars = [
+                ...Array.from({length:fill}).map(()=>fillIconClass),
+                ...Array.from({length:half}).map(()=>halfIconClass),
+                ...Array.from({length:empty}).map(()=>emptyIconClass)
+            ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>);
+
+            result = (
+                <div>
+                    {stars}
+                    {count &&
+                        <small>{`${count} reviews`}</small>}
+                </div>
+            );
 
         }
     }
@@ -85,17 +121,7 @@ function Rating(receivedProps: RatingProps) {
     const halfIconClass = 'bi-star-half'
     const emptyIconClass = 'bi-star'
 
-    const stars = [
-        ...Array.from({length:fill}).map(()=>fillIconClass),
-        ...Array.from({length:half}).map(()=>halfIconClass),
-        ...Array.from({length:empty}).map(()=>emptyIconClass)
-    ].map((x,index)=><i className={`${x} ${commonClasses}`} key={index}/>)
 
-    return (
-        <div>
-            {stars}
-            {count &&
-                <small>{`${count} reviews`}</small>}
-        </div>
-    );
+
+    return result;
 }
