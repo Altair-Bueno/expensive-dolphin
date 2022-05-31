@@ -112,10 +112,10 @@ function Filter(props: FilterProps) {
                 From {filter.lowerPrice} to {filter.upperPrice}</label>
             <PriceRangeSlider {...priceRangeSliderProps}/>
         </div>
-        <div className={"mb-3"}>
+{/*        <div className={"mb-3"}>
             <label className={"form-label text-light"}>Metacritic rating</label>
             <RatingFilter {...metacriticRatingProps}/>
-        </div>
+        </div>*/}
         <div className={"mb-3"}>
             <label className={"form-label text-light"}>Steam rating</label>
             <RatingFilter {...steamRatingProps}/>
