@@ -17,15 +17,13 @@ import {DealLookup} from "../../../cheapshark/deals/dealLookup";
 import {ExpensiveLoading} from "../../wrappers/ExpensiveLoading";
 import {DealList} from "../list/DealList";
 import {DealLookupParam} from "../../../cheapshark/deals";
+import {useSearchParams} from "react-router-dom";
 
 export {ExpensiveGame};
 
 interface ExpensiveGameProps {
     gameLookup: GameLookup
 }
-
-
-
 
 
 function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
@@ -39,10 +37,12 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         isOnSale:true
     }
 
+    const [searchParams, setSearchParams] = useSearchParams();
     const [email, setEmail] = useEmailStorage();
     const argsAlertSet: EditAlertParam = {action: 'set', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
     const argsAlertDelete: EditAlertParam = {action: 'delete', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
     const argsAlertManage: ManageAlertsParam = {action: 'manage', email: ""}
+
     const createAlertButton = (
         <Button variant={"primary"} id={"createAlertButton"} onClick={(button) => changeButton(button)}>
             <div className={"d-lg-block"}>
@@ -62,6 +62,8 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     )
 
     const [alertButton, setAlertButton] = useState(createAlertButton)
+    const gameId = searchParams.get("id")
+
 
     /*
 
@@ -181,9 +183,6 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     }
 
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
-    const ratingProps = {
-        steamRatingPercent: gameLookup.deals[0].rating
-    }
 
     return <div className="container-sm">
         <div className="row-6 d-flex" >
@@ -199,7 +198,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
                 </div>
                 <div className="row ms-1">
-                    <Rating {...ratingProps}/>
+                    <Rating gameId={gameId}/>
                 </div>
                 <div className="row">
                     <div className="col-5 ms-1 p-0">

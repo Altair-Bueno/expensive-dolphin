@@ -15,7 +15,13 @@ import {AlertProps, AlertType} from "../components/wrappers/ExpensiveAlert";
 
 async function createQuery(baseURL:string, parameters:any):Promise<CheapSharkResult> {
     const url = `${baseURL}?${new URLSearchParams(parameters as any)}`
-    return await fetch(url).then(x=>{
+    return await fetch(url, {
+        'mode': 'cors',
+        'headers': {
+            'Access-Control-Allow-Origin': '*',
+        }
+    }
+    ).then(x=>{
         if (x.ok) {
             return x.json()
         } else {
