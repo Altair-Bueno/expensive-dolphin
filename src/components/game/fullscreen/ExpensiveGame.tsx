@@ -2,21 +2,17 @@ import {PriceTable} from "./PriceTable";
 import {Price} from "../common/Price";
 import {Rating} from "../common/Rating";
 import Button from "react-bootstrap/Button";
-import {useContext, useRef, useState} from "react";
+import {useContext, useState} from "react";
 import {StoresContext, useEmailStorage} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
 import {gameURL, steamURL} from "../../../cheapshark/stores";
 import './ExpensiveGame.css'
-import {Modal, ModalBody} from "react-bootstrap";
-import {CreateAlert} from "../common/CreateAlert";
-import {useCheapShark} from "../../../cheapshark";
 import {EditAlertParam, ManageAlertsParam} from "../../../cheapshark/alerts";
+import {DealLookupParam} from "../../../cheapshark/deals";
 import {UseQueryResult} from "react-query";
+import {useCheapShark} from "../../../cheapshark";
 import {AlertProps, ExpensiveAlert} from "../../wrappers/ExpensiveAlert";
 import {DealLookup} from "../../../cheapshark/deals/dealLookup";
-import {ExpensiveLoading} from "../../wrappers/ExpensiveLoading";
-import {DealList} from "../list/DealList";
-import {DealLookupParam} from "../../../cheapshark/deals";
 
 export {ExpensiveGame};
 
@@ -39,10 +35,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         isOnSale:true
     }
 
-    const [email, setEmail] = useEmailStorage();
-    const argsAlertSet: EditAlertParam = {action: 'set', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
-    const argsAlertDelete: EditAlertParam = {action: 'delete', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
-    const argsAlertManage: ManageAlertsParam = {action: 'manage', email: ""}
+    // Alert Buttons
     const createAlertButton = (
         <Button variant={"primary"} id={"createAlertButton"} onClick={(button) => changeButton(button)}>
             <div className={"d-lg-block"}>
@@ -61,7 +54,18 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         </Button>
     )
 
+
+    const argsAlertSet: EditAlertParam = {action: 'set', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
+    const argsAlertDelete: EditAlertParam = {action: 'delete', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
+    const argsAlertManage: ManageAlertsParam = {action: 'manage', email: ""}
+
+    // Hooks
+    const [email, setEmail] = useEmailStorage();
     const [alertButton, setAlertButton] = useState(createAlertButton)
+    const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
+    const [ratingProps, setRatingProps] = useState({
+        steamRatingPercent: 0
+    })
 
     /*
 
@@ -145,7 +149,6 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         let element = button.currentTarget as HTMLButtonElement
         if(element != null){
             if(element.id === deleteAlertButton.props.id){
-                console.log("DeleteAlert")
                 window.alert("Alert deleted successfully");
                 setAlertButton(createAlertButton)
             } else if(element.id === createAlertButton.props.id){
@@ -168,6 +171,22 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
     }
 
+    const rating = () => {
+        let result;
+        let decoded = decodeURIComponent(gameLookup.deals[0].dealID)
+        const queryProps : DealLookupParam = {id: decoded}
+        let query : UseQueryResult<DealLookup, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/deals', queryProps)
+        if(query.isLoading){
+            result = <small>Loading rating...</small>
+        } else if (query.error) {
+            result = <ExpensiveAlert {...query.error}/>
+        } else if (query.data) {
+            console.log(query.data)
+            setRatingProps({steamRatingPercent: Number.parseFloat((query.data.gameInfo.steamRatingPercent))})
+            result = <Rating {...ratingProps}/>
+        }
+        return result;
+    }
 
     function isValidEmail(address : String): boolean {
         if (address != '' && address.search) {
@@ -180,10 +199,6 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         return false;
     }
 
-    const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
-    const ratingProps = {
-        steamRatingPercent: gameLookup.deals[0].rating
-    }
 
     return <div className="container-sm">
         <div className="row-6 d-flex" >
@@ -199,7 +214,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
                 </div>
                 <div className="row ms-1">
-                    <Rating {...ratingProps}/>
+                    {rating()}
                 </div>
                 <div className="row">
                     <div className="col-5 ms-1 p-0">
