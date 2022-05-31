@@ -2,7 +2,7 @@ import {PriceTable} from "./PriceTable";
 import {Price} from "../common/Price";
 import {Rating} from "../common/Rating";
 import Button from "react-bootstrap/Button";
-import {useContext} from "react";
+import {useContext, useRef, useState} from "react";
 import {StoresContext, useEmailStorage} from "../../../types";
 import {GameLookup} from "../../../cheapshark/games/gameLookup";
 import {gameURL, steamURL} from "../../../cheapshark/stores";
@@ -24,6 +24,10 @@ interface ExpensiveGameProps {
     gameLookup: GameLookup
 }
 
+
+
+
+
 function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     const stores = useContext(StoresContext)
     // TODO lmao i hate this API
@@ -39,6 +43,25 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
     const argsAlertSet: EditAlertParam = {action: 'set', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
     const argsAlertDelete: EditAlertParam = {action: 'delete', email: "", gameID: Number.parseInt(gameLookup.info.steamAppID), price: priceProps.price}
     const argsAlertManage: ManageAlertsParam = {action: 'manage', email: ""}
+    const createAlertButton = (
+        <Button variant={"primary"} id={"createAlertButton"} onClick={(button) => changeButton(button)}>
+            <div className={"d-lg-block"}>
+                <i className="bi bi-alarm m-1"></i>
+                <label className={"d-lg-block"}>Add alert</label>
+            </div>
+        </Button>
+    )
+
+    const deleteAlertButton = (
+        <Button variant={"danger"} id={"deleteAlertButton"} onClick={(button) => changeButton(button)}>
+            <div className={"d-lg-block"}>
+                <i className="bi bi-alarm m-1"></i>
+                <label className={"d-lg-block"}>Delete alert</label>
+            </div>
+        </Button>
+    )
+
+    const [alertButton, setAlertButton] = useState(createAlertButton)
 
     /*
 
@@ -118,31 +141,33 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
      */
 
-    function changeButton() {
-        var elem = document.getElementById("alertbuttongame");
-        if(elem!.innerText == "Delete alert"){
-            window.alert("Alert deleted successfully");
-            elem!.innerText = "Create alert"
-            elem!.className = " btn btn-primary";
-        } else {
-            if(email){
-                window.alert("Alert created successfully");
-                elem!.innerText="Delete alert";
-                elem!.className = "btn btn-danger";
-            } else {
-                const emailInput = prompt("Please enter your email:");
-                if(emailInput === null || emailInput === "" || !isValidEmail(emailInput)){
-                    window.alert("Alert has not been created. Please introduce a valid email.")
-                } else {
-                    setEmail(emailInput);
+    const changeButton = (button: React.MouseEvent<HTMLButtonElement>) => {
+        let element = button.currentTarget as HTMLButtonElement
+        if(element != null){
+            if(element.id === deleteAlertButton.props.id){
+                console.log("DeleteAlert")
+                window.alert("Alert deleted successfully");
+                setAlertButton(createAlertButton)
+            } else if(element.id === createAlertButton.props.id){
+                if(email){
                     window.alert("Alert created successfully");
-                    elem!.innerText="Delete alert";
-                    elem!.className = "btn btn-danger";
+                    setAlertButton(deleteAlertButton)
+                } else {
+                    const emailInput = prompt("Please enter your email:");
+                    if(emailInput === null || emailInput === "" || !isValidEmail(emailInput)){
+                        window.alert("Alert has not been created. Please introduce a valid email.")
+                    } else {
+                        setEmail(emailInput);
+                        window.alert("Alert created successfully");
+                        setAlertButton(deleteAlertButton)
+                    }
                 }
-            }
 
+            }
         }
+
     }
+
 
     function isValidEmail(address : String): boolean {
         if (address != '' && address.search) {
@@ -157,7 +182,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
     const ratingProps = {
-        steamRatingPercent: Number.parseFloat(gameLookup.deals[0].savings)
+        steamRatingPercent: gameLookup.deals[0].rating
     }
 
     return <div className="container-sm">
@@ -191,12 +216,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
                         </Button>
                     </div>
                     <div className="col-12 mt-3 ms-0 p-0">
-                        <Button variant={"primary"} id={"alertbuttongame"} onClick={() => changeButton()}>
-                            <div className={"d-lg-block"}>
-                                <i className="bi bi-alarm m-1"></i>
-                                <label className={"d-lg-block"}>Add alert</label>
-                            </div>
-                        </Button>
+                        {alertButton}
                     </div>
                 </div>
             </div>
