@@ -1,4 +1,5 @@
 import {ListOfDealsParam, SortByOptions} from "../../cheapshark/deals";
+import './Filter.css'
 import {
     PriceRange,
     PriceRangeSlider,
@@ -107,19 +108,21 @@ function Filter(props: FilterProps) {
         {props.showHistory && <SearchHistory/>}
         <div>
         </div>
+        {/*
         <div className={"mb-3 text-light"}>
             <label className={"form-label"}>Price range:
                 From {filter.lowerPrice} to {filter.upperPrice}</label>
             <PriceRangeSlider {...priceRangeSliderProps}/>
         </div>
-{/*        <div className={"mb-3"}>
+        <div className={"mb-3"}>
             <label className={"form-label text-light"}>Metacritic rating</label>
             <RatingFilter {...metacriticRatingProps}/>
-        </div>*/}
+        </div>
         <div className={"mb-3"}>
             <label className={"form-label text-light"}>Steam rating</label>
             <RatingFilter {...steamRatingProps}/>
         </div>
+        */}
         <h3 className={"text-light"}>Stores</h3>
         <div>
             {storesCheckBox}

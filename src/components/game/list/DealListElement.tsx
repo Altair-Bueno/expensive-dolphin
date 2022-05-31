@@ -11,6 +11,7 @@ import {UseQueryResult} from "react-query";
 import {DealLookup} from "../../../cheapshark/deals/dealLookup";
 import {AlertProps, ExpensiveAlert} from "../../wrappers/ExpensiveAlert";
 import {useCheapShark} from "../../../cheapshark";
+import {useEffect} from "react";
 
 export {DealListElement};
 
@@ -21,30 +22,51 @@ function DealListElement(props: Deal) {
         savings:Number.parseInt(props.savings),
         isOnSale:!!props.isOnSale
     }
+
     const ratingProps = {
         steamRatingPercent: Number.parseFloat(props.savings)
     }
+
 
     const lowestBanner = <div className={"position-absolute"}>
         <LowestBanner bannerSize={BannerSize.small}/>
     </div>
 
+    /*
     function rating() {
-        let result;
-        let decoded = decodeURIComponent(props.dealID)
-        const queryProps : DealLookupParam = {id: decoded}
-        let query : UseQueryResult<DealLookup, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/deals', queryProps)
-        if(query.isLoading){
-            result = <small>Loading rating...</small>
-        } else if (query.error) {
-            result = <ExpensiveAlert {...query.error}/>
-        } else if (query.data) {
-            console.log(query.data)
-            const props = {steamRatingPercent: Number.parseFloat((query.data.gameInfo.steamRatingPercent))}
-            result = <Rating {...props}/>
-        }
-        return result;
+        useEffect(() => {
+            let result;
+            let decoded = decodeURIComponent(props.dealID)
+            const queryProps : DealLookupParam = {id: decoded}
+            let query : UseQueryResult<DealLookup, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/deals', queryProps)
+            if(query.isLoading){
+                result = <small>Loading rating...</small>
+            } else if (query.error) {
+                result = <ExpensiveAlert {...query.error}/>
+            } else if (query.data) {
+                console.log(query.data)
+                const props = {steamRatingPercent: Number.parseFloat((query.data.gameInfo.steamRatingPercent))}
+                result = <Rating {...props}/>
+            }
+            return result;
+        }, [])
+
     }
+
+     */
+
+    /*
+
+    const decoded = decodeURIComponent(props.dealID)
+    const queryProps : DealLookupParam = {id: decoded}
+    const query: UseQueryResult<DealLookup, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/deals', queryProps)
+    let ratingProps = {steamRatingPercent: 0}
+    if(query.data){
+        ratingProps ={steamRatingPercent: Number.parseFloat(query.data.gameInfo.steamRatingPercent)}
+    }
+
+     */
+
 
     return <Container>
         <Row>
@@ -64,7 +86,7 @@ function DealListElement(props: Deal) {
                     </h5>
                 </Row>
                 <Row className={"text-start me-1"}>
-                    {rating()}
+                    <Rating {...ratingProps}/>
                 </Row>
             </Col>
 

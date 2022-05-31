@@ -1,3 +1,9 @@
+import {DealLookupParam} from "../../../cheapshark/deals";
+import {UseQueryResult} from "react-query";
+import {DealLookup} from "../../../cheapshark/deals/dealLookup";
+import {AlertProps, ExpensiveAlert} from "../../wrappers/ExpensiveAlert";
+import {useCheapShark} from "../../../cheapshark";
+
 export {
     Rating
 }
@@ -6,6 +12,21 @@ interface RatingProps {
     steamRatingPercent: number,
     steamRatingCount?: number| null
 }
+
+function loadData(dealID: string) {
+    let result;
+    let decoded = decodeURIComponent(dealID)
+    const queryProps : DealLookupParam = {id: decoded}
+    let query : UseQueryResult<DealLookup, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/deals', queryProps)
+    if(query.isLoading){
+        return undefined
+    } else if (query.error) {
+        return undefined
+    } else if (query.data) {
+        return query.data.gameInfo.steamRatingPercent
+    }
+}
+
 
 function Rating(props: RatingProps) {
     const fill = Math.floor(props.steamRatingPercent / 20)

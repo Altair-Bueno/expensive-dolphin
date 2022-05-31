@@ -155,30 +155,10 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         return false;
     }
 
-
-
-
-
-
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
-
-    function rating() {
-        let result;
-        let decoded = decodeURIComponent(gameLookup.deals[0].dealID)
-        const queryProps : DealLookupParam = {id: decoded}
-        let query : UseQueryResult<DealLookup, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/deals', queryProps)
-        if(query.isLoading){
-            result = <small>Loading rating...</small>
-        } else if (query.error) {
-            result = <ExpensiveAlert {...query.error}/>
-        } else if (query.data) {
-            console.log(query.data)
-            const props = {steamRatingPercent: Number.parseFloat((query.data.gameInfo.steamRatingPercent))}
-            result = <Rating {...props}/>
-        }
-        return result;
+    const ratingProps = {
+        steamRatingPercent: Number.parseFloat(gameLookup.deals[0].savings)
     }
-
 
     return <div className="container-sm">
         <div className="row-6 d-flex" >
@@ -194,7 +174,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
                 </div>
                 <div className="row ms-1">
-                    {rating()}
+                    <Rating {...ratingProps}/>
                 </div>
                 <div className="row">
                     <div className="col-5 ms-1 p-0">
