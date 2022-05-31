@@ -15,6 +15,7 @@ export interface Deal {
     price: string;
     retailPrice: string;
     savings: string;
+    rating: number;
 }
 
 export interface GameLookup {

@@ -12,7 +12,11 @@ import {CreateAlert} from "../common/CreateAlert";
 import {useCheapShark} from "../../../cheapshark";
 import {EditAlertParam, ManageAlertsParam} from "../../../cheapshark/alerts";
 import {UseQueryResult} from "react-query";
-import {AlertProps} from "../../wrappers/ExpensiveAlert";
+import {AlertProps, ExpensiveAlert} from "../../wrappers/ExpensiveAlert";
+import {DealLookup} from "../../../cheapshark/deals/dealLookup";
+import {ExpensiveLoading} from "../../wrappers/ExpensiveLoading";
+import {DealList} from "../list/DealList";
+import {DealLookupParam} from "../../../cheapshark/deals";
 
 export {ExpensiveGame};
 
@@ -154,8 +158,27 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
 
 
-    const ratingProps = {steamRatingPercent: Number.parseFloat(gameLookup.deals[0].savings)}
+
+
     const priceTableProps = { storeModel: stores, tablemodel:gameLookup.deals }
+
+    function rating() {
+        let result;
+        let decoded = decodeURIComponent(gameLookup.deals[0].dealID)
+        const queryProps : DealLookupParam = {id: decoded}
+        let query : UseQueryResult<DealLookup, AlertProps> = useCheapShark('https://www.cheapshark.com/api/1.0/deals', queryProps)
+        if(query.isLoading){
+            result = <small>Loading rating...</small>
+        } else if (query.error) {
+            result = <ExpensiveAlert {...query.error}/>
+        } else if (query.data) {
+            console.log(query.data)
+            const props = {steamRatingPercent: Number.parseFloat((query.data.gameInfo.steamRatingPercent))}
+            result = <Rating {...props}/>
+        }
+        return result;
+    }
+
 
     return <div className="container-sm">
         <div className="row-6 d-flex" >
@@ -171,7 +194,7 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
 
                 </div>
                 <div className="row ms-1">
-                    <Rating {...ratingProps}/>
+                    {rating()}
                 </div>
                 <div className="row">
                     <div className="col-5 ms-1 p-0">
