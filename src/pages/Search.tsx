@@ -50,7 +50,6 @@ function Search() {
     return <div className={"container mt-3"}>
         <div className={"row mb-3"}>
             <h1 className={"text-light"}>Search titles on CheapShark</h1>
-            <h5 className={"text-light"}>Search history</h5>
         </div>
 
         <div className={"row"}>

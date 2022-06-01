@@ -79,7 +79,7 @@ function Filter(props: FilterProps) {
         <option>{value}</option>)
 
     const storesCheckBox = stores.map(store=><div className={"form-check text-light"}>
-        <input type={"checkbox"} className={"form-check-input"} key={store.storeID}
+        <input type={"checkbox"} className={"form-check-input estilosCheckbox"} key={store.storeID}
                onChange={x=>{
                    const selfStoreID = Number.parseInt(store.storeID);
                    if (x.currentTarget.checked) {
@@ -135,22 +135,22 @@ function Filter(props: FilterProps) {
             </select>
         </div>
         <div className={"form-check text-light"}>
-            <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input"}/>
+            <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input estilosCheckbox"}/>
             <label className={"form-check-label"}>Descending</label>
         </div>
         <h3 className={"text-light"}>Other options</h3>
         <div className={"mb-3 text-light"}>
             <div className={"form-check"}>
-                <input type={"checkbox"} onChange={onChangeSale} className={"form-check-input"}/>
+                <input type={"checkbox"} onChange={onChangeSale} className={"form-check-input estilosCheckbox"}/>
                 <label className={"form-check-label"}>On Sale</label>
 
             </div>
             <div className={"form-check text-light"}>
-                <input type={"checkbox"} onChange={onChangeSteamWorks} className={"form-check-input"}/>
+                <input type={"checkbox"} onChange={onChangeSteamWorks} className={"form-check-input estilosCheckbox"}/>
                 <label className={"form-check-label"}>Steam works</label>
             </div>
             <div className={"form-check text-light"}>
-                <input type={"checkbox"} onChange={onChangeAAA} className={"form-check-input"}/>
+                <input type={"checkbox"} onChange={onChangeAAA} className={"form-check-input estilosCheckbox"}/>
                 <label className={"form-check-label text-light"}>AAA</label>
             </div>
 
