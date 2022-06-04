@@ -22,21 +22,21 @@ export interface FilterProps {
 }
 
 function Filter(props: FilterProps) {
-    const {setFilter, filter,stores} = props
+    const {setFilter, filter, stores} = props
 
     const steamRatingProps: RatingFilterProps = {
         maxRating: 5, rating: filter.steamRating,
         setRating: (x) => setFilter({...filter, steamRating: x})
     }
     const metacriticRatingProps: RatingFilterProps = {
-        maxRating: 5, rating:filter.metacritic,
+        maxRating: 5, rating: filter.metacritic,
         setRating: (x) => setFilter({...filter, metacritic: x})
     }
-    const priceRangeSliderProps:PriceRangeSliderProps = {
-        max:999,
-        min:0,
-        step:10,
-        onchange:(x: PriceRange) => setFilter({...filter, ...x})
+    const priceRangeSliderProps: PriceRangeSliderProps = {
+        max: 999,
+        min: 0,
+        step: 10,
+        onchange: (x: PriceRange) => setFilter({...filter, ...x})
     }
     const onChangeSearch = (x: ChangeEvent<HTMLInputElement>) => setFilter({
         ...filter,
@@ -68,41 +68,42 @@ function Filter(props: FilterProps) {
         desc: x.currentTarget.checked
     });
 
-    const buscar = (title : string) => setFilter({
+    const buscar = (title: string) => setFilter({
         ...filter,
         title: title
     })
 
 
-
     const sortByOptions = Object.entries(SortByOptions).map(([_, value]) =>
         <option>{value}</option>)
 
-    const storesCheckBox = stores.map(store=><div className={"form-check text-light"}>
+    const storesCheckBox = stores.map(store => <div className={"form-check text-light"}>
         <input type={"checkbox"} className={"form-check-input estilosCheckbox"} key={store.storeID}
-               onChange={x=>{
+               onChange={x => {
                    const selfStoreID = Number.parseInt(store.storeID);
                    if (x.currentTarget.checked) {
-                       const updatedStore = filter.storeID ? [...filter.storeID,selfStoreID] : [selfStoreID]
-                       setFilter({...filter,storeID:updatedStore})
+                       const updatedStore = filter.storeID ? [...filter.storeID, selfStoreID] : [selfStoreID]
+                       setFilter({...filter, storeID: updatedStore})
                    } else {
-                        const updatedStore = filter.storeID?.filter(id=>id !== selfStoreID)
-                        setFilter({...filter,storeID:updatedStore})
+                       const updatedStore = filter.storeID?.filter(id => id !== selfStoreID)
+                       setFilter({...filter, storeID: updatedStore})
                    }
                }}/>
         <label className={"form-check-label"}>{store.storeName}</label>
-    </div> )
+    </div>)
 
     return <form onSubmit={x => x.preventDefault()}>
         <div className={"mb-3 text-light"}>
             <div className={"row"}>
                 <div className={"col"}>
                     <input type={"search"} id={"titleFilter"} className={"form-control text-light"}
-                       placeholder={"Title"}/>
+                           placeholder={"Title"}/>
                 </div>
             </div>
             <div className={"col-1 mt-1"}>
-                <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)} className={"btn btn-primary text-light"} type={"submit"}>Filter</button>
+                <button onClick={() => buscar((document.getElementById("titleFilter")! as HTMLInputElement).value)}
+                        className={"btn btn-primary text-light"} type={"submit"}>Filter
+                </button>
             </div>
         </div>
         {props.showHistory && <SearchHistory/>}
@@ -134,9 +135,10 @@ function Filter(props: FilterProps) {
                 {sortByOptions}
             </select>
         </div>
+        {/*
         <div className={"form-check text-light"}>
-            <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input estilosCheckbox"}/>
-            <label className={"form-check-label"}>Descending</label>
+        <input type={"checkbox"} onChange={onChangeDesc} className={"form-check-input estilosCheckbox"}/>
+        <label className={"form-check-label"}>Descending</label>
         </div>
         <h3 className={"text-light"}>Other options</h3>
         <div className={"mb-3 text-light"}>
@@ -156,6 +158,6 @@ function Filter(props: FilterProps) {
 
 
         </div>
-
+        */}
     </form>
 }
