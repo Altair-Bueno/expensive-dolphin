@@ -78,7 +78,7 @@ function Filter(props: FilterProps) {
         <option>{value}</option>)
 
     const storesCheckBox = stores.map(store => <div className={"form-check text-light"}>
-        <input type={"checkbox"} className={"form-check-input estilosCheckbox"} key={store.storeID}
+        <input type={"checkbox"} id={store.storeName}  className={"form-check-input estilosCheckbox"} key={store.storeID}
                onChange={x => {
                    const selfStoreID = Number.parseInt(store.storeID);
                    if (x.currentTarget.checked) {
@@ -89,7 +89,7 @@ function Filter(props: FilterProps) {
                        setFilter({...filter, storeID: updatedStore})
                    }
                }}/>
-        <label className={"form-check-label"}>{store.storeName}</label>
+        <label className={"form-check-label"} for={store.storeName}>{store.storeName}</label>
     </div>)
 
     return <form onSubmit={x => x.preventDefault()}>
@@ -131,7 +131,7 @@ function Filter(props: FilterProps) {
         <h3 className={"text-light"}>Sorting</h3>
         <div className={"mb-3 text-light"}>
             <label>Sort By</label>
-            <select onChange={onChangeSortBy} className={"form-select text-light"}>
+            <select onChange={onChangeSortBy} className={"form-select text-light"} aria-label={"sort"}>
                 {sortByOptions}
             </select>
         </div>

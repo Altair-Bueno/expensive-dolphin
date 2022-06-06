@@ -13,7 +13,7 @@ function ExpensiveNavbar() {
       { page: Pages.Home, icon: "bi-currency-dollar", name: "Today's Deals" },
       { page: Pages.Search, icon: "bi-search", name: "Search"},
       { page: Pages.Alerts, icon: "bi-gear", name: "Manage data"},
-      //{ page: Pages.Help, icon: "bi-question-circle", name: "Help" },
+      { page: Pages.Help, icon: "bi-question-circle", name: "Help" },
     ].map((x,tabIndex) => (
       <LinkContainer to={x.page}>
         <Nav.Link active={false} >
