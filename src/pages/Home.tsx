@@ -50,7 +50,7 @@ function Home() {
         .map(x=> [useCheapShark(dealsURL, {storeID: [Number.parseInt(x.storeID)]}),x] as [UseQueryResult<Deal[],AlertProps>,Store])
         .map(([x,y])=>queryToContent(x,y))
 
-    return <main className={"container"} role={"application"}>
+    return <main className={"container"} >
         {mainContent}
     </main>
 }

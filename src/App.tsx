@@ -22,7 +22,7 @@ export function App() {
     return <div id={"page-content"}>
         <ExpensiveNavbar/>
         <Routes
-            location={backgroundLocation ? backgroundLocation : currentLocation} for={"page-content"}>
+            location={backgroundLocation ? backgroundLocation : currentLocation}>
             {Object.entries(routes).map(([_, v]) => v)}
         </Routes>
         {backgroundLocation && (

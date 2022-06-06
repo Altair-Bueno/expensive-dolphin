@@ -89,7 +89,7 @@ function Filter(props: FilterProps) {
                        setFilter({...filter, storeID: updatedStore})
                    }
                }}/>
-        <label className={"form-check-label"} for={store.storeName}>{store.storeName}</label>
+        <label className={"form-check-label"} >{store.storeName}</label>
     </div>)
 
     return <form onSubmit={x => x.preventDefault()}>

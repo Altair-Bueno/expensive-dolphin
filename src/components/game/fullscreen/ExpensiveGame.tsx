@@ -18,6 +18,7 @@ import {ExpensiveLoading} from "../../wrappers/ExpensiveLoading";
 import {DealList} from "../list/DealList";
 import {DealLookupParam} from "../../../cheapshark/deals";
 import {useSearchParams} from "react-router-dom";
+import { confirmAlert } from 'react-confirm-alert';
 
 export {ExpensiveGame};
 
@@ -147,9 +148,11 @@ function ExpensiveGame({gameLookup}: ExpensiveGameProps) { // Game ID for lookup
         let element = button.currentTarget as HTMLButtonElement
         if(element != null){
             if(element.id === deleteAlertButton.props.id){
-                console.log("DeleteAlert")
-                window.alert("Alert deleted successfully");
-                setAlertButton(createAlertButton)
+                if(window.confirm("Really want to Delete Alert?")) {
+                    console.log("DeleteAlert");
+                    window.alert("Alert deleted successfully");
+                    setAlertButton(createAlertButton)
+                }
             } else if(element.id === createAlertButton.props.id){
                 if(email){
                     window.alert("Alert created successfully");
